@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  backend:
+    build: 
+      context: ./back-end/
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - /back-end:/app
+  frontend:
+    build: 
+      context: ./front-end/
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - /front-end:/app
+  dbmysql:
+    build:
+      context: ./db/
+      dockerfile: Dockerfile
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD:2153
+    volumes:
+      - /data:/var/lib/mysql
+
+    

@@ -1,0 +1,6 @@
+back-end/Dockerfile eol=LF
+front-end/Dockerfile eol=LF
+db/Dockerfile eol=LF
+docker-compose.yml eol=LF
+*package-lock.json eol=LF
+*packege.json eol=LF
