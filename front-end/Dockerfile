@@ -7,4 +7,4 @@ COPY package.json package-lock.json /app/
 COPY src/* /app/src/
 RUN npm i
 EXPOSE 4200
-CMD ["npm", "start"]
+RUN npm start
