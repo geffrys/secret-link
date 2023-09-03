@@ -27,20 +27,23 @@ CREATE TABLE agents(
     id_ag INT PRIMARY KEY AUTO_INCREMENT,
     name_ag VARCHAR(50) NOT NULL,
     phone_ag VARCHAR(20) NOT NULL,
-    id_dt INT NOT NULL, 
+    id_dt INT NOT NULL,
+    id_at INT NOT NULL, 
     document_number VARCHAR(20) NOT NULL,
     user_name VARCHAR(20) NOT NULL,
     user_password VARCHAR(300) NOT NULL,
     user_mail VARCHAR(100) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     modified_at DATETIME,
-    FOREIGN KEY (id_dt) REFERENCES document_types(id_dt)
+    FOREIGN KEY (id_dt) REFERENCES document_types(id_dt),
+    FOREIGN KEY (id_at) REFERENCES agent_types(id_at)
 );
 
 CREATE TABLE auditory_sesion(
     id_as INT PRIMARY KEY AUTO_INCREMENT,
 	login_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     logout_time DATETIME,
+    message_end_session VARCHAR(255),
     id_ag INT NOT NULL,
     FOREIGN KEY (id_ag) REFERENCES agents(id_ag)
 );

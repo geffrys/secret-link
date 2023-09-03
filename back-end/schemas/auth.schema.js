@@ -14,6 +14,9 @@ export const registerSchema = z.object({
   id_dt: z.number({
     required_error: "Document type required",
   }),
+  agent_type: z.number({
+    required_error: "Agent type required",
+  }),
   document_number: z.string({
     required_error: "Document number required",
   }),
