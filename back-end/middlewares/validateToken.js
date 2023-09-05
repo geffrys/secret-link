@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
-import { TOKEN_SECRET } from "../config.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
 export const authRequied = (req, res, next) => {
   const { token } = req.cookies;
