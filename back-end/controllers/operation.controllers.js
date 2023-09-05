@@ -1,6 +1,6 @@
 import { pool } from '../database'
 
-export const getOperations = async (req, res) => {
+export const getOperation = async (req, res) => {
 
 }
 
