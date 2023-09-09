@@ -1,6 +1,11 @@
 import { pool } from "../db.js";
 import bcrypt from "bcrypt";
 import { CreateAccesToken } from "../libs/jwt.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+const SALT_ROUNDS = process.env.SALT_ROUNDS; 
+
 export const getUsers = async (req, res) => {
   try {
     const [result] = await pool.query(
@@ -49,7 +54,7 @@ export const newUser = async (req, res) => {
       user_email,
     } = req.body;
 
-    const finalPass = await bcrypt.hash(user_password, 10);
+    const finalPass = await bcrypt.hash(user_password, SALT_ROUNDS);
     const updatedAt = new Date();
     const [result] = await pool.query(
       "insert into agents (name_ag, phone_ag, id_dt, id_at, document_number, user_name, user_password, user_mail, modified_at) values (?,?,?,?,?,?,?,?,?)",
@@ -132,7 +137,7 @@ export const profile = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { nombreCompleto, email, userName, password, perfil } = req.body;
-    const finalPass = await bcrypt.hash(password, 10);
+    const finalPass = await bcrypt.hash(password,SALT_ROUNDS);
     const [result] = await pool.query(
       "update agents set nombreCompleto=?,email=?, userName=?, password=?, perfil=? where id = ?",
       [nombreCompleto, email, userName, finalPass, perfil, req.params.id]
