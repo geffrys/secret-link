@@ -13,13 +13,12 @@ export default function LoginClient() {
             &nbsp;
             <button>Register</button>
 
-            <form className="form">
+            <section>
                 <h1>Category</h1>
                 <button>See available plans</button>
                 &nbsp;
                 <button>Register agents</button>
-
-            </form>
+            </section>
         </form>
 
 

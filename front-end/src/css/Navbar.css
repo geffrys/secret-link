@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.navbar__titulo {
+  font-size: 10rem;
+}
+
+.navbar__boton {
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 1.75rem;
+  padding: 2rem;
+  border: 2px solid white;
+  border-radius: 1rem;
+  margin-left: 1rem; /* Ajusta el margen entre el título y el botón según sea necesario */
+  transition: all 0.5s ease;
+}
+
+.navbar__boton:hover {
+  background-color: white;
+  color: black;
+  transition: all 0.5s ease;
+}

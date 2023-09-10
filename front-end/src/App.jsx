@@ -1,27 +1,25 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Login from './components/Login'
 import SignUp from './components/SignUp'
 import NotFound from './components/NotFound'
-import LoginClient from './components/LoginClient'
-import DefaultLayout from './Layout/DefaultLayout'
+import Login from './pages/Login'
 import RegisterClient from './components/RegisterClient'
-
+import Navbar from "./components/Navbar";
 
 
 export default function App() {
   return (
-    <section>
-      <DefaultLayout />
+    <main>
+      <Navbar />
       <section>
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='*' element={<NotFound />} />
-          <Route path='/client' element={<LoginClient />} />
+          <Route path='/client' element={<Login />} />
           <Route path='/registerclient' element={<RegisterClient />} />
         </Routes>
       </section>
-    </section>
+    </main>
   )
 }
