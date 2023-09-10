@@ -1,10 +1,7 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-dotenv.config();
+import { TOKEN_SECRET } from "../config.js";
 
-const TOKEN_SECRET = process.env.TOKEN_SECRET;
-
-export const authRequied = (req, res, next) => {
+export const authRequired = (req, res, next) => {
   const { token } = req.cookies;
   if (!token)
     return res.status(401).json({ message: "No token, authorization denied" });
