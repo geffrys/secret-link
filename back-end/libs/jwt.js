@@ -11,7 +11,7 @@ export function CreateAccesToken(payload) {
       },
       (err, token) => {
         if (err) reject(err);
-        resolve(token)
+        resolve(token);
       }
     );
   });

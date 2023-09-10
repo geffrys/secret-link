@@ -191,7 +191,7 @@ CREATE TABLE operations(
     id_travel_pack INT NOT NULL,
     id_operation_status INT NOT NULL,
     operation_price INT NOT NULL,
-    operation_travalers_count INT NOT NULL,
+    operation_travelers_count INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME,
     FOREIGN KEY (id_agent) REFERENCES agents(id_agent),
@@ -208,3 +208,79 @@ CREATE TABLE operation_status_audit(
     FOREIGN KEY (id_operation_status) REFERENCES operation_status(id_operation_status),
     FOREIGN KEY (id_operation) REFERENCES operations(id_operation)
 );
+
+-- DUMMY DATA
+
+INSERT INTO agencies (name_agencie) VALUES
+    ('ViajeSecreto')
+
+INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES
+    ('Dirección 1', '123-456-7890', 1, 1),
+    ('Dirección 2', '987-654-3210', 1, 1);
+
+INSERT INTO agent_types (name_agent_type) VALUES
+    ('Agente Tipo A'),
+    ('Agente Tipo B');
+
+INSERT INTO document_types (name_document_type, status_document_type) VALUES
+    ('Tipo de Documento 1', 1),
+    ('Tipo de Documento 2', 1);
+
+INSERT INTO agents (name_agent, phone_agent, id_document_type, id_agent_type, id_headquarter, document_number_agent, user_name_agent, user_password_agent, user_mail_agent) VALUES
+    ('Agente 1', '111-111-1111', 1, 1, 6, 'ABC123', 'agente1', 'password1', 'agente1@example.com'),
+    ('Agente 2', '222-222-2222', 1, 1, 5, 'XYZ789', 'agente2', 'password2', 'agente2@example.com');
+
+INSERT INTO auditory_sesion (login_time, logout_time, message_end_session, id_agent) VALUES
+    (CURRENT_TIMESTAMP, NULL, NULL, 1),
+    (CURRENT_TIMESTAMP, NULL, NULL, 2);
+
+INSERT INTO eps (name_eps, status_eps) VALUES
+    ('EPS 1', 1),
+    ('EPS 2', 1);
+
+INSERT INTO rh_types (name_rh) VALUES
+    ('Tipo RH A'),
+    ('Tipo RH B');
+
+INSERT INTO health_information (id_rh, id_eps, health_card) VALUES
+    (1, 1, 'HC123'),
+    (2, 2, 'HC456');
+INSERT INTO clients (id_document_type, client_document_number, client_name, client_lastname, client_city, client_mail, client_password, client_address, id_health_information) VALUES
+    (1, 'C123', 'Cliente 1', 'Apellido 1', 'Ciudad 1', 'cliente1@example.com', 'password1', 'Dirección 1', 1),
+    (2, 'C456', 'Cliente 2', 'Apellido 2', 'Ciudad 2', 'cliente2@example.com', 'password2', 'Dirección 2', 2);
+INSERT INTO additional_people (id_client, id_document_type, document_number_additional_people, id_health_information) VALUES
+    (1, 1, 'A123', 1),
+    (2, 2, 'A456', 2);
+INSERT INTO destinations (destination_name, destination_status, id_agencie) VALUES
+    ('Destino 1', 1, 1),
+    ('Destino 2', 1, 2);
+INSERT INTO hotels (hotel_name, hotel_status, hotel_stars, id_destination) VALUES
+    ('Hotel 1', 1, 3, 1),
+    ('Hotel 2', 1, 4, 2);
+INSERT INTO room_types (room_name, room_description, room_capability, room_status, id_hotel) VALUES
+    ('Tipo de Habitación 1', 'Descripción 1', 2, 1, 1),
+    ('Tipo de Habitación 2', 'Descripción 2', 3, 1, 2);
+INSERT INTO itineraries (itinerary_name, itinerary_status) VALUES
+    ('Itinerario 1', 1),
+    ('Itinerario 2', 1);
+INSERT INTO activities (id_itinerary, activity_name, activity_description, activity_price, activity_status) VALUES
+    (1, 'Actividad 1', 'Descripción 1', 100, 1),
+    (2, 'Actividad 2', 'Descripción 2', 150, 1);
+INSERT INTO transports (transport_name, transport_description, transport_price) VALUES
+    ('Transporte 1', 'Descripción 1', 200),
+    ('Transporte 2', 'Descripción 2', 250);
+INSERT INTO food_types (food_name, food_description, food_price, food_status) VALUES
+    ('Tipo de Comida 1', 'Descripción 1', 50, 1),
+    ('Tipo de Comida 2', 'Descripción 2', 60, 1);
+INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, travelpack_price, travelpack_status, travelpack_description) VALUES
+    (1, 1, 1, 1, 1, 400, 1, 'Paquete de Viaje 1'),
+    (2, 2, 2, 2, 2, 500, 1, 'Paquete de Viaje 2');
+INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES
+    ('Estado de Operación 1', 1),
+    ('Estado de Operación 2', 1);
+INSERT INTO operations (id_agent, id_client, id_travel_pack, id_operation_status, operation_price, operation_travalers_count) VALUES
+    (1, 1, 1, 1, 1000, 2),
+    (2, 2, 2, 2, 1200, 3);
+INSERT INTO operation_status_audit (id_operation_status, id_operation) VALUES
+    (1, 1),
+    (2, 2);

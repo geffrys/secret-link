@@ -10,5 +10,5 @@ export const pool = createPool({
   port: "3306",
   user: "root",
   password: "123321",
-  database: "secret-link",
+  database: "secret_link",
 });

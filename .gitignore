@@ -3,6 +3,4 @@
 /back-end/.env
 /back-end/config.js
 
-db/data
-docker-compose.yml
-db/Dockerfile
+
