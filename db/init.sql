@@ -209,30 +209,39 @@ CREATE TABLE operation_status_audit(
     FOREIGN KEY (id_operation) REFERENCES operations(id_operation)
 );
 
+-- DUMMY DATA
 
 INSERT INTO agencies (name_agencie) VALUES
-    ('ViajeSecreto'),
+    ('ViajeSecreto')
+
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES
     ('Dirección 1', '123-456-7890', 1, 1),
-    ('Dirección 2', '987-654-3210', 1, 2);
+    ('Dirección 2', '987-654-3210', 1, 1);
+
 INSERT INTO agent_types (name_agent_type) VALUES
     ('Agente Tipo A'),
     ('Agente Tipo B');
+
 INSERT INTO document_types (name_document_type, status_document_type) VALUES
     ('Tipo de Documento 1', 1),
     ('Tipo de Documento 2', 1);
+
 INSERT INTO agents (name_agent, phone_agent, id_document_type, id_agent_type, id_headquarter, document_number_agent, user_name_agent, user_password_agent, user_mail_agent) VALUES
-    ('Agente 1', '111-111-1111', 1, 1, 1, 'ABC123', 'agente1', 'password1', 'agente1@example.com'),
-    ('Agente 2', '222-222-2222', 2, 2, 2, 'XYZ789', 'agente2', 'password2', 'agente2@example.com');
+    ('Agente 1', '111-111-1111', 1, 1, 6, 'ABC123', 'agente1', 'password1', 'agente1@example.com'),
+    ('Agente 2', '222-222-2222', 1, 1, 5, 'XYZ789', 'agente2', 'password2', 'agente2@example.com');
+
 INSERT INTO auditory_sesion (login_time, logout_time, message_end_session, id_agent) VALUES
     (CURRENT_TIMESTAMP, NULL, NULL, 1),
     (CURRENT_TIMESTAMP, NULL, NULL, 2);
+
 INSERT INTO eps (name_eps, status_eps) VALUES
     ('EPS 1', 1),
     ('EPS 2', 1);
+
 INSERT INTO rh_types (name_rh) VALUES
     ('Tipo RH A'),
     ('Tipo RH B');
+
 INSERT INTO health_information (id_rh, id_eps, health_card) VALUES
     (1, 1, 'HC123'),
     (2, 2, 'HC456');

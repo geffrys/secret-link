@@ -24,7 +24,11 @@ export const registerAdditionalPeople = z.object({
     id_client: z.number().min(1),
     id_document_type: z.number().min(1),
     document_number: z.string().min(1).max(20),
-    id_health_information: z.number().min(1)
+    health_information: z.object({
+        id_rh: z.number().nullable(),
+        id_eps: z.number().nullable(),
+        health_card: z.string().max(100).nullable()
+    }).nonstrict()
 })
 
 export const registerOperation = z.object({
