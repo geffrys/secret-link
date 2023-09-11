@@ -2,7 +2,12 @@ import { pool } from "../db.js";
 import bcrypt from "bcrypt";
 import { CreateAccesToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
-import { TOKEN_SECRET } from "../config.js";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
+const SALT_ROUNDS = process.env.SALT_ROUNDS;
 
 export const getUsers = async (req, res) => {
   try {
@@ -61,7 +66,7 @@ export const newUser = async (req, res) => {
       user_email,
     } = req.body;
 
-    const finalPass = await bcrypt.hash(user_password, 10);
+    const finalPass = await bcrypt.hash(user_password, SALT_ROUNDS);
     const updatedAt = new Date();
     const [result] = await pool.query(
       "insert into agents (name_agent, phone_agent, id_document_type, id_agent_type, id_headquarter, document_number_agent, user_name_agent, user_password_agent, user_mail_agent, modified_at) values (?,?,?,?,?,?,?,?,?,?)",
@@ -181,7 +186,7 @@ export const updateUser = async (req, res) => {
   try {
     const { user_password, agent_type } = req.body;
     const updatedAt = new Date();
-    const finalPass = await bcrypt.hash(user_password, 10);
+    const finalPass = await bcrypt.hash(user_password, SALT_ROUNDS);
     const [result] = await pool.query(
       "update agents set id_agent_type=?, user_password_agent=?, modified_at=? where id_agent = ?",
       [agent_type, finalPass, updatedAt, req.params.id_agent]

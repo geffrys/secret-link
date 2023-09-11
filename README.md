@@ -23,3 +23,23 @@ The **Secret Link** project involves the development of a comprehensive platform
 - **Administrative Control:** Administrators have the ability to oversee and maintain an updated staff list, ensuring that only authorized personnel have access. Additionally, they can harness the reporting feature for informed decision-making.
 
 In summary, "Secret Link" is a comprehensive solution that will transform how travel agencies operate. By combining efficient travel booking, customer information management, personnel administration, and robust reporting into a single platform, a smoother and more satisfactory experience is achieved for both the internal team and travelers.
+
+# BACK END install instructions
+- **first step** you've to install dependencies
+```bash
+cd /back-end
+npm i
+```
+- **second step**create and config .env file as .env.example and set variables with your own settings.
+```js
+PORT=
+USERDB=
+PASSDB=
+DB_NAME=
+TOKEN_SECRET=
+SALT_ROUNDS=
+```
+- **finally** you can start your server
+```bash
+npm run start 
+```

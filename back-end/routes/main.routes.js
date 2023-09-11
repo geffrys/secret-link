@@ -10,8 +10,11 @@ import itinerariesRoutes from "./itineraries.routes.js";
 import packagesRoutes from "./packages.routes.js";
 import auditoryRoutes from "./auditory.routes.js";
 import agentTypesRoutes from "./agent_types.routes.js";
+import operationRoutes from "./operation.routes.js";
+
 const router = Router();
 
+router.use(operationRoutes)
 router.use(usersRoutes);
 router.use(destinationRoutes);
 router.use(foodRoutes);
