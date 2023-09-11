@@ -186,7 +186,7 @@ export const updateUser = async (req, res) => {
   try {
     const { user_password, agent_type } = req.body;
     const updatedAt = new Date();
-    const finalPass = await bcrypt.hash(user_password, SALT_ROUNDS);
+    const finalPass = bcrypt.hash(user_password, SALT_ROUNDS);
     const [result] = await pool.query(
       "update agents set id_agent_type=?, user_password_agent=?, modified_at=? where id_agent = ?",
       [agent_type, finalPass, updatedAt, req.params.id_agent]
