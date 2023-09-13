@@ -11,10 +11,13 @@ import packagesRoutes from "./packages.routes.js";
 import auditoryRoutes from "./auditory.routes.js";
 import agentTypesRoutes from "./agent_types.routes.js";
 import operationRoutes from "./operation.routes.js";
+import clientRoutes from "./client.routes.js";
+import epsRoutes from "./eps.routes.js";
+import rhRoutes from "./rh.routes.js";
 
 const router = Router();
 
-router.use(operationRoutes)
+router.use(operationRoutes);
 router.use(usersRoutes);
 router.use(destinationRoutes);
 router.use(foodRoutes);
@@ -26,5 +29,8 @@ router.use(itinerariesRoutes);
 router.use(packagesRoutes);
 router.use(auditoryRoutes);
 router.use(agentTypesRoutes);
+router.use(clientRoutes);
+router.use(epsRoutes);
+router.use(rhRoutes);
 
 export default router;

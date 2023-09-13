@@ -188,7 +188,7 @@ CREATE TABLE operations(
     id_operation INT PRIMARY KEY AUTO_INCREMENT,
     id_agent INT NOT NULL,
     id_client INT NOT NULL,
-    id_travel_pack INT NOT NULL,
+    id_travel_pack INT ,
     id_operation_status INT NOT NULL,
     operation_price INT NOT NULL,
     operation_travalers_count INT NOT NULL,
