@@ -13,7 +13,7 @@ function Login() {
     console.log(data);
   });
 
-  useEffect(() => {});
+  useEffect(() => { });
 
   return (
     <section className="login">
@@ -24,14 +24,15 @@ function Login() {
           {...register("userName", { required: true })}
           placeholder="Username"
         />
-        {errors.userName && <span>Username is required</span>}
+        {errors.userName && <p>Username is required</p>}
+        &nbsp;
         <input
           type="password"
           {...register("password", { required: true })}
           placeholder="Password"
         />
-        {errors.password && <span>Password is required</span>}
-
+        {errors.password && <p>Password is required</p>}
+        &nbsp;
         <button type="submit">LogIn</button>
       </form>
     </section>

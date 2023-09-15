@@ -1,4 +1,4 @@
-import DefaultLayout from "../Layout/DefaultLayout";
+import React from 'react'
 
 export default function SignUp() {
   return (

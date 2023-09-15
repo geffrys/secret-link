@@ -1,7 +1,7 @@
 function SignOutBtn() {
   return (
-    <button className="navbar__boton" onClick={console.log("hola")}>
-      Cerrar sesión
+    <button className="navbar__boton" onClick={console.log("")}>
+      Sign Out
     </button>
   );
 }
