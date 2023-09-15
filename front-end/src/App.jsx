@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import SignUp from './components/SignUp'
 import NotFound from './components/NotFound'
 import Login from './pages/Login'
 import RegisterClient from './pages/RegisterClient'
@@ -16,7 +15,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/login' element={<LoginClient />} />
-          <Route path='/signup' element={<SignUp />} />
+          <Route path='/signup' element={<Login/>} />
           <Route path='*' element={<NotFound />} />
           <Route path='/registerclient' element={<RegisterClient />} />
         </Routes>
