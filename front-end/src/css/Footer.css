@@ -1,0 +1,29 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 2rem;
+}
+
+.footer__linea{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer__green {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(38, 226, 38);
+  border-radius: 50%;
+}
+
+.footer__red {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+}

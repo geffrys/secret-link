@@ -1,5 +1,4 @@
 import { useFormAction } from "react-router-dom";
-import DefaultLayout from "../Layout/DefaultLayout";
 
 const RegisterClient = () => {
 

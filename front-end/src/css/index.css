@@ -1,20 +1,21 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-    font-size: 62.5%;
+html {
+  font-size: 62.5%;
 }
 
-main{
-    font-size: 1.6rem;
+main {
+  font-family: "Hind Madurai", sans-serif, "Roboto", sans-serif;
+  font-size: 1.6rem;
 }
 
-:root{
-    --primary-color: #00AB6A;
-    --secondary-color: #FF9344;
-    --background-color: #ffffff;
-    --background-color-secondary: #EBEBEB;
+:root {
+  --primary-color: #00ab6a;
+  --secondary-color: #ff9344;
+  --background-color: #ffffff;
+  --background-color-secondary: #ebebeb;
 }

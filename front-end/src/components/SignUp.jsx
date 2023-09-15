@@ -1,4 +1,3 @@
-import DefaultLayout from "../Layout/DefaultLayout";
 
 export default function SignUp() {
   return (

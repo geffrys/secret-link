@@ -1,7 +1,10 @@
+import { useAuth } from "../context/AuthContext";
+
 function SignOutBtn() {
+  const { signOut } = useAuth();
   return (
-    <button className="navbar__boton" onClick={console.log("hola")}>
-      Cerrar sesión
+    <button className="navbar__boton" onClick={signOut}>
+      Sign Out
     </button>
   );
 }
