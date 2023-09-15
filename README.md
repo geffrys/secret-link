@@ -1,5 +1,13 @@
 # Secret Link - CRM
 
+1. [Summary](#summary)
+    - [Key Functionalities](##Key-functionalities)
+    - [Key Benefits](#key-benefits)
+2. [Install](#install-instructions)
+    - [Back-end](#back-end-install-instructions)
+
+# summary
+
 The **Secret Link** project involves the development of a comprehensive platform for travel agencies, aimed at enhancing and simplifying the experience for both commercial agents and customer interactions. The platform offers several key functionalities that enhance agency efficiency and service quality.
 
 ## Key Functionalities
@@ -24,7 +32,8 @@ The **Secret Link** project involves the development of a comprehensive platform
 
 In summary, "Secret Link" is a comprehensive solution that will transform how travel agencies operate. By combining efficient travel booking, customer information management, personnel administration, and robust reporting into a single platform, a smoother and more satisfactory experience is achieved for both the internal team and travelers.
 
-# BACK END install instructions
+# Install Instructions
+## BACK END install instructions
 - **first step** you've to install dependencies
 ```bash
 cd /back-end

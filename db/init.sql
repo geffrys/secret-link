@@ -113,7 +113,7 @@ CREATE TABLE destinations(
 
 CREATE TABLE hotels(
     id_hotel INT PRIMARY KEY AUTO_INCREMENT,
-    hotel_name VARCHAR(20) NOT NULL,
+    hotel_name VARCHAR(300) NOT NULL,
     hotel_status TINYINT NOT NULL,
     hotel_stars INT NOT NULL,
     id_destination INT NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE activities(
     id_activity INT PRIMARY KEY AUTO_INCREMENT,
     id_itinerary INT NOT NULL,
     activity_name VARCHAR(50) NOT NULL,
-    activity_description VARCHAR(50) NOT NULL,
+    activity_description VARCHAR(200) NOT NULL,
     activity_price INT DEFAULT(0),
     activity_status TINYINT NOT NULL,
     FOREIGN KEY (id_itinerary) REFERENCES itineraries(id_itinerary)
@@ -148,15 +148,15 @@ CREATE TABLE activities(
 
 CREATE TABLE transports(
     id_transport INT PRIMARY KEY AUTO_INCREMENT,
-    transport_name VARCHAR(30) NOT NULL,
-    transport_description VARCHAR(50) NOT NULL,
+    transport_name VARCHAR(50) NOT NULL,
+    transport_description VARCHAR(200) NOT NULL,
     transport_price INT NOT NULL
 );
 
 CREATE TABLE food_types(
     id_food_type INT PRIMARY KEY AUTO_INCREMENT,
     food_name VARCHAR(30) NOT NULL,
-    food_description VARCHAR(70) NOT NULL,
+    food_description VARCHAR(200) NOT NULL,
     food_price INT NOT NULL,
     food_status TINYINT NOT NULL
 );
@@ -168,6 +168,7 @@ CREATE TABLE travel_packs(
     id_transport INT NOT NULL,
     id_destination INT NOT NULL,
     id_itinerary INT NOT NULL,
+    id_hotel INT NOT NULL,
     travelpack_price INT NOT NULL,
     travelpack_status TINYINT NOT NULL,
     travelpack_description VARCHAR(255) NOT NULL,
@@ -175,7 +176,8 @@ CREATE TABLE travel_packs(
     FOREIGN KEY (id_room_type) REFERENCES room_types(id_room_type),
     FOREIGN KEY (id_transport) REFERENCES transports(id_transport),
     FOREIGN KEY (id_destination) REFERENCES destinations(id_destination),
-    FOREIGN KEY (id_itinerary) REFERENCES itineraries(id_itinerary)
+    FOREIGN KEY (id_itinerary) REFERENCES itineraries(id_itinerary),
+    FOREIGN KEY (id_hotel) REFERENCES hotels(id_hotel)
 );
 
 CREATE TABLE operation_status(
@@ -208,3 +210,4 @@ CREATE TABLE operation_status_audit(
     FOREIGN KEY (id_operation_status) REFERENCES operation_status(id_operation_status),
     FOREIGN KEY (id_operation) REFERENCES operations(id_operation)
 );
+

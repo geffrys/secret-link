@@ -79,6 +79,25 @@ export const postOperation = async (req, res) => {
     res.status(200).json(result);    
 }
 
+
+const statusTransition = (status) => {
+    switch (status) {
+        case 1:
+            // status when client is registered.
+            "registered";
+        case 2:
+            // status when is selecting travel pack. 
+            "in progress";
+        case 3:
+            // status when is paying.
+            "paid";
+        case 4:
+            // status when the operation is finished.
+            "finished"
+    
+    }
+}
+
 const updateOperation = async (req, res) => {
     const { id } = req.params;
     const { id_operation_status } = req.body;
@@ -86,7 +105,7 @@ const updateOperation = async (req, res) => {
     try {
         await operationAudit(id, id_operation_status);
     } catch (error) {
-        
+        console.log("cannot audit operation at this moment");
     }
 
     try {
@@ -98,10 +117,7 @@ const updateOperation = async (req, res) => {
     } catch (error) {
         res.status(500).json({mensaje: "cannot update operation at this moment"});
     }
-
 }
-
-
 
 // TODO: pending to test
 
