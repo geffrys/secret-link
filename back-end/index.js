@@ -11,7 +11,12 @@ app.use(cookieParser());
 app.use(express.json());
 
 // console.log(PORT);
-app.use(cors());
-app.use('/api/v1',mainRouter);
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use("/api/v1", mainRouter);
 app.listen(PORT);
 console.log("Server Running on port " + PORT);

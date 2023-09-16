@@ -114,14 +114,11 @@ export const LogIn = async (req, res) => {
     );
 
     if (!isMatch) return res.status(404).json(["Incorrect password"]);
-
     const token = await CreateAccesToken({
       id: userFound[0].id_agent,
     });
     res.cookie("token", token);
-    res.json({
-      message: "Loged in successfully",
-    });
+    res.json(userFound[0]);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -134,25 +131,22 @@ export const verifyToken = async (req, res) => {
   jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
     if (err) return res.status(401).json({ message: "Unauthorized" });
     const [userFound] = await pool.query(
-      "select * from usuarios where id = ?",
+      "select * from agents where id_agent = ?",
       [decoded.id]
     );
     if (!userFound) return res.status(401).json({ message: "Unauthorized" });
 
     return res.json({
-      id: userFound[0].id,
-      nombreCompleto: userFound[0].nombreCompleto,
-      email: userFound[0].email,
-      userName: userFound[0].userName,
-      perfil: userFound[0].perfil,
+      id: userFound[0].id_agent,
+      name_agent: userFound[0].name_agent,
+      id_agent_type: userFound[0].id_agent_type,
+      user_name_agent: userFound[0].user_name_agent,
     });
   });
 };
 
 export const logOut = (req, res) => {
-  res.cookie("token", "", {
-    expires: new Date(0),
-  });
+  res.cookie("token", "", {expires: new Date(0)});
   return res.sendStatus(200);
 };
 

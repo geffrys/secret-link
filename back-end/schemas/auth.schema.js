@@ -33,7 +33,7 @@ export const loginSchema = z.object({
   user_name: z.string({
     required_error: "Username required",
   }),
-  password: z.string({
+  user_password: z.string({
     required_error: "Password Required",
   }),
 });

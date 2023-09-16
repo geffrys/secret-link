@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-
+import "../css/Login.css";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const {
@@ -9,30 +11,45 @@ function Login() {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
+  const { signIn, isAuthenticated, errors: signinErrors } = useAuth();
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    signIn(data);
   });
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/client");
+    }
+  }, [isAuthenticated]);
 
   return (
     <section className="login">
       <form onSubmit={onSubmit} className="login__form">
         <h1>Log In</h1>
+        {signinErrors.map((error, i) => (
+          <div className="error" key={i}>
+            {error}
+          </div>
+        ))}
         <input
           type="text"
-          {...register("userName", { required: true })}
-          placeholder="Username"
+          {...register("user_name", { required: true })}
+          placeholder="Username*"
         />
-        {errors.userName && <span>Username is required</span>}
+        {errors.user_name && <p>Username is required</p>}
         <input
           type="password"
-          {...register("password", { required: true })}
-          placeholder="Password"
+          {...register("user_password", { required: true })}
+          placeholder="Password*"
         />
-        {errors.password && <span>Password is required</span>}
+        {errors.user_password && <p>Password is required</p>}
 
-        <button type="submit">LogIn</button>
+        <button type="submit" className="submit">
+          Log In
+        </button>
       </form>
     </section>
   );
