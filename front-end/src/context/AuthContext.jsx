@@ -26,9 +26,9 @@ export const AuthProvider = ({ children }) => {
   const Signup = async (user) => {
     try {
       const res = await createUserRequest(user);
-      console.log(res.data);
       setUser(res.data);
       setIsAuthenticated(true);
+      console.log(res.data)
     } catch (error) {
       setErrors(error.response.data);
     }
@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await loginUserRequest(user);
       setUser(res.data);
-      console.log(res.data)
       setIsAuthenticated(true);
     } catch (error) {
       if (Array.isArray(error.response.data)) {

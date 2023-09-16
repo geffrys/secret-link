@@ -25,6 +25,8 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .login__form h1 {
@@ -42,6 +44,7 @@
   font-size: 1.9rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .login form p {
@@ -50,20 +53,57 @@
   font-size: 1.4rem;
 }
 
-.login button {
+.login .submitbutton {
   margin-top: 2rem;
+  width: 100%;
   background-color: var(--secondary-color);
   color: black;
   border-radius: 3rem;
   padding: 1.5rem;
-  margin-bottom: 6rem;
   font-size: 2.5rem;
   cursor: pointer;
   transition: all 0.5s ease;
 }
 
-.login button:hover {
+.login .submit {
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: black;
+  border-radius: 3rem;
+  padding: 1.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.registerbtn {
+  width: 60%;
+  background-color: var(--primary-color);
+  color: black;
+  border-radius: 3rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.login .submitbutton,
+.submit:hover {
   background-color: #ff8832;
   border-radius: 2rem;
   transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.login .registerbtn:hover {
+  width: 65%;
+  border-radius: 2rem;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }

@@ -13,16 +13,15 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const { signIn, isAuthenticated, errors: signinErrors, user } = useAuth();
+  const { signIn, isAuthenticated, errors: signinErrors } = useAuth();
 
   const onSubmit = handleSubmit((data) => {
     signIn(data);
-    console.log(user);
   });
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/registerclient");
+      navigate("/client");
     }
   }, [isAuthenticated]);
 
@@ -48,7 +47,9 @@ function Login() {
         />
         {errors.user_password && <p>Password is required</p>}
 
-        <button type="submit">Log In</button>
+        <button type="submit" className="submit">
+          Log In
+        </button>
       </form>
     </section>
   );
