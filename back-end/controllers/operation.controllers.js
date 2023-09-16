@@ -98,6 +98,8 @@ const statusTransition = (status) => {
     }
 }
 
+// TODO: pending to redefine
+
 const updateOperation = async (req, res) => {
     const { id } = req.params;
     const { id_operation_status } = req.body;

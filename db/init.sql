@@ -66,6 +66,8 @@ CREATE TABLE health_information(
     id_rh INT,
     id_eps INT,
     health_card VARCHAR(20),
+    health_diseases TINYINT NOT NULL,
+    health_details VARCHAR(200) NOT NULL
     FOREIGN KEY (id_rh) REFERENCES rh_types(id_rh),
     FOREIGN KEY (id_eps) REFERENCES eps(id_eps)
 );
@@ -75,12 +77,16 @@ CREATE TABLE clients(
     id_document_type INT NOT NULL,
     client_document_number VARCHAR(20) NOT NULL,
     client_name VARCHAR(30) NOT NULL,
+    client_middle_name VARCHAR(30),
     client_lastname VARCHAR(30) NOT NULL,
+    client_second_lastname VARCHAR(30) NOT NULL,
     client_city VARCHAR(30) NOT NULL,
     client_mail VARCHAR(100) NOT NULL,
     client_password VARCHAR(300) NOT NULL,
     client_address VARCHAR(100) NOT NULL,
     id_health_information INT NOT NULL,
+    client_birth_date DATETIME NOT NULL,
+    client_phone_number VARCHAR(20),
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME,
     FOREIGN KEY (id_document_type) REFERENCES document_types(id_document_type),

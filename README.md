@@ -1,10 +1,10 @@
 # Secret Link - CRM
 
 1. [Summary](#summary)
-    - [Key Functionalities](##Key-functionalities)
-    - [Key Benefits](#key-benefits)
+    1. [Key Functionalities](##key-functionalities)
+    2. [Key Benefits](#key-benefits)
 2. [Install](#install-instructions)
-    - [Back-end](#back-end-install-instructions)
+    1. [Back-end](#back-end-install-instructions)
 
 # summary
 
