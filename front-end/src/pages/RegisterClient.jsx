@@ -32,9 +32,9 @@ function RegisterClient() {
               <label>FIRST NAME</label>
               <input
                 type="text"
-                {...register("firstName", { required: true })}
+                {...register("client_name", { required: true })}
               />
-              {errors.firstName?.type === "required" && (
+              {errors.client_name?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
@@ -43,9 +43,9 @@ function RegisterClient() {
               <label>MIDDLE NAME</label>
               <input
                 type="text"
-                {...register("middleName", { required: true })}
+                {...register("client_middleName", { required: false })}
               />
-              {errors.middleName?.type === "required" && (
+              {errors.client_middleName?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
@@ -54,7 +54,7 @@ function RegisterClient() {
               <label>SURNAME</label>
               <input
                 type="text"
-                {...register("surName", { required: true })}
+                {...register("client_lastname", { required: true })}
               />
               {errors.surName?.type === "required" && (
                 <p>the field is required</p>
@@ -65,38 +65,38 @@ function RegisterClient() {
               <label>SECOND SURNAME</label>
               <input
                 type="text"
-                {...register("secondSurName", { required: true })}
+                {...register("client_secondlastname", { required: true })}
               />
-              {errors.secondSurName?.type === "required" && (
+              {errors.client_secondlastname?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
 
             <div>
               <label>ID</label>
-              <select {...register("idType", { required: true })}>
+              <select {...register("id_document_type", { required: true })}>
                 <option value="TI">T.I</option>
                 <option value="CC">C.C</option>
                 <option value="CE">C.E</option>
               </select>
               <input
                 type="text"
-                {...register("id", { required: true })}
+                {...register("client_document_number", { required: true })}
                 placeholder="#"
               />
-              {errors.idType?.type === "required" && (
+              {errors.id_document_type?.type === "required" && (
                 <p>the field is required</p>
               )}
-              {errors.id?.type === "required" && <p>the field is required</p>}
+              {errors.client_document_number?.type === "required" && <p>the field is required</p>}
             </div>
 
             <div>
               <label>BIRTHDATE</label>
               <input
                 type="date"
-                {...register("birthdate", { required: true })}
+                {...register("client_birthdate", { required: true })}
               />
-              {errors.birthdate?.type === "required" && (
+              {errors.client_birthdate?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
@@ -108,17 +108,17 @@ function RegisterClient() {
               <label>CONTACT NUMBER</label>
               <input
                 type="tel"
-                {...register("contactNumber", { required: true })}
+                {...register("cliente_phone", { required: true })}
               />
-              {errors.contactNumber?.type === "required" && (
+              {errors.cliente_phone?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
 
             <div>
               <label>ADDRESS</label>
-              <input type="text" {...register("address", { required: true })} />
-              {errors.address?.type === "required" && (
+              <input type="text" {...register("client_address", { required: true })} />
+              {errors.client_address?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
@@ -127,15 +127,15 @@ function RegisterClient() {
               <label>EMAIL</label>
               <input
                 type="email"
-                {...register("email", {
+                {...register("client_mail", {
                   required: true,
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
                 })}
               />
-              {errors.email?.type === "required" && (
+              {errors.client_mail?.type === "required" && (
                 <p>the field is required</p>
               )}
-              {errors.email?.type === "pattern" && (
+              {errors.client_mail?.type === "pattern" && (
                 <p>the email format is incorrect</p>
               )}
             </div>
@@ -144,9 +144,9 @@ function RegisterClient() {
               <label>CITY OF RESIDENCE</label>
               <input
                 type="text"
-                {...register("cityResidence", { required: true })}
+                {...register("client_city", { required: true })}
               />
-              {errors.cityResidence?.type === "required" && (
+              {errors.client_city?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
@@ -156,25 +156,25 @@ function RegisterClient() {
           <section className="registerclient__health">
             <div>
               <label>HEALTH</label>
-              <input type="text" {...register("health", { required: true })} />
-              {errors.health?.type === "required" && (
+              <input type="text" {...register("name_eps", { required: true })} />
+              {errors.name_eps?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>
 
             <div>
               <label>Rh</label>
-              <select {...register("rh", { required: true })}>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
+              <select {...register("name_rh", { required: true })}>
+                <option value="1">A+</option>
+                <option value="2">A-</option>
+                <option value="3">O+</option>
+                <option value="4">O-</option>
+                <option value="5">B+</option>
+                <option value="6">B-</option>
+                <option value="7">AB+</option>
+                <option value="8">AB-</option>
               </select>
-              {errors.rh?.type === "required" && (
+              {errors.name_rh?.type === "required" && (
                 <p>blood type field is required</p>
               )}
             </div>
@@ -190,7 +190,7 @@ function RegisterClient() {
               )}
             </div>
 
-            <div>
+            <div className="aditional">
               <label>ADDITIONAL INFO</label>
               <textarea type="text" {...register("additionalInfo")} />
             </div>
@@ -200,45 +200,17 @@ function RegisterClient() {
           <section className="registerclient__security">
             <div>
               <label>PIN</label>
-              <input type="password" {...register("pin", { required: true })} />
-              {errors.pin?.type === "required" && <p>the field is required</p>}
+              <input type="password" {...register("pin1", { required: true })} />
+              {errors.pin1?.type === "required" && <p>the field is required</p>}
             </div>
 
             <div>
               <label>CONFIRM PIN</label>
               <input
                 type="password"
-                {...register("confirmPin", { required: true })}
+                {...register("pin2", { required: true })}
               />
-              {errors.confirmPin?.type === "required" && (
-                <p>the field is required</p>
-              )}
-            </div>
-
-            <div>
-              <label>RECOVERY NUMBER</label>
-              <input
-                type="text"
-                {...register("recoveryNumber", { required: true })}
-              />
-              {errors.recoveryNumber?.type === "required" && (
-                <p>the field is required</p>
-              )}
-            </div>
-
-            <div>
-              <label>RECOVERY EMAIL</label>
-              <input
-                type="email"
-                {...register("recoveryEmail", {
-                  required: true,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
-                })}
-              />
-              {errors.recoveryEmail?.type === "pattern" && (
-                <p>the email format is incorrect</p>
-              )}
-              {errors.recoveryEmail?.type === "required" && (
+              {errors.pin2?.type === "required" && (
                 <p>the field is required</p>
               )}
             </div>

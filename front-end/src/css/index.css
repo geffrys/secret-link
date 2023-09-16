@@ -9,8 +9,16 @@ html {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   font-family: "Hind Madurai", sans-serif, "Roboto", sans-serif;
   font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+.each_page {
+  flex-grow: 1;
+  background-color: var(--background-color-secondary);
 }
 
 :root {

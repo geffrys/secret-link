@@ -12,7 +12,7 @@ export default function App() {
       <section className='each_page'>
         <RoutesPG/>
       </section>
-      <Footer/>
+      <Footer className="foot"/>
     </main>
   )
 }
