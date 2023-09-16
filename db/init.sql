@@ -19,7 +19,7 @@ CREATE TABLE agent_types(
 
 CREATE TABLE document_types(
     id_document_type INT PRIMARY KEY AUTO_INCREMENT,
-    name_document_type VARCHAR(20) NOT NULL,
+    name_document_type VARCHAR(40) NOT NULL,
     status_document_type TINYINT NOT NULL
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE health_information(
     id_eps INT,
     health_card VARCHAR(20),
     health_diseases TINYINT NOT NULL,
-    health_details VARCHAR(200) NOT NULL
+    health_details VARCHAR(200) NOT NULL,
     FOREIGN KEY (id_rh) REFERENCES rh_types(id_rh),
     FOREIGN KEY (id_eps) REFERENCES eps(id_eps)
 );
@@ -79,7 +79,7 @@ CREATE TABLE clients(
     client_name VARCHAR(30) NOT NULL,
     client_middle_name VARCHAR(30),
     client_lastname VARCHAR(30) NOT NULL,
-    client_second_lastname VARCHAR(30) NOT NULL,
+    client_second_lastname VARCHAR(30),
     client_city VARCHAR(30) NOT NULL,
     client_mail VARCHAR(100) NOT NULL,
     client_password VARCHAR(300) NOT NULL,
@@ -216,4 +216,55 @@ CREATE TABLE operation_status_audit(
     FOREIGN KEY (id_operation_status) REFERENCES operation_status(id_operation_status),
     FOREIGN KEY (id_operation) REFERENCES operations(id_operation)
 );
+
+
+
+
+-- basic data
+
+-- INSERT INTO agencies (name_agencie) VALUES ('Secret link');
+
+-- INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('Calle 1 # 1 - 1', '1234567', 1, 1);
+
+INSERT INTO agent_types (name_agent_type) VALUES ('Administrador');
+INSERT INTO agent_types (name_agent_type) VALUES ('Agente');
+
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Cedula de ciudadania', 1);
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Cedula de extranjeria', 1);
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Pasaporte', 1);
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Tarjeta de identidad', 1);
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Registro civil', 1);
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('NIT', 1);
+INSERT INTO document_types (name_document_type, status_document_type) VALUES ('RUT', 1);
+
+INSERT INTO rh_types (name_rh) VALUES ('A+');
+INSERT INTO rh_types (name_rh) VALUES ('A-');
+INSERT INTO rh_types (name_rh) VALUES ('B+');
+INSERT INTO rh_types (name_rh) VALUES ('B-');
+INSERT INTO rh_types (name_rh) VALUES ('AB+');
+INSERT INTO rh_types (name_rh) VALUES ('AB-');
+INSERT INTO rh_types (name_rh) VALUES ('O+');
+INSERT INTO rh_types (name_rh) VALUES ('O-');
+
+INSERT INTO eps (name_eps, status_eps) VALUES ('Sura', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Coomeva', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Sanitas', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Salud total', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Nueva EPS', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Compensar', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Cafesalud', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Famisanar', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Medimas', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Aliansalud', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Saludvida', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Cruz blanca', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Colmedica', 1);
+INSERT INTO eps (name_eps, status_eps) VALUES ('Asmet salud', 1);
+
+
+INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('En proceso', 1);
+INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('Cancelada', 1);
+INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('Finalizada', 1);
+
+
 

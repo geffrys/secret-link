@@ -13,22 +13,28 @@ export const postClient = async (req, res) => {
         document_number,
         id_document_type,
         client_name,
+        client_middle_name,
         client_lastname,
+        client_second_lastname,
         client_city,
         client_mail,
         client_password,
         client_address,
-        health_information
+        health_information,
+        client_birth_date,
+        client_phone_number
     } = req.body;
 
     let password = bcrypt.hashSync(client_password,SALT_ROUNDS);
     let health_information_id;
 
     try {
-        const [health] = await pool.query("insert into health_information (id_rh, id_eps, health_card) values (?,?,?)", [
+        const [health] = await pool.query("insert into health_information(id_rh, id_eps, health_card, health_diseases, health_details) values (?,?,?,?,?)", [
             health_information.id_rh, 
             health_information.id_eps,
-            health_information.health_card
+            health_information.health_card,
+            health_information.health_diseases,
+            health_information.health_details
         ]);
         health_information_id = health.insertId;
     }
@@ -37,16 +43,20 @@ export const postClient = async (req, res) => {
     }
 
     try {
-        const [result] = await pool.query("insert into clients (id_document_type, client_document_number, client_name, client_lastname, client_city, client_mail, client_password, client_address, id_health_information, created_at) values (?,?,?,?,?,?,?,?,?,?)", [
+        const [result] = await pool.query("insert into clients (id_document_type, client_document_number, client_name,client_middle_name, client_lastname,client_second_lastname ,client_city, client_mail, client_password, client_address, id_health_information,client_birth_date,client_phone_number, created_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
             id_document_type,
             document_number, 
             client_name,
+            client_middle_name,
             client_lastname,
+            client_second_lastname,
             client_city,
             client_mail,
             password, 
             client_address, 
             health_information_id,
+            client_birth_date,
+            client_phone_number,
             new Date()
         ]);
         res.status(200).json(result);
@@ -74,7 +84,9 @@ export const postAdditionalPeople = async (req, res) => {
         const [health] = await pool.query("insert into health_information (id_rh, id_eps, health_card) values (?,?,?)", [
             health_information.id_rh, 
             health_information.id_eps,
-            health_information.health_card
+            health_information.health_card,
+            health_information.health_diseases,
+            health_information.health_details
         ]);
         health_information_id = health.insertId;
     }
