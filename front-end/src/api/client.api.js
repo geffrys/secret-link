@@ -5,3 +5,6 @@ export const getClients = async () =>
 
 export const postClient = async (client) =>
     await axios.post('http://localhost:3000/api/v1/clients', client)
+
+export const verifyClient = async (client_document_number, client_password) =>
+    await axios.post(`http://localhost:3000/api/v1/clients/${client_document_number}/verify`, client_password)
