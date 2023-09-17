@@ -1,3 +1,93 @@
+/* Box layouts */
+
 .entered_container{
+    margin: 20px 0 20px 0;
     display: flex;
+    /* align-content: space-between; */
+    justify-content: space-evenly;
+}
+.entered_main_content{
+    width: 75%;
+}
+
+.entered_main_content,
+.entered_metadata{
+    border: 1px solid black;
+    padding: 20px 40px 20px 40px;
+    border-radius: 20px;
+    background-color: var(--background-color);
+}
+
+
+.entered_metadata{
+    width: 29rem;
+    height: fit-content;
+}
+
+input{
+    padding: 10px 20px;
+}
+
+/* section settings */
+
+.section_title_container{
+    background-color: var(--primary-color);
+    padding: 20px 0px 15px 10px;
+    border: 1px solid black;
+    color: var(--background-color);
+}
+
+.section_actions{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.new_reservation_btn{
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 10px 30px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    font-size: large;
+}
+
+
+/* section content */
+.section_content > table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.section_content> table > thead > tr{
+    border: 1.9px solid black;
+}
+
+.section_content > table > thead > tr > th{
+    background-color: var(--secondary-color);
+    
+    padding: 8px 0px;
+}
+
+.date_actions{
+    display: inline-flex;
+    align-items: center;
+}
+.date_actions > * {
+    padding: 0px 10px;
+}
+
+
+
+/* font titles */
+.entered_user_title{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+.entered_metadata > h1, p{
+    font-size: 2rem;
+}
+input{
+    font-size: 1.6rem;
 }
