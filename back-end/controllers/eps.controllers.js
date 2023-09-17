@@ -5,10 +5,8 @@ export const getEps = async (req, res) => {
         const [result] = await pool.query(
         "SELECT * FROM eps order by id_eps asc"
         );
-        console.log(result);
         res.json(result);
     } catch (error) {
-        console.log(error);
         res.status(500).json({ message: "cannot get eps resource at this moment" });
     }
 }

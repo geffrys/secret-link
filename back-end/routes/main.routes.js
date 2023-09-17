@@ -14,6 +14,7 @@ import operationRoutes from "./operation.routes.js";
 import clientRoutes from "./client.routes.js";
 import epsRoutes from "./eps.routes.js";
 import rhRoutes from "./rh.routes.js";
+import docTypesRoutes from "./document_types.routes.js";
 
 const router = Router();
 
@@ -32,5 +33,6 @@ router.use(agentTypesRoutes);
 router.use(clientRoutes);
 router.use(epsRoutes);
 router.use(rhRoutes);
+router.use(docTypesRoutes);
 
 export default router;

@@ -178,6 +178,8 @@ CREATE TABLE travel_packs(
     travelpack_price INT NOT NULL,
     travelpack_status TINYINT NOT NULL,
     travelpack_description VARCHAR(255) NOT NULL,
+    travel_departure_date DATE NOT NULL,
+    travel_return_date DATE NOT NULL,
     FOREIGN KEY (id_food_type) REFERENCES food_types(id_food_type),
     FOREIGN KEY (id_room_type) REFERENCES room_types(id_room_type),
     FOREIGN KEY (id_transport) REFERENCES transports(id_transport),
@@ -266,5 +268,6 @@ INSERT INTO operation_status (operation_status_name, operation_status_status) VA
 INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('Cancelada', 1);
 INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('Finalizada', 1);
 
-
+INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
+INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA ENVIGADO', '1234567890', 1, 1);
 

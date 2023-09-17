@@ -17,10 +17,12 @@ export const registerSchema = z.object({
   agent_type: z.number({
     required_error: "Agent type required",
   }),
+  headquarter: z.number({
+    required_error: "Headquarter id required",
+  }),
   document_number: z.string({
     required_error: "Document number required",
   }),
-  user_name: z.string({ required_error: "User name required" }),
   user_password: z
     .string({ required_error: "Password required" })
     .min(8, { message: "Password minimum length required is 8" }),

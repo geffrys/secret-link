@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const TOKEN_SECRET = process.env.TOKEN_SECRET;
-const SALT_ROUNDS = process.env.SALT_ROUNDS;
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
 export const getUsers = async (req, res) => {
   try {

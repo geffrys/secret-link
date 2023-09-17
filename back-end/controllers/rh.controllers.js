@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const getRh = async (req, res) => {
     try {
         const [result] = await pool.query(
-        "SELECT * FROM rh order by id_rh asc"
+        "SELECT * FROM rh_types order by id_rh asc"
         );
         res.json(result);
     } catch (error) {
@@ -17,7 +17,7 @@ export const postRh = async (req, res) => {
     } = req.body;
     try {
         const [result] = await pool.query(
-            "INSERT INTO rh (name_rh) VALUES (?)",
+            "INSERT INTO rh_types (name_rh) VALUES (?)",
             [namerh]
         );
         res.json({ message: "rh created", id: result.insertId});
