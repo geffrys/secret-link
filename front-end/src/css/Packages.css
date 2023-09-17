@@ -1,0 +1,91 @@
+.packages {
+  background-color: var(--background-color-secondary);
+  padding: 2rem 35rem 2rem 2rem;
+}
+
+.packages__container {
+  padding: 3rem 4rem;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.packages__top {
+  background-color: var(--primary-color);
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.packages__title {
+  font-size: 5rem;
+  padding: 1rem 2rem 0rem 2rem;
+  color: white;
+  font-weight: 500;
+}
+.packages__add {
+  font-size: 4.2rem;
+  padding: 2rem 2rem 0rem 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.packages__case {
+  padding: 2rem 1rem 1rem 1rem;
+  background-color: white;
+  border: 2px solid black;
+  border-top: 0px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+}
+
+.packages__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 2px solid;
+}
+
+.packages__table td,
+th {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 2rem;
+}
+
+.packages__table th {
+  background-color: var(--secondary-color);
+  color: black;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.packages__eye {
+  cursor: pointer;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(225, 225, 225);
+}
+
+.packages__bttn {
+  align-self: flex-end;
+  width: fit-content;
+  padding: 2rem 4rem;
+  background-color: var(--primary-color);
+  font-size: 2rem;
+  border-radius: 3rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.packages__bttn:hover {
+  transition: all 0.3s ease-in-out;
+  color: black;
+  background-color: var(--secondary-color);
+}

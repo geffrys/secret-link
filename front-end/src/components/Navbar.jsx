@@ -14,7 +14,7 @@ function Navbar() {
           <img
             src={imgLogo}
             alt="Vuelo-Secreto Logo Image PNG"
-            style={{ width: "125px", height: "auto" }}
+            style={{ width: "120px", height: "auto" }}
           />
         </figure>
         <h1>Secreto Link</h1>

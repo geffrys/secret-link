@@ -169,17 +169,16 @@ CREATE TABLE food_types(
 
 CREATE TABLE travel_packs(
     id_travel_pack INT PRIMARY KEY AUTO_INCREMENT,
-    id_food_type INT NOT NULL,
-    id_room_type INT NOT NULL,
-    id_transport INT NOT NULL,
+    id_food_type ,
+    id_room_type ,
+    id_transport INT,
     id_destination INT NOT NULL,
-    id_itinerary INT NOT NULL,
-    id_hotel INT NOT NULL,
+    id_itinerary INT,
+    id_hotel INT,
     travelpack_price INT NOT NULL,
     travelpack_status TINYINT NOT NULL,
     travelpack_description VARCHAR(255) NOT NULL,
-    travel_departure_date DATE NOT NULL,
-    travel_return_date DATE NOT NULL,
+    travelpack_days INT NOT NULL,
     FOREIGN KEY (id_food_type) REFERENCES food_types(id_food_type),
     FOREIGN KEY (id_room_type) REFERENCES room_types(id_room_type),
     FOREIGN KEY (id_transport) REFERENCES transports(id_transport),
@@ -268,6 +267,32 @@ INSERT INTO operation_status (operation_status_name, operation_status_status) VA
 INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('Cancelada', 1);
 INSERT INTO operation_status (operation_status_name, operation_status_status) VALUES ('Finalizada', 1);
 
+
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA ENVIGADO', '1234567890', 1, 1);
 
+
+INSERT INTO food_types ( food_name, food_description, food_price, food_status) VALUES ('PAM', 'Breakfast, lunch and dinner', 40000, 1);
+INSERT INTO food_types (food_name, food_description, food_price, food_status) VALUES ('FULL', 'Unlimited buffet breakfast, lunch and dinner, open bar and snacks', 60000, 1);
+
+
+INSERT INTO destinations (destination_name, destination_status, id_agencie) VALUES ( 'Cartagena', 1, 1);
+
+
+INSERT INTO hotels (hotel_name, hotel_status, hotel_stars, id_destination) VALUES ('Sofitel Legend Santa Clara Cartagena', 1, 5, 1);
+
+
+INSERT INTO room_types (room_name, room_description, room_capability, room_status, id_hotel) VALUES ('Couple', 'Room for 2 people', 2, 1, 1);
+
+
+INSERT INTO transports (transport_name, transport_description, transport_price) VALUES ('Airplane', 'Avianca standard seat', 200000);
+INSERT INTO transports (transport_name, transport_description, transport_price) VALUES ('Bus', 'Coonorte standard seat', 100000);
+
+
+INSERT INTO itineraries (itinerary_name, itinerary_status) VALUES ('Cartagena Turibus and toured walk', 1);
+
+INSERT INTO activities ( id_itinerary, activity_name, activity_description, activity_price, activity_status) VALUES (1, "Cartagena\'s Turibus", "Toured bus around caragena\'s city", 30000, 1);
+INSERT INTO activities (id_itinerary, activity_name, activity_description, activity_price, activity_status) VALUES (1, "Cartagena\'s Toured walk", "Toured walk around the city\'s walls", 20000, 1);
+
+
+INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, id_hotel, travelpack_price, travelpack_status, travelpack_description, travelpack_days) VALUES (1, 1, 1, 1, 1, 1, 1, '1400000', 1, "Cartagena\'s travel", 5);

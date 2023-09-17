@@ -22,17 +22,7 @@ export const getPackage = async (req, res) => {
     } else if (result[0].package_status === false) {
       return res.status(404).json({ message: "Package is not available" });
     }
-    res.json({
-      id_travel_pack: result[0].id_travel_pack,
-      id_food_type: result[0].id_food_type,
-      id_room_type: result[0].id_room_type,
-      id_transport: result[0].id_transport,
-      id_destination: result[0].id_destination,
-      id_itinerary: result[0].id_itinerary,
-      travelpack_price: result[0].travelpack_price,
-      travelpack_status: result[0].travelpack_status,
-      travelpack_description: result[0].travelpack_description,
-    });
+    res.json(result[0]);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -46,21 +36,25 @@ export const newPackage = async (req, res) => {
       id_transport,
       id_destination,
       id_itinerary,
+      id_hotel,
       travelpack_price,
       travelpack_status,
       travelpack_description,
+      travelpack_days,
     } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, travelpack_price, travelpack_status, travelpack_description) VALUES (?,?,?,?,?,?,?,?)",
+      "INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, id_hotel, travelpack_price, travelpack_status, travelpack_description, travelpack_days) VALUES (?,?,?,?,?,?,?,?,?,?)",
       [
         id_food_type,
         id_room_type,
         id_transport,
         id_destination,
         id_itinerary,
+        id_hotel,
         travelpack_price,
         travelpack_status,
         travelpack_description,
+        travelpack_days,
       ]
     );
     res.json({ message: "Package created" });

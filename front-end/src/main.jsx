@@ -7,19 +7,40 @@ import { BrowserRouter } from "react-router-dom";
 import { RhProvider } from "./context/RhContext.jsx";
 import { DocTypesProvider } from "./context/DocTypesContext.jsx";
 import { EpsProvider } from "./context/EpsContext.jsx";
+import { PackagesProvider } from "./context/PackagesContext.jsx";
+import { DestinationsProvider } from "./context/DestinationsContext.jsx";
+import { TransportationProvider } from "./context/TransportationContext.jsx";
+import { ItineraryProvider } from "./context/ItineraryContext.jsx";
+import { FoodTypesProvider } from "./context/FoodTypesContext.jsx";
+import { RoomTypesProvider } from "./context/RoomTypesContext.jsx";
+import { HotelsProvider } from "./context/HotelsContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <DocTypesProvider>
-        <EpsProvider>
-          <RhProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </RhProvider>
-        </EpsProvider>
-      </DocTypesProvider>
+      <PackagesProvider>
+        <DestinationsProvider>
+          <HotelsProvider>
+            <ItineraryProvider>
+              <FoodTypesProvider>
+                <RoomTypesProvider>
+                  <TransportationProvider>
+                    <DocTypesProvider>
+                      <EpsProvider>
+                        <RhProvider>
+                          <BrowserRouter>
+                            <App />
+                          </BrowserRouter>
+                        </RhProvider>
+                      </EpsProvider>
+                    </DocTypesProvider>
+                  </TransportationProvider>
+                </RoomTypesProvider>
+              </FoodTypesProvider>
+            </ItineraryProvider>
+          </HotelsProvider>
+        </DestinationsProvider>
+      </PackagesProvider>
     </AuthProvider>
   </React.StrictMode>
 );

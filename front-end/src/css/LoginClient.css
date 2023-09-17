@@ -1,0 +1,138 @@
+.login_client {
+  height: calc(100vh - 189px);
+  background-color: var(--background-color-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.login_client__categories {
+  z-index: 0;
+  position: absolute;
+  border: 1px solid black;
+  margin-left: 15rem;
+  padding: 4rem;
+  background-color: white;
+  border-radius: 4rem;
+  text-align: center;
+}
+.login_client__categories h1 {
+  font-size: 4rem;
+}
+.login_client__categories button {
+  background-color: var(--background-color-secondary);
+  color: black;
+  border-radius: 3rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.login_client__login {
+  z-index: 1;
+  margin: 0 auto;
+}
+
+.error {
+  border-radius: 1rem;
+  padding: 1.75rem;
+  background-color: rgb(251, 169, 169);
+  text-align: center;
+  font-size: 1.75rem;
+  color: red;
+  border: 3px solid red;
+  margin-bottom: 3rem;
+}
+
+.login__form {
+  width: 45rem;
+  border: 1px solid black;
+  padding: 2rem 5rem 2rem 5rem;
+  border-radius: 4rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.login__form h1 {
+  font-weight: 500;
+  font-size: 4.5rem;
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.login__form input {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1.8rem 1.8rem 1.8rem 1rem;
+  font-size: 1.9rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.login_client__login form p {
+  padding: 0.75rem 1rem 1rem 1rem;
+  color: red;
+  font-size: 1.4rem;
+}
+
+.login_client__login .submitbutton {
+  margin-top: 2rem;
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: black;
+  border-radius: 3rem;
+  padding: 1.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.login_client__login .submit {
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: black;
+  border-radius: 3rem;
+  padding: 1.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.registerbtn {
+  width: 60%;
+  background-color: var(--primary-color);
+  color: black;
+  border-radius: 3rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.login .submitbutton,
+.submit:hover {
+  background-color: #ff8832;
+  border-radius: 2rem;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.login .registerbtn:hover {
+  width: 65%;
+  border-radius: 2rem;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}

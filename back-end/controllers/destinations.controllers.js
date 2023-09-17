@@ -35,10 +35,10 @@ export const getDestination = async (req, res) => {
 
 export const newDestination = async (req, res) => {
   try {
-    const { dest_name, dest_status, id_agc } = req.body;
+    const { destination_name, destination_status, id_agencie } = req.body;
     const [result] = await pool.query(
       "INSERT INTO destinations (destination_name, destination_status, id_agencie) VALUES (?,?,?)",
-      [dest_name, dest_status, id_agc]
+      [destination_name, destination_status, id_agencie]
     );
     res.json({ message: "Destination created" });
   } catch (error) {
@@ -48,10 +48,10 @@ export const newDestination = async (req, res) => {
 
 export const updateDestination = async (req, res) => {
   try {
-    const { dest_status, id_agc } = req.body;
+    const { destination_status, id_agencie } = req.body;
     const [result] = await pool.query(
       "UPDATE destinations SET destination_status =?, id_agencie =? WHERE id_destination =?",
-      [dest_status, id_agc, req.params.id_destination]
+      [destination_status, id_agencie, req.params.id_destination]
     );
     if (result.affectedRows === 0)
       return res.status(404).json({

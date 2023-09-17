@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 function SeePlansBttn() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/packages");
+  };
   return (
-    <button className="seeplans_boton" onClick={console.log()}>
-      See Avalaible Plans
+    <button className="seeplans_boton" onClick={handleClick}>
+      See Avalaible Packages
     </button>
   );
 }

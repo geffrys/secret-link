@@ -113,7 +113,7 @@ function RegisterClient() {
                 <p>ID type required</p>
               )}
               <input
-                type="text"
+                type="number"
                 {...register("client_document_number", { required: true })}
                 placeholder="#"
               />
