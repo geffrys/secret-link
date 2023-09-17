@@ -271,3 +271,7 @@ INSERT INTO operation_status (operation_status_name, operation_status_status) VA
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA ENVIGADO', '1234567890', 1, 1);
 
+INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
+INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA CEJA', '1234567890', 1, 1);
+INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA ESTRELLA', '1234567890', 1, 1);
+
