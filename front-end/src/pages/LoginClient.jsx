@@ -2,8 +2,13 @@ import { useForm } from "react-hook-form";
 import CategoriesAdmin from "../components/CategoriesAdmin";
 import { useNavigate } from "react-router-dom";
 import "../css/LoginClient.css";
+import { useContext } from "react";
+import { ClientContext } from "../context/ClientContext.jsx";
 
 function LoginClient() {
+
+  const { validateClient, isClientValidated} = useContext(ClientContext);
+
   const {
     register,
     handleSubmit,
@@ -14,6 +19,11 @@ function LoginClient() {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+    validateClient(data.client_document_number, data.client_password);
+    
+    if (isClientValidated) {
+      navigate("/dashboardclient")
+    }
   });
 
   const onNavigate = () => {

@@ -6,7 +6,6 @@ import {
   logOutRequest,
 } from "../api/users.api";
 import Cookies from "js-cookie";
-import { set } from "react-hook-form";
 
 export const AuthContext = createContext();
 

@@ -60,13 +60,12 @@ input{
     border-collapse: collapse;
 }
 
-.section_content> table > thead > tr{
+.section_content> table > thead {
     border: 1.9px solid black;
 }
 
 .section_content > table > thead > tr > th{
     background-color: var(--secondary-color);
-    
     padding: 8px 0px;
 }
 

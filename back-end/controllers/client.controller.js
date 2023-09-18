@@ -2,8 +2,12 @@ import { pool } from "../db.js";
 
 import dotenv from 'dotenv';
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { CreateAccesToken } from "../libs/jwt.js";
+
 dotenv.config();
 
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
 // TODO: pending to test
@@ -127,7 +131,12 @@ export const getClientAdditionalPeople = async (req, res) => {
 
 export const getClients = async (req, res) => {
     try {
-        const [result] = await pool.query("select  from clients");
+
+        const [result] = await pool.query("select * from clients");
+        // protecting the password
+        for (let i = 0; i < result.length; i++) {
+            result[i].client_password = undefined;
+        }
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ mensaje: "cannot get clients at this moment" });
@@ -138,25 +147,28 @@ export const getClient = async (req, res) => {
     const { id } = req.params;
     const { client_password } = req.body;
     try {
-        const [client] = await pool.query("SELECT * FROM clients WHERE client_document_number like ?", [
+        const [client] = await pool.query("SELECT * FROM clients WHERE client_document_number = ?", [
             id
         ]);
-        if (client.length > 0) {
-            bcrypt.compare(client_password, client[0].client_password, function (err, result) {
-                if (result) {
-                    client[0].client_password = undefined;
-                    res.status(200).json({"result": result,
-                    "client": client[0]});
-                }
-                else {
-                    res.status(404).json({ mensaje: "wrong password" });
-                }
-            });
-        }
-        else{
+        if (client.length == 0) {
             res.status(404).json({ mensaje: "client not found" });
         }
+        const isMatch = bcrypt.compare(client_password, client[0].client_password);
+        if (!isMatch) {
+            res.status(404).json({ mensaje: "wrong password" });
+        }
+        client[0].client_password = undefined;
+        const token = await CreateAccesToken({
+            id: client[0].id_client
+        });
+        res.cookie("clientToken", token)
+        res.status(200).json({
+            "client": client[0]
+        })
+        
+
     } catch (error) {
+        console.log(error);
         res.status(500).json({ mensaje: "cannot get client at this moment" });
     }
 }
@@ -186,8 +198,8 @@ export const updateClient = async (req, res) => {
 
         const [healthId] = await pool.query("select id_health_information from clients where id_client = ?", [
             id
-        ]); 
-        
+        ]);
+
         const [health] = await pool.query("update health_information set id_rh = ?, id_eps = ?, health_card = ?, health_diseases = ?, health_details = ? where id = ?", [
             health_information.id_rh,
             health_information.id_eps,
@@ -225,3 +237,28 @@ export const updateClient = async (req, res) => {
         res.status(500).json({ mensaje: "cannot update client at this moment" });
     }
 };
+
+export const verifyToken = async (req, res) => {
+    const { clientToken } = req.cookies;
+    if (!clientToken) return res.status(401).json({ message: "No token provided" });
+  
+    jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
+      if (err) return res.status(401).json({ message: "Unauthorized" });
+      const [userFound] = await pool.query(
+        "select * from clients where id_client = ?",
+        [decoded.id]
+      );
+      if (!userFound) return res.status(401).json({ message: "Unauthorized" });
+  
+    userFound.client_password = undefined;
+
+      return res.json({
+        userFound
+      }).status(200);
+    });
+  };
+
+  export const logOut = (req, res) => {
+    res.cookie("client", "", {expires: new Date(0)});
+    return res.sendStatus(200);
+  };

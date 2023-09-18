@@ -14,6 +14,7 @@ import { ItineraryProvider } from "./context/ItineraryContext.jsx";
 import { FoodTypesProvider } from "./context/FoodTypesContext.jsx";
 import { RoomTypesProvider } from "./context/RoomTypesContext.jsx";
 import { HotelsProvider } from "./context/HotelsContext.jsx";
+import { ClientProvider } from "./context/ClientContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -29,7 +30,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       <EpsProvider>
                         <RhProvider>
                           <BrowserRouter>
-                            <App />
+                            <ClientProvider>
+                              <App />
+                            </ClientProvider>
                           </BrowserRouter>
                         </RhProvider>
                       </EpsProvider>

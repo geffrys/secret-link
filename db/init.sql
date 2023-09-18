@@ -271,7 +271,6 @@ INSERT INTO operation_status (operation_status_name, operation_status_status) VA
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA ENVIGADO', '1234567890', 1, 1);
 
-<<<<<<< HEAD
 
 INSERT INTO food_types ( food_name, food_description, food_price, food_status) VALUES ('PAM', 'Breakfast, lunch and dinner', 40000, 1);
 INSERT INTO food_types (food_name, food_description, food_price, food_status) VALUES ('FULL', 'Unlimited buffet breakfast, lunch and dinner, open bar and snacks', 60000, 1);
@@ -297,9 +296,7 @@ INSERT INTO activities (id_itinerary, activity_name, activity_description, activ
 
 
 INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, id_hotel, travelpack_price, travelpack_status, travelpack_description, travelpack_days) VALUES (1, 1, 1, 1, 1, 1, 1, '1400000', 1, "Cartagena\'s travel", 5);
-=======
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA CEJA', '1234567890', 1, 1);
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA ESTRELLA', '1234567890', 1, 1);
 
->>>>>>> gef

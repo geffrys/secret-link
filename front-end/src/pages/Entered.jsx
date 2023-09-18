@@ -1,7 +1,19 @@
 import "../css/Entered.css";
-
+import { useContext } from "react";
+import { ClientContext } from "../context/ClientContext.jsx";
+import { useEffect } from "react";
+import { navigate } from "@reach/router";
 
 function EnteredClient() {
+
+    const { client, isClientValidated } = useContext(ClientContext);
+
+    useEffect(() => {
+        if (!isClientValidated) {
+          navigate("/client");
+        }
+      }, [isClientValidated]);
+
     return (
         <div className="entered_container">
 
@@ -10,7 +22,7 @@ function EnteredClient() {
                 <div className="entered_user_title_container">
                     <h1 className="entered_user_title">
                         <b>
-                            UserName
+                            { `${client.client_name} ${client.client_middle_name} ${client.client_lastname}` }
                         </b>
                     </h1>
                 </div>
