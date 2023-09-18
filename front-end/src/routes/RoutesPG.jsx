@@ -1,15 +1,13 @@
 import { useAuth } from "../context/AuthContext.jsx";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import NotFound from "../components/NotFound";
 import RegisterClient from "../pages/RegisterClient.jsx";
 import LoginClient from "../pages/LoginClient.jsx";
-<<<<<<< HEAD
 import TravelPackages from "../pages/TravelPackages.jsx";
 import CreatePackages from "../pages/CreatePackages.jsx";
-=======
 import EnteredClient from "../pages/Entered.jsx";
->>>>>>> gef
+import RegisterAgent from '../pages/RegisterAgent.jsx'
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
@@ -20,23 +18,17 @@ function RoutesPG() {
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
       />
-<<<<<<< HEAD
-=======
       <Route
         path="/enteredclient"
-        element={isAuthenticated ? <EnteredClient/> : <Login />}
+        element={isAuthenticated ? <EnteredClient /> : <Login />}
       />
-
-
-      <Route
-        path="/signup"
-        element={isAuthenticated ? <SignUp /> : <Login />}
-      />
-      <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />
->>>>>>> gef
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}
+      />
+      <Route
+        path="/registeragent"
+        element={isAuthenticated ? <RegisterAgent /> : <Login />}
       />
       <Route
         path="/packages"
@@ -44,6 +36,10 @@ function RoutesPG() {
       />
       <Route
         path="/create-packages"
+        element={isAuthenticated ? <CreatePackages /> : <Login />}
+      />
+      <Route
+        path="/create-packages/:id_transport"
         element={isAuthenticated ? <CreatePackages /> : <Login />}
       />
       <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />

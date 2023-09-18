@@ -54,7 +54,10 @@ export const PackagesProvider = ({ children }) => {
 
   const updatePackageById = async (id, data) => {
     try {
+      console.log("PRIMERO")
       const res = await updatePackage(id, data);
+      console.log("SEGUNDO")
+      console.log(res.data)
       return res.data;
     } catch (error) {
       setErrors(error.response.data);

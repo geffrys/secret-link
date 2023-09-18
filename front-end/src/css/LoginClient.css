@@ -1,20 +1,32 @@
 .login_client {
   height: calc(100vh - 189px);
   background-color: var(--background-color-secondary);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Tres columnas de tamaño igual */
+  gap: 10px;
+  justify-content: center; /* Centra horizontalmente los elementos */
   align-items: center;
 }
 
 .login_client__categories {
-  z-index: 0;
-  position: absolute;
   border: 1px solid black;
-  margin-left: 15rem;
   padding: 4rem;
   background-color: white;
   border-radius: 4rem;
   text-align: center;
+  margin-left: 10rem;
 }
+
+.categories__cat {
+  display: flex;
+  flex-direction: column;
+}
+
+.login_client__login {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .login_client__categories h1 {
   font-size: 4rem;
 }
@@ -28,11 +40,6 @@
   cursor: pointer;
   transition: all 0.5s ease;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.login_client__login {
-  z-index: 1;
-  margin: 0 auto;
 }
 
 .error {

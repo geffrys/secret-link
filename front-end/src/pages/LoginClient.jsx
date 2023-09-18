@@ -17,7 +17,7 @@ function LoginClient() {
   });
 
   const onNavigate = () => {
-    navigate("/registerclient");
+    navigate("/registeragent");
   };
 
   return (

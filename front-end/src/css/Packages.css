@@ -71,6 +71,11 @@ tr:nth-child(even) {
   background-color: rgb(225, 225, 225);
 }
 
+.packages__btns{
+  display: flex;
+  justify-content: space-between;
+}
+
 .packages__bttn {
   align-self: flex-end;
   width: fit-content;

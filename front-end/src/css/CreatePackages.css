@@ -65,6 +65,15 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.create_package input:disabled {
+  color: black;
+}
+
+.create_package select:disabled {
+  color: black;
+  appearance: none;
+}
+
 .create_package select {
   width: 100%;
   border: 2px solid black;
@@ -73,7 +82,7 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.texarea{
+.texarea {
   width: 100%;
 }
 

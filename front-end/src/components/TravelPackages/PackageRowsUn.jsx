@@ -5,7 +5,7 @@ import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-function PackagesRows() {
+function PackagesRowsUn() {
   const { packages, getPackagesList } = usePackages();
   const { destinations, getDestinationsList } = useDestinations();
   const { transportation, getTransportationsList } = useTransportation();
@@ -21,7 +21,7 @@ function PackagesRows() {
   }, [packages]);
 
   const availablePackages = packages?.filter(
-    (pack) => pack.travelpack_status === 1
+    (pack) => pack.travelpack_status != 1
   );
 
   const getDestinationName = (id) => {
@@ -62,4 +62,4 @@ function PackagesRows() {
   );
 }
 
-export default PackagesRows;
+export default PackagesRowsUn;

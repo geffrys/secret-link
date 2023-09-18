@@ -65,14 +65,29 @@ export const newPackage = async (req, res) => {
 
 export const updatePackage = async (req, res) => {
   try {
-    const { travelpack_price, travelpack_status, travelpack_description } =
-      req.body;
+    const {
+      id_food_type,
+      id_room_type,
+      id_transport,
+      id_itinerary,
+      id_hotel,
+      travelpack_price,
+      travelpack_status,
+      travelpack_description,
+      travelpack_days,
+    } = req.body;
     const [result] = await pool.query(
-      "UPDATE travel_packs SET travelpack_price = ?, travelpack_status = ?, travelpack_description = ? WHERE id_travel_pack = ?",
+      "UPDATE travel_packs SET id_food_type=?, id_room_type=?, id_transport=?, id_itinerary=?, id_hotel = ?, travelpack_price = ?, travelpack_status = ?, travelpack_description = ?, travelpack_days = ? WHERE id_travel_pack = ?",
       [
+        id_food_type,
+        id_room_type,
+        id_transport,
+        id_itinerary,
+        id_hotel,
         travelpack_price,
         travelpack_status,
         travelpack_description,
+        travelpack_days,
         req.params.id_travel_pack,
       ]
     );
