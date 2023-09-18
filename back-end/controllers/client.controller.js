@@ -162,6 +162,8 @@ export const getClient = async (req, res) => {
             id: client[0].id_client
         });
         res.cookie("clientToken", token)
+        console.log(token)
+        console.log({"client":client[0]})
         res.status(200).json({
             "client": client[0]
         })
@@ -242,7 +244,7 @@ export const verifyToken = async (req, res) => {
     const { clientToken } = req.cookies;
     if (!clientToken) return res.status(401).json({ message: "No token provided" });
   
-    jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
+    jwt.verify(clientToken, TOKEN_SECRET, async (err, decoded) => {
       if (err) return res.status(401).json({ message: "Unauthorized" });
       const [userFound] = await pool.query(
         "select * from clients where id_client = ?",
@@ -251,10 +253,10 @@ export const verifyToken = async (req, res) => {
       if (!userFound) return res.status(401).json({ message: "Unauthorized" });
   
     userFound.client_password = undefined;
-
+        let client = userFound[0];
       return res.json({
-        userFound
-      }).status(200);
+        client
+    }).status(200);
     });
   };
 

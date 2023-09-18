@@ -2,17 +2,19 @@ import "../css/Entered.css";
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 import { useEffect } from "react";
-import { navigate } from "@reach/router";
+import { useNavigate } from "react-router-dom";
+
 
 function EnteredClient() {
 
+    const navigate = useNavigate();
     const { client, isClientValidated } = useContext(ClientContext);
 
     useEffect(() => {
         if (!isClientValidated) {
           navigate("/client");
         }
-      }, [isClientValidated]);
+      }, [isClientValidated, navigate]);
 
     return (
         <div className="entered_container">
@@ -126,7 +128,7 @@ function EnteredClient() {
                 <h1>
                     <b>Con nosotros desde:</b>
                 </h1>
-                <p>x fecha</p>
+                    <p>{client.created_at.substring(0,10)}</p>
             </div>
 
 
