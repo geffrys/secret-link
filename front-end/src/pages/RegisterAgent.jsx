@@ -2,32 +2,44 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "../css/Registerclient.css";
 import { useNavigate } from "react-router-dom";
-import { useRh } from "../context/RhContext";
 import { useDocTypes } from "../context/DocTypesContext";
-import { useEps } from "../context/EpsContext";
+import { useAuth } from "../context/AuthContext";
+import { useHeadquarter } from "../context/HeadquarterContext";
+import { useAgentTypes } from "../context/AgentTypesContext";
 
 function RegisterAgent() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
-  const { rhList, getRhList } = useRh();
   const { docTypesList, getDocTypesList } = useDocTypes();
-  const { eps, getEpsList } = useEps();
-
-  const navigate = useNavigate();
-
+  const {
+    Signup,
+    errors: AgentErrors,
+    response: AgentResponse,
+    setResponse,
+  } = useAuth();
+  const { headquarter, getHeadquarterList } = useHeadquarter();
+  const { agentTypes, getAgentTypesList } = useAgentTypes();
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    data.id_dt = parseInt(data.id_dt);
+    data.headquarter = parseInt(data.headquarter);
+    data.agent_type = parseInt(data.agent_type);
+    Signup(data);
+    setTimeout(() => {
+      setResponse(null);
+      navigate("/client");
+    }, 3000);
   });
 
   useEffect(() => {
-    getRhList();
     getDocTypesList();
-    getEpsList();
+    getHeadquarterList();
+    getAgentTypesList();
   }, []);
 
   const onNavigate = () => {
@@ -37,9 +49,18 @@ function RegisterAgent() {
   return (
     <section className="registerclient">
       <form onSubmit={onSubmit} className="registerclient__form">
-        <h2 className="registerclient__title">Agent Registration</h2>
+        <section className="registerclient__top">
+          <h2 className="registerclient__title">Agent Registration</h2>
+          {AgentErrors.map((error, i) => (
+            <div className="error" key={i}>
+              {error}
+            </div>
+          ))}
+          {AgentResponse && (
+            <div className="registerclient__response">{AgentResponse}</div>
+          )}
+        </section>
         <h1 className="registerclient__title2">Required Information</h1>
-
         <section className="registerclient__requiered">
           <h3 className="information_title">Personal Information</h3>
           <section className="registerclient__personal">
@@ -82,10 +103,7 @@ function RegisterAgent() {
           <section className="registerclient__contact">
             <div>
               <label>CONTACT NUMBER</label>
-              <input
-                type="tel"
-                {...register("phone_ag", { required: true })}
-              />
+              <input type="tel" {...register("phone_ag", { required: true })} />
               {errors.phone_ag?.type === "required" && (
                 <p>The field is required</p>
               )}
@@ -112,6 +130,44 @@ function RegisterAgent() {
           <h3 className="information_title">Security</h3>
           <section className="registerclient__security">
             <div>
+              <label>AGENT TYPE</label>
+              <select {...register("agent_type", { required: true })}>
+                <option value="">...</option>
+                {agentTypes.map((agentType) => (
+                  <option
+                    key={agentType.id_agent_type}
+                    value={agentType.id_agent_type}
+                  >
+                    {agentType.name_agent_type}
+                  </option>
+                ))}
+              </select>
+              {errors.agent_type?.type === "required" && (
+                <p>The field is required</p>
+              )}
+            </div>
+
+            <div>
+              <label>HEADQUARTER</label>
+              <select {...register("headquarter", { required: true })}>
+                <option value="">...</option>
+                {headquarter
+                  .filter((headquarter) => headquarter.status_headquarter === 1)
+                  .map((headquarter) => (
+                    <option
+                      key={headquarter.id_headquarter}
+                      value={headquarter.id_headquarter}
+                    >
+                      {headquarter.name_headquarter}
+                    </option>
+                  ))}
+              </select>
+              {errors.headquarter?.type === "required" && (
+                <p>The field is required</p>
+              )}
+            </div>
+
+            <div>
               <label>PASSWORD</label>
               <input
                 type="password"
@@ -119,8 +175,12 @@ function RegisterAgent() {
                 rules={{ required: true, min: 9 }}
                 {...register("user_password", { required: true })}
               />
-              {errors.user_password?.type === "required" && <p>The field is required</p>}
-              {errors.user_password?.type === "min" && <p>The field is required</p>}
+              {errors.user_password?.type === "required" && (
+                <p>The field is required</p>
+              )}
+              {errors.user_password?.type === "min" && (
+                <p>The field is required</p>
+              )}
             </div>
 
             <div>
@@ -128,9 +188,11 @@ function RegisterAgent() {
               <input
                 type="password"
                 placeholder="confirm password"
-                {...register("pin2", { required: true })}
+                {...register("user_password2", { required: true })}
               />
-              {errors.pin2?.type === "required" && <p>The field is required</p>}
+              {errors.user_password2?.type === "required" && (
+                <p>The field is required</p>
+              )}
             </div>
           </section>
         </section>

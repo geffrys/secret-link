@@ -6,6 +6,7 @@ import {
   updatePackage,
   deletePackage,
 } from "../api/packages.api";
+import { set } from "react-hook-form";
 
 export const PackagesContext = createContext();
 
@@ -20,6 +21,7 @@ export const usePackages = () => {
 export const PackagesProvider = ({ children }) => {
   const [packages, setPackages] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [response, setResponse] = useState(null)
 
   const getPackagesList = async () => {
     try {
@@ -46,6 +48,7 @@ export const PackagesProvider = ({ children }) => {
   const createPackage = async (data) => {
     try {
       const res = await postPackage(data);
+      setResponse(res.data.message)
       return res.data;
     } catch (error) {
       setErrors(error.response.data);
@@ -54,10 +57,8 @@ export const PackagesProvider = ({ children }) => {
 
   const updatePackageById = async (id, data) => {
     try {
-      console.log("PRIMERO")
       const res = await updatePackage(id, data);
-      console.log("SEGUNDO")
-      console.log(res.data)
+      setResponse(res.data.message)
       return res.data;
     } catch (error) {
       setErrors(error.response.data);
@@ -78,6 +79,8 @@ export const PackagesProvider = ({ children }) => {
       value={{
         packages,
         errors,
+        response,
+        setResponse,
         getPackagesList,
         getPackageById,
         createPackage,

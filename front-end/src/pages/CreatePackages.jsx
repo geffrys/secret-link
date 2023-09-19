@@ -14,7 +14,8 @@ import { useEffect, useState } from "react";
 function CreatePackages() {
   const navigate = useNavigate();
   const params = useParams();
-  const [active, setActive] = useState();
+  const [active, setActive] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -27,7 +28,14 @@ function CreatePackages() {
   const { foodTypes, getFoodTypesList } = useFoodTypes();
   const { roomTypes, getRoomTypesList } = useRoomTypes();
   const { hotels, getHotelsList } = useHotels();
-  const { packages, createPackage, updatePackageById, errors: PackageErrors } = usePackages();
+  const {
+    packages,
+    createPackage,
+    updatePackageById,
+    errors: PackageErrors,
+    response: PackageResponse,
+    setResponse,
+  } = usePackages();
 
   useEffect(() => {
     getTransportationsList();
@@ -63,7 +71,7 @@ function CreatePackages() {
   };
 
   useEffect(() => {
-    if (params.id_transport) {
+    if (params.id_transport && !active) {
       setValue(
         "id_food_type",
         packages?.find(
@@ -125,7 +133,7 @@ function CreatePackages() {
         )?.travelpack_description
       );
     }
-  }, [params]);
+  });
 
   const onSubmit = handleSubmit((data) => {
     data.id_destination = parseInt(data.id_destination);
@@ -140,18 +148,23 @@ function CreatePackages() {
     if (!params.id_transport) {
       createPackage(data);
     } else if (params.id_transport) {
-      console.log("entré");
       updatePackageById(parseInt(params.id_transport), data);
     }
-    navigate("/packages");
+    setTimeout(() => {
+      setResponse(null);
+      navigate("/packages");
+    }, 3000);
   });
 
   return (
     <section className="create_package">
       <form onSubmit={onSubmit} className="create_package__form">
-        <h2 className="create_package__title">
-          {!params.id_transport ? "Create New Package" : "Package"}
-        </h2>
+        <section className="create_package__top">
+          <h2 className="create_package__title">
+            {!params.id_transport ? "Create New Package" : "Package"}
+          </h2>
+          {PackageResponse && <div className="create_package__response">{PackageResponse}</div>}
+        </section>
         <h1 className="create_package__title2">
           {!params.id_transport
             ? "Required information"
@@ -315,12 +328,16 @@ function CreatePackages() {
 
             <div>
               <label>Status</label>
-              <input
+              <select
                 type="number"
                 placeholder="true: 1 or false: 0"
                 disabled={isFieldsDisabled()}
                 {...register("travelpack_status", { required: true })}
-              />
+              >
+                <option value="1">Available</option>
+                <option value="0">Unavailable</option>
+              </select>
+
               {errors.travelpack_status?.type === "required" && (
                 <p>The field is required</p>
               )}
@@ -353,7 +370,7 @@ function CreatePackages() {
           </div>
         </section>
         <section className="registerclient__botones">
-          {!params.id_transport &&(
+          {!params.id_transport && (
             <button type="submit" className="btnregister">
               Create Package
             </button>

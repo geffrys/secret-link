@@ -11,14 +11,11 @@ function PackagesRows() {
   const { transportation, getTransportationsList } = useTransportation();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     getDestinationsList();
     getTransportationsList();
-  }, []);
-
-  useEffect(() => {
-    getPackagesList();
-  }, [packages]);
+  });
 
   const availablePackages = packages?.filter(
     (pack) => pack.travelpack_status === 1

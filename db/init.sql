@@ -5,6 +5,7 @@ CREATE TABLE agencies(
 
 CREATE TABLE headquarters(
     id_headquarter INT PRIMARY KEY AUTO_INCREMENT,
+    name_headquarter VARCHAR(50) NOT NULL,
     address_headquarter VARCHAR(50) NOT NULL,
     phone_headquarter VARCHAR(20) NOT NULL,
     status_headquarter TINYINT NOT NULL,
@@ -269,7 +270,7 @@ INSERT INTO operation_status (operation_status_name, operation_status_status) VA
 
 
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
-INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA ENVIGADO', '1234567890', 1, 1);
+INSERT INTO headquarters (name_headquarter, address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('VivaHQ','CC VIVA ENVIGADO', '1234567890', 1, 1);
 
 
 INSERT INTO food_types ( food_name, food_description, food_price, food_status) VALUES ('PAM', 'Breakfast, lunch and dinner', 40000, 1);

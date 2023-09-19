@@ -1,5 +1,7 @@
 .packages {
-  background-color: var(--background-color-secondary);
+  background-image: url("../img/WallpaperVUELO.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 2rem 35rem 2rem 2rem;
 }
 

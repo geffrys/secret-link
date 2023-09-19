@@ -6,7 +6,6 @@ import {
   logOutRequest,
 } from "../api/users.api";
 import Cookies from "js-cookie";
-import { set } from "react-hook-form";
 
 export const AuthContext = createContext();
 
@@ -22,15 +21,18 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [response, setResponse] = useState(null);
 
   const Signup = async (user) => {
     try {
       const res = await createUserRequest(user);
-      setUser(res.data);
       setIsAuthenticated(true);
-      console.log(res.data)
+      setResponse(res.data.message);
     } catch (error) {
-      setErrors(error.response.data);
+      if (Array.isArray(error.response.data)) {
+        return setErrors(error.response.data);
+      }
+      setErrors([error.response.data.message]);
     }
   };
 
@@ -94,6 +96,8 @@ export const AuthProvider = ({ children }) => {
         user,
         isAuthenticated,
         errors,
+        response,
+        setResponse,
         signOut,
       }}
     >

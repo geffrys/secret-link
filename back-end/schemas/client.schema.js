@@ -10,6 +10,11 @@ export const registerClient = z.object({
     client_city: z.string({ required_error:"client city required"}).min(1).max(100),
     client_mail: z.string({ required_error:"client mail required"}).min(1).max(100).email(),
     client_password: z.string({ required_error:"client password required"}).min(1).max(100),
+    client_password2: z.string().min(1).max(100)
+        .refine((data) => data.client_password === data.client_password2, {
+            message: "Las contraseñas no coinciden",
+            path: ["client_password2"]
+        }),
     client_address: z.string({ required_error: "client address required"}).min(1).max(100),
     client_birth_date: z.string({ required_error: "client birth date required"}).transform((val) => new Date(val)),
     client_phone_number: z.string({ required_error: "client phone number required"}).min(1).max(20),

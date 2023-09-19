@@ -66,6 +66,14 @@ export const newUser = async (req, res) => {
       user_email,
     } = req.body;
 
+    const [userFound] = await pool.query(
+      "select * from agents where document_number_agent = ? or user_mail_agent = ?",
+      [document_number, user_email]
+    );
+    
+    if (userFound.length > 0)
+      return res.status(400).json({ message: "User already exists" });
+
     const finalPass = await bcrypt.hash(user_password, SALT_ROUNDS);
     const updatedAt = new Date();
     const [result] = await pool.query(
@@ -83,14 +91,6 @@ export const newUser = async (req, res) => {
         updatedAt,
       ]
     );
-    const [user_id] = await pool.query(
-      "select * from agents where user_name_agent = ?",
-      [user_name]
-    );
-    const token = await CreateAccesToken({
-      id: user_id[0].id_agent,
-    });
-    res.cookie("token", token);
     res.json({ message: "User created" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -140,13 +140,14 @@ export const verifyToken = async (req, res) => {
       id: userFound[0].id_agent,
       name_agent: userFound[0].name_agent,
       id_agent_type: userFound[0].id_agent_type,
+      id_headquarter: userFound[0].id_headquarter,
       user_name_agent: userFound[0].user_name_agent,
     });
   });
 };
 
 export const logOut = (req, res) => {
-  res.cookie("token", "", {expires: new Date(0)});
+  res.cookie("token", "", { expires: new Date(0) });
   return res.sendStatus(200);
 };
 

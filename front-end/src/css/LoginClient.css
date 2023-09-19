@@ -1,6 +1,8 @@
 .login_client {
   height: calc(100vh - 189px);
-  background-color: var(--background-color-secondary);
+  background-image: url("../img/WallpaperVUELO.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* Tres columnas de tamaño igual */
   gap: 10px;

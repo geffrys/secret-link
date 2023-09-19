@@ -26,9 +26,13 @@ export const registerSchema = z.object({
   user_password: z
     .string({ required_error: "Password required" })
     .min(8, { message: "Password minimum length required is 8" }),
+  user_password2: z.string({ required_error: "Password confirmation required" }),
   user_email: z.string({ required_error: "User name required" }).email({
     message: "unvalid email address",
   }),
+}).refine((data) => data.user_password === data.user_password2, {
+  message: "Passwords don't match",
+  path: ["user_password2"],
 });
 
 export const loginSchema = z.object({

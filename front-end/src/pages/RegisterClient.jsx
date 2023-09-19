@@ -20,14 +20,7 @@ function RegisterClient() {
 
   const navigate = useNavigate();
 
-  const onSubmit = handleSubmit((data) => {
-    const { pin1, pin2 } = data;
-    if (pin1 !== pin2) {
-      setValue("pin1", "", { shouldValidate: true });
-      setValue("pin2", "", { shouldValidate: true });
-      alert("Pins don't match");
-      return;
-    }
+  const onSubmit = handleSubmit((data) => {    
     console.log(data);
   });
 
@@ -65,9 +58,9 @@ function RegisterClient() {
               <label>MIDDLE NAME</label>
               <input
                 type="text"
-                {...register("client_middleName", { required: false })}
+                {...register("client_middle_name", { required: false })}
               />
-              {errors.client_middleName?.type === "required" && (
+              {errors.client_middle_name?.type === "required" && (
                 <p>The field is required</p>
               )}
             </div>
@@ -78,7 +71,7 @@ function RegisterClient() {
                 type="text"
                 {...register("client_lastname", { required: true })}
               />
-              {errors.surName?.type === "required" && (
+              {errors.client_lastname?.type === "required" && (
                 <p>The field is required</p>
               )}
             </div>
@@ -87,9 +80,9 @@ function RegisterClient() {
               <label>SECOND SURNAME</label>
               <input
                 type="text"
-                {...register("client_secondlastname", { required: true })}
+                {...register("client_second_lastname", { required: true })}
               />
-              {errors.client_secondlastname?.type === "required" && (
+              {errors.client_second_lastname?.type === "required" && (
                 <p>The field is required</p>
               )}
             </div>
@@ -114,10 +107,10 @@ function RegisterClient() {
               )}
               <input
                 type="number"
-                {...register("client_document_number", { required: true })}
+                {...register("document_number", { required: true })}
                 placeholder="#"
               />
-              {errors.client_document_number?.type === "required" && (
+              {errors.document_number?.type === "required" && (
                 <p>ID number required</p>
               )}
             </div>
@@ -126,9 +119,9 @@ function RegisterClient() {
               <label>BIRTHDATE</label>
               <input
                 type="date"
-                {...register("client_birthdate", { required: true })}
+                {...register("client_birth_date", { required: true })}
               />
-              {errors.client_birthdate?.type === "required" && (
+              {errors.client_birth_date?.type === "required" && (
                 <p>The field is required</p>
               )}
             </div>
@@ -140,9 +133,9 @@ function RegisterClient() {
               <label>CONTACT NUMBER</label>
               <input
                 type="tel"
-                {...register("cliente_phone", { required: true })}
+                {...register("client_phone_number", { required: true })}
               />
-              {errors.cliente_phone?.type === "required" && (
+              {errors.client_phone_number?.type === "required" && (
                 <p>The field is required</p>
               )}
             </div>
@@ -191,7 +184,7 @@ function RegisterClient() {
           <section className="registerclient__health">
             <div>
               <label>HEALTH</label>
-              <select {...register("name_eps", { required: true })}>
+              <select {...register("id_eps", { required: true })}>
                 <option value="">...</option>
                 {eps
                   ?.filter((eps) => eps.status_eps === 1)
@@ -201,14 +194,14 @@ function RegisterClient() {
                     </option>
                   ))}
               </select>
-              {errors.name_eps?.type === "required" && (
+              {errors.id_eps?.type === "required" && (
                 <p>The field is required</p>
               )}
             </div>
 
             <div>
               <label>Rh</label>
-              <select {...register("name_rh", { required: true })}>
+              <select {...register("id_rh", { required: true })}>
                 <option value="">...</option>
                 {rhList?.map((rh) => {
                   return (
@@ -218,7 +211,7 @@ function RegisterClient() {
                   );
                 })}
               </select>
-              {errors.name_rh?.type === "required" && (
+              {errors.id_rh?.type === "required" && (
                 <p>Blood type field is required</p>
               )}
             </div>
@@ -228,7 +221,7 @@ function RegisterClient() {
               <input
                 type="text"
                 placeholder="leave empty if none"
-                {...register("diseases", { required: false })}
+                {...register("health_diseases", { required: false })}
               />
             </div>
 
@@ -237,7 +230,7 @@ function RegisterClient() {
               <textarea
                 type="text"
                 placeholder="leave empty if none additional information provided"
-                {...register("additionalInfo", { required: false })}
+                {...register("health_details", { required: false })}
               />
             </div>
           </section>
@@ -249,9 +242,9 @@ function RegisterClient() {
               <input
                 type="password"
                 placeholder="min 4 numbers / max 6"
-                {...register("pin1", { required: true })}
+                {...register("client_password", { required: true })}
               />
-              {errors.pin1?.type === "required" && <p>The field is required</p>}
+              {errors.client_password?.type === "required" && <p>The field is required</p>}
             </div>
 
             <div>
@@ -259,9 +252,9 @@ function RegisterClient() {
               <input
                 type="password"
                 placeholder="confirm pin"
-                {...register("pin2", { required: true })}
+                {...register("client_password2", { required: true })}
               />
-              {errors.pin2?.type === "required" && <p>The field is required</p>}
+              {errors.client_password2?.type === "required" && <p>The field is required</p>}
             </div>
           </section>
         </section>
