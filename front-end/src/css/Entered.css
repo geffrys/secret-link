@@ -6,6 +6,7 @@
     /* align-content: space-between; */
     justify-content: space-evenly;
 }
+
 .entered_main_content{
     width: 75%;
 }
@@ -17,7 +18,6 @@
     border-radius: 20px;
     background-color: var(--background-color);
 }
-
 
 .entered_metadata{
     width: 29rem;
@@ -53,8 +53,8 @@ input{
     font-size: large;
 }
 
-
 /* section content */
+
 .section_content > table{
     width: 100%;
     border-collapse: collapse;
@@ -73,20 +73,22 @@ input{
     display: inline-flex;
     align-items: center;
 }
+
 .date_actions > * {
     padding: 0px 10px;
 }
 
-
-
 /* font titles */
+
 .entered_user_title{
     font-size: 4rem;
     margin-bottom: 1rem;
 }
+
 .entered_metadata > h1, p{
     font-size: 2rem;
 }
+
 input{
     font-size: 1.6rem;
 }

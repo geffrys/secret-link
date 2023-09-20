@@ -158,17 +158,11 @@ export const getClient = async (req, res) => {
             res.status(404).json({ mensaje: "wrong password" });
         }
         client[0].client_password = undefined;
-        const token = await CreateAccesToken({
+        const clienttoken = await CreateAccesToken({
             id: client[0].id_client
         });
-        res.cookie("clientToken", token)
-        console.log(token)
-        console.log({"client":client[0]})
-        res.status(200).json({
-            "client": client[0]
-        })
-        
-
+        res.cookie("clientToken", clienttoken)
+        res.json({"client": client[0]});
     } catch (error) {
         console.log(error);
         res.status(500).json({ mensaje: "cannot get client at this moment" });

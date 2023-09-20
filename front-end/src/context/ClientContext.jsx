@@ -21,7 +21,6 @@ export const ClientProvider = ({ children }) => {
     } catch (error) {
       setClientValidated(false);
     }
-
   }
 
   useEffect(() => {
@@ -58,7 +57,8 @@ export const ClientProvider = ({ children }) => {
   const value = {
     client,
     isClientValidated,
-    validateClient
+    validateClient,
+    logOut
   }
 
   return (
