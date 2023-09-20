@@ -1,4 +1,4 @@
-import { seForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTransportation } from "../context/TransportationContext.jsx";
 import { useDestinations } from "../context/DestinationsContext.jsx";
@@ -9,13 +9,16 @@ import { useHotels } from "../context/HotelsContext.jsx";
 import { usePackages } from "../context/PackagesContext.jsx";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext.jsx";
 
 import "../css/CreatePackages.css";
 
 function CreatePackages() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const params = useParams();
   const [active, setActive] = useState(false);
+  const [isButtonPressed, setIsButtonPressed] = useState(false);
 
   const {
     register,
@@ -29,14 +32,7 @@ function CreatePackages() {
   const { foodTypes, getFoodTypesList } = useFoodTypes();
   const { roomTypes, getRoomTypesList } = useRoomTypes();
   const { hotels, getHotelsList } = useHotels();
-  const {
-    packages,
-    createPackage,
-    updatePackageById,
-    errors: PackageErrors,
-    response: PackageResponse,
-    setResponse,
-  } = usePackages();
+  const { packages, createPackage, updatePackageById } = usePackages();
 
   useEffect(() => {
     getTransportationsList();
@@ -70,6 +66,10 @@ function CreatePackages() {
   const changeActive = () => {
     setActive(!active);
   };
+
+  const changeBtn = () => { 
+    setIsButtonPressed(!isButtonPressed);
+  }
 
   useEffect(() => {
     if (params.id_transport && !active) {
@@ -147,14 +147,17 @@ function CreatePackages() {
     data.travelpack_price = parseInt(data.travelpack_price);
     data.travelpack_status = parseInt(data.travelpack_status);
     if (!params.id_transport) {
+      changeBtn();
       createPackage(data);
+      changeBtn();
     } else if (params.id_transport) {
+      changeBtn();
       updatePackageById(parseInt(params.id_transport), data);
+      changeBtn();
     }
     setTimeout(() => {
-      setResponse(null);
       navigate("/packages");
-    }, 3000);
+    }, 4000);
   });
 
   return (
@@ -165,7 +168,7 @@ function CreatePackages() {
           <h2 className="create_package__title">
             {!params.id_transport ? "Create New Package" : "Package"}
           </h2>
-          {PackageResponse && <div className="create_package__response">{PackageResponse}</div>}
+          {/* {PackageResponse && <div className="create_package__response">{PackageResponse}</div>} */}
         </section>
         <h1 className="create_package__title2">
           {!params.id_transport
@@ -175,11 +178,11 @@ function CreatePackages() {
 
         <section className="create_package__requiered">
           <section className="create_package__divs">
-            {PackageErrors.map((error, i) => (
+            {/* {PackageErrors.map((error, i) => (
               <div className="error" key={i}>
                 {error}
               </div>
-            ))}
+            ))} */}
             <div>
               <label>Food Type</label>
               <select
@@ -372,18 +375,18 @@ function CreatePackages() {
           </div>
         </section>
         <section className="registerclient__botones">
-          {!params.id_transport && (
+          {!params.id_transport && !isButtonPressed &&(
             <button type="submit" className="btnregister">
               Create Package
             </button>
           )}
 
-          {params.id_transport && active && (
+          {params.id_transport && active && !isButtonPressed &&(
             <button type="submit" className="btnregister">
               Update Package
             </button>
           )}
-          {params.id_transport && !active && (
+          {params.id_transport && !active && user.id_agent_type === 1 &&(
             <button
               type="button"
               className="btnregister"

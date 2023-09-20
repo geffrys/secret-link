@@ -19,37 +19,6 @@ function LoginClient() {
     console.log(data);
   });
 
-  const ToastRes = () => {
-    toast.success('connection reestablished', {
-      position: 'bottom-left',
-    });
-  };
-  const ToastLost = () => {
-    toast.error('connection lost', {
-      position: 'bottom-left',
-    });
-  };
-
-  useEffect(() => {
-    const handleOnlineStatus = () => {
-      if (navigator.onLine) {
-        ToastRes();
-      } else {
-        ToastLost();
-      }
-    };
-
-    window.addEventListener("online", handleOnlineStatus);
-    window.addEventListener("offline", handleOnlineStatus);
-
-    return () => {
-      window.removeEventListener("online", handleOnlineStatus);
-      window.removeEventListener("offline", handleOnlineStatus);
-    };
-  }, []);
-
-
-
   const onNavigate = () => {
     navigate("/registerclient");
   };

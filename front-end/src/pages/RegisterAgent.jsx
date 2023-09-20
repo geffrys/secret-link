@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../css/Registerclient.css";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ function RegisterAgent() {
   const { headquarter, getHeadquarterList } = useHeadquarter();
   const { agentTypes, getAgentTypesList } = useAgentTypes();
   const { docTypesList, getDocTypesList } = useDocTypes();
+  const [isButtonPressed, setIsButtonPressed] = useState(false);
 
   const {
     register,
@@ -20,16 +21,19 @@ function RegisterAgent() {
     formState: { errors },
   } = useForm();
 
-  const {
-    Signup,
-    setResponse,
-  } = useAuth();
+  const { Signup } = useAuth();
+
+  const changeBtn = () => {
+    setIsButtonPressed(!isButtonPressed);
+  };
 
   const onSubmit = handleSubmit((data) => {
     data.id_dt = parseInt(data.id_dt);
     data.headquarter = parseInt(data.headquarter);
     data.agent_type = parseInt(data.agent_type);
+    changeBtn();
     Signup(data);
+    changeBtn();
     setTimeout(() => {
       navigate("/client");
     }, 4000);
@@ -189,9 +193,11 @@ function RegisterAgent() {
           </section>
         </section>
         <section className="registerclient__botones">
-          <button type="submit" className="btnregister">
-            Register
-          </button>
+          {!isButtonPressed && (
+            <button type="submit" className="btnregister">
+              Register
+            </button>
+          )}
           <button onClick={onNavigate} className="btncancel">
             Cancel
           </button>

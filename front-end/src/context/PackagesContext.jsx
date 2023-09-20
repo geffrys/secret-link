@@ -6,7 +6,7 @@ import {
   updatePackage,
   deletePackage,
 } from "../api/packages.api";
-import { set } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 export const PackagesContext = createContext();
 
@@ -47,21 +47,39 @@ export const PackagesProvider = ({ children }) => {
 
   const createPackage = async (data) => {
     try {
-      const res = await postPackage(data);
-      setResponse(res.data.message)
-      return res.data;
+      toast.promise(
+        postPackage(data),
+        {
+          loading: "Creating package...",
+          success: (res) => {
+            return res.data.message;
+          },
+          error: (error) => {
+            return error.response.data;
+          },
+        }
+      );
     } catch (error) {
-      setErrors(error.response.data);
+      console.log(error);
     }
   };
 
   const updatePackageById = async (id, data) => {
     try {
-      const res = await updatePackage(id, data);
-      setResponse(res.data.message)
-      return res.data;
+      toast.promise(
+        updatePackage(id, data),
+        {
+          loading: "Updating package...",
+          success: (res) => {
+            return res.data.message;
+          },
+          error: (error) => {
+            return error.response.data;
+          },
+        }
+      );
     } catch (error) {
-      setErrors(error.response.data);
+      console.log(error)
     }
   };
 
