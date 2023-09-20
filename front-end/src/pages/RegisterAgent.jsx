@@ -6,9 +6,13 @@ import { useDocTypes } from "../context/DocTypesContext";
 import { useAuth } from "../context/AuthContext";
 import { useHeadquarter } from "../context/HeadquarterContext";
 import { useAgentTypes } from "../context/AgentTypesContext";
+import { Toaster } from "react-hot-toast";
 
 function RegisterAgent() {
   const navigate = useNavigate();
+  const { headquarter, getHeadquarterList } = useHeadquarter();
+  const { agentTypes, getAgentTypesList } = useAgentTypes();
+  const { docTypesList, getDocTypesList } = useDocTypes();
 
   const {
     register,
@@ -16,24 +20,19 @@ function RegisterAgent() {
     formState: { errors },
   } = useForm();
 
-  const { docTypesList, getDocTypesList } = useDocTypes();
   const {
     Signup,
-    errors: AgentErrors,
-    response: AgentResponse,
     setResponse,
   } = useAuth();
-  const { headquarter, getHeadquarterList } = useHeadquarter();
-  const { agentTypes, getAgentTypesList } = useAgentTypes();
+
   const onSubmit = handleSubmit((data) => {
     data.id_dt = parseInt(data.id_dt);
     data.headquarter = parseInt(data.headquarter);
     data.agent_type = parseInt(data.agent_type);
     Signup(data);
     setTimeout(() => {
-      setResponse(null);
       navigate("/client");
-    }, 3000);
+    }, 4000);
   });
 
   useEffect(() => {
@@ -51,14 +50,7 @@ function RegisterAgent() {
       <form onSubmit={onSubmit} className="registerclient__form">
         <section className="registerclient__top">
           <h2 className="registerclient__title">Agent Registration</h2>
-          {AgentErrors.map((error, i) => (
-            <div className="error" key={i}>
-              {error}
-            </div>
-          ))}
-          {AgentResponse && (
-            <div className="registerclient__response">{AgentResponse}</div>
-          )}
+          <Toaster />
         </section>
         <h1 className="registerclient__title2">Required Information</h1>
         <section className="registerclient__requiered">

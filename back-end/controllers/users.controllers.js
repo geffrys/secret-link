@@ -91,7 +91,7 @@ export const newUser = async (req, res) => {
         updatedAt,
       ]
     );
-    res.json({ message: "User created" });
+    res.json({ message: "Agent created succesfully" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

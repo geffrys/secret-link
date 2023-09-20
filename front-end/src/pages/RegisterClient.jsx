@@ -37,7 +37,7 @@ function RegisterClient() {
   return (
     <section className="registerclient">
       <form onSubmit={onSubmit} className="registerclient__form">
-        <h2 className="registerclient__title">Costumer Registration</h2>
+        <h2 className="registerclient__title">Customer Registration</h2>
         <h1 className="registerclient__title2">Required Information</h1>
 
         <section className="registerclient__requiered">

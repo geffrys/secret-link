@@ -1,4 +1,4 @@
-import { set, useForm } from "react-hook-form";
+import { seForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTransportation } from "../context/TransportationContext.jsx";
 import { useDestinations } from "../context/DestinationsContext.jsx";
@@ -7,9 +7,10 @@ import { useFoodTypes } from "../context/FoodTypesContext.jsx";
 import { useRoomTypes } from "../context/RoomTypesContext.jsx";
 import { useHotels } from "../context/HotelsContext.jsx";
 import { usePackages } from "../context/PackagesContext.jsx";
+import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 import "../css/CreatePackages.css";
-import { useEffect, useState } from "react";
 
 function CreatePackages() {
   const navigate = useNavigate();
@@ -158,6 +159,7 @@ function CreatePackages() {
 
   return (
     <section className="create_package">
+      <Toaster />
       <form onSubmit={onSubmit} className="create_package__form">
         <section className="create_package__top">
           <h2 className="create_package__title">

@@ -6,6 +6,7 @@ import {
   logOutRequest,
 } from "../api/users.api";
 import Cookies from "js-cookie";
+import { toast } from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -20,32 +21,48 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errors, setErrors] = useState([]);
-  const [response, setResponse] = useState(null);
 
   const Signup = async (user) => {
     try {
-      const res = await createUserRequest(user);
-      setIsAuthenticated(true);
-      setResponse(res.data.message);
+      toast.promise(
+        createUserRequest(user), // Llamada directa a la promesa
+        {
+          loading: "Registering agent...",
+          success: (res) => {
+            setIsAuthenticated(true);
+            return res.data.message;
+          },
+          error: (error) => {
+            if (Array.isArray(error.response.data)) {
+              error.response.data.forEach((errorMsg) => {
+                return errorMsg
+              });
+            } else {
+              return error.response.data.message
+            }
+            return error.response.data.message;
+          },
+        }
+      );
     } catch (error) {
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
-      }
-      setErrors([error.response.data.message]);
+      console.error(error);
     }
   };
 
-  const signIn = async (user) => {
+  const signIn = async (info) => {
     try {
-      const res = await loginUserRequest(user);
-      setUser(res.data);
-      setIsAuthenticated(true);
+      toast.promise(loginUserRequest(info),{
+        loading: "Logging in...",
+        success: (res) => {
+          setUser(res.data);
+          setIsAuthenticated(true);
+          return "Welcome back " + res.data.name_agent;
+      },
+      error: "Incorrect username or password",
+    })
+      
     } catch (error) {
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
-      }
-      setErrors([error.response.data]);
+      console.log(error)
     }
   };
 
@@ -54,18 +71,10 @@ export const AuthProvider = ({ children }) => {
       const res = await logOutRequest();
       setIsAuthenticated(false);
     } catch (error) {
-      setErrors(error.response.data);
+      toast.error(error.response.data.message);
+      return;
     }
   };
-
-  useEffect(() => {
-    if (errors.length > 0) {
-      const timer = setTimeout(() => {
-        setErrors([]);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [errors]);
 
   useEffect(() => {
     async function checkLogin() {
@@ -95,9 +104,6 @@ export const AuthProvider = ({ children }) => {
         signIn,
         user,
         isAuthenticated,
-        errors,
-        response,
-        setResponse,
         signOut,
       }}
     >
