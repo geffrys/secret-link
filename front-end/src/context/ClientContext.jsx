@@ -26,6 +26,8 @@ export const ClientProvider = ({ children }) => {
   const [client, setClient] = useState(null);
   const [isClientValidated, setClientValidated] = useState(false);
   const navigate = useNavigate();
+  console.log(isClientValidated);
+  console.log(client);
 
   const signIn = async (info) => {
     try {
@@ -79,7 +81,7 @@ export const ClientProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const checkClientLogin = async () => {
+    async function checkClientLogin() {
       const cookies = Cookies.get();
       if (!cookies.clientToken) {
         setClientValidated(false);
@@ -87,15 +89,20 @@ export const ClientProvider = ({ children }) => {
         return;
       }
       try {
-        const res = await verifyClientToken();
-        if (!res.data) return setClientValidated(false);
+        const res = await verifyClientToken(cookies.clientToken);
+        console.log("Hola " + res);
+        if (!res.data) {
+          console.log("No existe res.data");
+          return setClientValidated(false);
+        }
+        console.log("Pasé el if");
         setClientValidated(true);
         setClient(res.data);
       } catch (error) {
         setClientValidated(false);
         setClient(null);
       }
-    };
+    }
     checkClientLogin();
   }, []);
 

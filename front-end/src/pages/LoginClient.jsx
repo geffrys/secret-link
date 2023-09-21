@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import "../css/LoginClient.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 
 function LoginClient() {
-  const { validateClient, isClientValidated,signIn } = useContext(ClientContext);
+  const { isClientValidated, signIn } = useContext(ClientContext);
 
   const {
     register,
@@ -20,11 +20,13 @@ function LoginClient() {
 
   const onSubmit = handleSubmit((data) => {
     signIn(data);
+  });
 
-    if (isClientValidated) {
+  useEffect(()=>{
+    if(isClientValidated){
       navigate("/dashboardclient");
     }
-  });
+  })
 
   const onNavigate = () => {
     navigate("/registerclient");

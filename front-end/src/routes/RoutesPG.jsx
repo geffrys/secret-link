@@ -14,9 +14,10 @@ import RegisterAgent from "../pages/RegisterAgent.jsx";
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
   const { isClientValidated } = useContext(ClientContext);
+  console.log(isClientValidated)
   return (
     <Routes>
-      <Route path="/" element={isAuthenticated ? <LoginClient /> : <Login />} />
+      <Route path="/" element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
       <Route
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
@@ -24,23 +25,9 @@ function RoutesPG() {
 
       <Route
         path="/dashboardclient"
-        element={
-          isAuthenticated ? (
-            isClientValidated ? (
-              <EnteredClient />
-            ) : (
-              <LoginClient />
-            )
-          ) : (
-            <Login />
-          )
-        }
+        element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
       />
 
-      <Route
-        path="/enteredclient"
-        element={isAuthenticated ? <EnteredClient /> : <Login />}
-      />
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}

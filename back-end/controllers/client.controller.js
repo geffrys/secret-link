@@ -3,11 +3,11 @@ import { pool } from "../db.js";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { CreateAccesToken } from "../libs/jwt.js";
+import { CreateAccesTokenClient } from "../libs/jwt.js";
 
 dotenv.config();
 
-const TOKEN_SECRET = process.env.TOKEN_SECRET;
+const TOKEN_SECRET_CLIENT = process.env.TOKEN_SECRET_CLIENT;
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
 // TODO: pending to test
@@ -265,10 +265,10 @@ export const LogIn = async (req, res) => {
     );
 
     if (!isMatch) return res.status(404).json(["Incorrect password"]);
-    const clientToken = await CreateAccesToken({
+    const clientToken = await CreateAccesTokenClient({
       id_client: clientFound[0].id_client,
     });
-    res.cookie("token", clientToken);
+    res.cookie("clientToken", clientToken);
     res.json(clientFound[0]);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -277,10 +277,9 @@ export const LogIn = async (req, res) => {
 
 export const verifyToken = async (req, res) => {
   const { clientToken } = req.cookies;
-  if (!clientToken)
-    return res.status(401).json({ message: "No token provided" });
+  if (!clientToken) return res.status(401).json({ message: "No token provided" });
 
-  jwt.verify(clientToken, TOKEN_SECRET, async (err, decoded) => {
+  jwt.verify(clientToken, TOKEN_SECRET_CLIENT, async (err, decoded) => {
     if (err) return res.status(401).json({ message: "Unauthorized" });
     const [userFound] = await pool.query(
       "select * from clients where id_client = ?",
@@ -289,7 +288,7 @@ export const verifyToken = async (req, res) => {
     if (!userFound) return res.status(401).json({ message: "Unauthorized" });
 
     return res.json({
-      id: userFound[0].id_client,
+      id_client: userFound[0].id_client,
       client_name: userFound[0].client_name,
       client_middle_name: userFound[0].client_middle_name,
       client_lastname: userFound[0].client_lastname,
