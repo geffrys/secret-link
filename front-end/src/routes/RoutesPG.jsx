@@ -7,8 +7,12 @@ import LoginClient from "../pages/LoginClient.jsx";
 import TravelPackages from "../pages/TravelPackages.jsx";
 import CreatePackages from "../pages/CreatePackages.jsx";
 import EnteredClient from "../pages/Entered.jsx";
+<<<<<<< HEAD
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
+=======
+import RegisterAgent from '../pages/RegisterAgent.jsx'
+>>>>>>> sam
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
@@ -20,6 +24,7 @@ function RoutesPG() {
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
       />
+<<<<<<< HEAD
 
 
       <Route
@@ -30,9 +35,19 @@ function RoutesPG() {
 
       <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />
 
+=======
+      <Route
+        path="/enteredclient"
+        element={isAuthenticated ? <EnteredClient /> : <Login />}
+      />
+>>>>>>> sam
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}
+      />
+      <Route
+        path="/registeragent"
+        element={isAuthenticated ? <RegisterAgent /> : <Login />}
       />
       <Route
         path="/packages"
@@ -40,6 +55,10 @@ function RoutesPG() {
       />
       <Route
         path="/create-packages"
+        element={isAuthenticated ? <CreatePackages /> : <Login />}
+      />
+      <Route
+        path="/create-packages/:id_transport"
         element={isAuthenticated ? <CreatePackages /> : <Login />}
       />
       <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />

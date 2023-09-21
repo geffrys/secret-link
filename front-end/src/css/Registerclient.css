@@ -1,7 +1,17 @@
 .registerclient {
-  background-color: var(--background-color-secondary);
+  background-image: url("../img/WallpaperVUELO.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 2rem 35rem 2rem 2rem;
 }
+
+.registerclient__top {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .registerclient__form {
   padding: 2rem 4rem;
   background-color: white;
@@ -9,6 +19,16 @@
   display: flex;
   flex-direction: column;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.registerclient__response {
+  padding: 1rem 4rem 1rem 4rem;
+  color: white;
+  font-size: 2.5rem;
+  background-color: #25e29a;
+  border: 2px solid var(--primary-color);
+  border-radius: 1rem;
+  width: fit-content;
 }
 
 .registerclient__title {

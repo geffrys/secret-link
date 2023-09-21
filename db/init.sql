@@ -5,6 +5,7 @@ CREATE TABLE agencies(
 
 CREATE TABLE headquarters(
     id_headquarter INT PRIMARY KEY AUTO_INCREMENT,
+    name_headquarter VARCHAR(50) NOT NULL,
     address_headquarter VARCHAR(50) NOT NULL,
     phone_headquarter VARCHAR(20) NOT NULL,
     status_headquarter TINYINT NOT NULL,
@@ -269,17 +270,20 @@ INSERT INTO operation_status (operation_status_name, operation_status_status) VA
 
 
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
-INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA ENVIGADO', '1234567890', 1, 1);
+INSERT INTO headquarters (name_headquarter, address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('VivaHQ','CC VIVA ENVIGADO', '1234567890', 1, 1);
 
 
 INSERT INTO food_types ( food_name, food_description, food_price, food_status) VALUES ('PAM', 'Breakfast, lunch and dinner', 40000, 1);
 INSERT INTO food_types (food_name, food_description, food_price, food_status) VALUES ('FULL', 'Unlimited buffet breakfast, lunch and dinner, open bar and snacks', 60000, 1);
 
 
-INSERT INTO destinations (destination_name, destination_status, id_agencie) VALUES ( 'Cartagena', 1, 1);
+INSERT INTO destinations VALUES (1,'Cartagena',1,1),(2,'Comuna-13',1,1),(3,'Plaza botero',1,1),(4,'Santa Marta',1,1);
 
+INSERT INTO document_types VALUES (1,'Cedula de ciudadania',1),(2,'Cedula de extranjeria',1),(3,'Pasaporte',1),(4,'Tarjeta de identidad',1),(5,'Registro civil',1),(6,'NIT',1),(7,'RUT',1);
+INSERT INTO eps VALUES (1,'Sura',1),(2,'Coomeva',1),(3,'Sanitas',1),(4,'Salud total',1),(5,'Nueva EPS',1),(6,'Compensar',1),(7,'Cafesalud',1),(8,'Famisanar',1),(9,'Medimas',1),(10,'Aliansalud',1),(11,'Saludvida',1),(12,'Cruz blanca',1),(13,'Colmedica',1),(14,'Asmet salud',1);
+INSERT INTO rh_types VALUES (1,'A+'),(2,'A-'),(3,'B+'),(4,'B-'),(5,'AB+'),(6,'AB-'),(7,'O+'),(8,'O-');
 
-INSERT INTO hotels (hotel_name, hotel_status, hotel_stars, id_destination) VALUES ('Sofitel Legend Santa Clara Cartagena', 1, 5, 1);
+INSERT INTO hotels VALUES (1,'Sofitel Legend Santa Clara Cartagena',1,5,1),(2,'Hotel Cartagena Plaza',1,4,1);
 
 
 INSERT INTO room_types (room_name, room_description, room_capability, room_status, id_hotel) VALUES ('Couple', 'Room for 2 people', 2, 1, 1);
@@ -295,8 +299,18 @@ INSERT INTO activities ( id_itinerary, activity_name, activity_description, acti
 INSERT INTO activities (id_itinerary, activity_name, activity_description, activity_price, activity_status) VALUES (1, "Cartagena\'s Toured walk", "Toured walk around the city\'s walls", 20000, 1);
 
 
+<<<<<<< HEAD
 INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, id_hotel, travelpack_price, travelpack_status, travelpack_description, travelpack_days) VALUES (1, 1, 1, 1, 1, 1, 1, '1400000', 1, "Cartagena\'s travel", 5);
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA CEJA', '1234567890', 1, 1);
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA ESTRELLA', '1234567890', 1, 1);
+=======
+INSERT INTO travel_packs VALUES (1,1,1,2,1,1,1,1400000,1,'Cartagena\'s travel',5),(2,NULL,NULL,NULL,2,NULL,NULL,80000,1,'Guided tour into Medellin\'s Comuna-13.',1),(3,NULL,NULL,NULL,3,NULL,NULL,45000,1,'Guided visit to Medellin\'s Plaza botero',1),(4,1,1,1,1,NULL,2,1150000,1,'Cartagena\'s travel 5 days on the Hotel Cartagena Plaza',5);
+
+INSERT INTO agent_types (name_agent_type) VALUES ('Administrator');
+INSERT INTO agent_types (name_agent_type) VALUES ('Agent');
+
+INSERT INTO agents VALUES (1,'Samuel','3043346953',1,2,1,'1000413879','Samuel3879','$2b$10$MG.kuXOtwsgDxggdzoTafOiT/O8GdOmSs7uaszKN6mWAjXmUplZeC','superajke@gmail.com','2023-09-16 19:07:33','2023-09-16 19:07:33'),(2,'Geffrey','3043346952',1,1,1,'1000419999','Geffrey9999','$2b$10$gJNooS5LRo7Wd5aLOYIrSenZEivcZnODlzekpH7fKULbXn/BS9RgK','Geffrey@gmail.com','2023-09-16 19:11:12','2023-09-16 19:11:12');
+
+>>>>>>> sam
 

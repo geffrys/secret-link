@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 function RegisterAgentsBttn() {
   const navigate = useNavigate();
   const onNavigate = () => {
-    navigate("/registeragents");
+    navigate("/registeragent");
   }
   return (
     <button className="registeragents_boton" onClick={onNavigate}>

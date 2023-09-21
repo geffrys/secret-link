@@ -6,6 +6,7 @@ import {
   updatePackage,
   deletePackage,
 } from "../api/packages.api";
+import { toast } from "react-hot-toast";
 
 export const PackagesContext = createContext();
 
@@ -20,6 +21,7 @@ export const usePackages = () => {
 export const PackagesProvider = ({ children }) => {
   const [packages, setPackages] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [response, setResponse] = useState(null)
 
   const getPackagesList = async () => {
     try {
@@ -45,19 +47,39 @@ export const PackagesProvider = ({ children }) => {
 
   const createPackage = async (data) => {
     try {
-      const res = await postPackage(data);
-      return res.data;
+      toast.promise(
+        postPackage(data),
+        {
+          loading: "Creating package...",
+          success: (res) => {
+            return res.data.message;
+          },
+          error: (error) => {
+            return error.response.data;
+          },
+        }
+      );
     } catch (error) {
-      setErrors(error.response.data);
+      console.log(error);
     }
   };
 
   const updatePackageById = async (id, data) => {
     try {
-      const res = await updatePackage(id, data);
-      return res.data;
+      toast.promise(
+        updatePackage(id, data),
+        {
+          loading: "Updating package...",
+          success: (res) => {
+            return res.data.message;
+          },
+          error: (error) => {
+            return error.response.data;
+          },
+        }
+      );
     } catch (error) {
-      setErrors(error.response.data);
+      console.log(error)
     }
   };
 
@@ -75,6 +97,8 @@ export const PackagesProvider = ({ children }) => {
       value={{
         packages,
         errors,
+        response,
+        setResponse,
         getPackagesList,
         getPackageById,
         createPackage,

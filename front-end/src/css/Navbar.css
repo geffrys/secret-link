@@ -19,6 +19,10 @@
   font-weight: 400;
 }
 
+.navbar__titulo figure{
+  cursor: pointer;
+}
+
 .navbar__boton {
   cursor: pointer;
   font-weight: 600;

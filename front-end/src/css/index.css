@@ -18,7 +18,9 @@ main {
 
 .each_page {
   flex-grow: 1;
-  background-color: var(--background-color-secondary);
+  background-image: url("../img/WallpaperVUELO.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 :root {

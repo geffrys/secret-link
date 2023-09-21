@@ -1,9 +1,15 @@
 import { useForm } from "react-hook-form";
 import CategoriesAdmin from "../components/CategoriesAdmin";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 import "../css/LoginClient.css";
+<<<<<<< HEAD
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
+=======
+import { useEffect } from "react";
+>>>>>>> sam
 
 function LoginClient() {
 
@@ -32,6 +38,7 @@ function LoginClient() {
 
   return (
     <section className="login_client">
+      <Toaster />
       <div className="login_client__categories">
         <CategoriesAdmin />
       </div>

@@ -14,13 +14,19 @@ import { ItineraryProvider } from "./context/ItineraryContext.jsx";
 import { FoodTypesProvider } from "./context/FoodTypesContext.jsx";
 import { RoomTypesProvider } from "./context/RoomTypesContext.jsx";
 import { HotelsProvider } from "./context/HotelsContext.jsx";
+<<<<<<< HEAD
 import { ClientProvider } from "./context/ClientContext.jsx";
+=======
+import { HeadquarterProvider } from "./context/HeadquarterContext.jsx";
+import { AgentTypesProvider } from "./context/AgentTypesContext.jsx";
+>>>>>>> sam
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <PackagesProvider>
         <DestinationsProvider>
+<<<<<<< HEAD
           <HotelsProvider>
             <ItineraryProvider>
               <FoodTypesProvider>
@@ -42,6 +48,31 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </FoodTypesProvider>
             </ItineraryProvider>
           </HotelsProvider>
+=======
+          <HeadquarterProvider>
+            <AgentTypesProvider>
+              <HotelsProvider>
+                <ItineraryProvider>
+                  <FoodTypesProvider>
+                    <RoomTypesProvider>
+                      <TransportationProvider>
+                        <DocTypesProvider>
+                          <EpsProvider>
+                            <RhProvider>
+                              <BrowserRouter>
+                                <App />
+                              </BrowserRouter>
+                            </RhProvider>
+                          </EpsProvider>
+                        </DocTypesProvider>
+                      </TransportationProvider>
+                    </RoomTypesProvider>
+                  </FoodTypesProvider>
+                </ItineraryProvider>
+              </HotelsProvider>
+            </AgentTypesProvider>
+          </HeadquarterProvider>
+>>>>>>> sam
         </DestinationsProvider>
       </PackagesProvider>
     </AuthProvider>
