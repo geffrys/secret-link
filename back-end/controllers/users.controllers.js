@@ -151,32 +151,6 @@ export const logOut = (req, res) => {
   return res.sendStatus(200);
 };
 
-export const profile = async (req, res) => {
-  try {
-    const [userFound] = await pool.query(
-      "select * from agents where id_agent = ?",
-      [req.user.id]
-    );
-    if (!userFound) return res.status(404).json({ message: "User not found" });
-    return res.json({
-      id_agent: userFound[0].id_agent,
-      name_ag: userFound[0].name_agent,
-      phone_ag: userFound[0].phone_agent,
-      id_doc_ty: userFound[0].id_document_type,
-      id_agent_ty: userFound[0].id_agent_type,
-      id_headquarter: userFound[0].id_headquarter,
-      document_number: userFound[0].document_number_agent,
-      user_name: userFound[0].user_name_agent,
-      user_password: userFound[0].user_password_agent,
-      user_email: userFound[0].user_mail_agent,
-      created_at: userFound[0].created_at,
-      modified_at: userFound[0].modified_at,
-    });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-};
-
 export const updateUser = async (req, res) => {
   try {
     const { user_password, agent_type } = req.body;

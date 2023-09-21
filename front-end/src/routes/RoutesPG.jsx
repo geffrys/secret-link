@@ -7,16 +7,13 @@ import LoginClient from "../pages/LoginClient.jsx";
 import TravelPackages from "../pages/TravelPackages.jsx";
 import CreatePackages from "../pages/CreatePackages.jsx";
 import EnteredClient from "../pages/Entered.jsx";
-<<<<<<< HEAD
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
-=======
-import RegisterAgent from '../pages/RegisterAgent.jsx'
->>>>>>> sam
+import RegisterAgent from "../pages/RegisterAgent.jsx";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
-  const { isClientValidated} = useContext(ClientContext);
+  const { isClientValidated } = useContext(ClientContext);
   return (
     <Routes>
       <Route path="/" element={isAuthenticated ? <LoginClient /> : <Login />} />
@@ -24,23 +21,26 @@ function RoutesPG() {
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
       />
-<<<<<<< HEAD
-
 
       <Route
         path="/dashboardclient"
-        element={isAuthenticated ? (isClientValidated ? <EnteredClient /> : <LoginClient />) : <Login />}
+        element={
+          isAuthenticated ? (
+            isClientValidated ? (
+              <EnteredClient />
+            ) : (
+              <LoginClient />
+            )
+          ) : (
+            <Login />
+          )
+        }
       />
 
-
-      <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />
-
-=======
       <Route
         path="/enteredclient"
         element={isAuthenticated ? <EnteredClient /> : <Login />}
       />
->>>>>>> sam
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}

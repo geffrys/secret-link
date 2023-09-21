@@ -25,6 +25,9 @@ function RegisterAgent() {
 
   const changeBtn = () => {
     setIsButtonPressed(!isButtonPressed);
+    setTimeout(() => {
+      setIsButtonPressed(false);
+    }, 4100);
   };
 
   const onSubmit = handleSubmit((data) => {
@@ -33,10 +36,6 @@ function RegisterAgent() {
     data.agent_type = parseInt(data.agent_type);
     changeBtn();
     Signup(data);
-    changeBtn();
-    setTimeout(() => {
-      navigate("/client");
-    }, 4000);
   });
 
   useEffect(() => {

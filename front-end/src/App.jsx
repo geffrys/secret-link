@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-import React from 'react'
->>>>>>> sam
 import RoutesPG from './routes/RoutesPG'
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer'

@@ -6,10 +6,8 @@ import {
   logOutRequest,
 } from "../api/users.api";
 import Cookies from "js-cookie";
-<<<<<<< HEAD
-=======
 import { toast } from "react-hot-toast";
->>>>>>> sam
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -24,6 +22,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   const Signup = async (user) => {
     try {
@@ -33,6 +32,9 @@ export const AuthProvider = ({ children }) => {
           loading: "Registering agent...",
           success: (res) => {
             setIsAuthenticated(true);
+            setTimeout(() => {
+              navigate("/client");
+            }, 4000);
             return res.data.message;
           },
           error: (error) => {

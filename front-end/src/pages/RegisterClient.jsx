@@ -1,27 +1,47 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../css/Registerclient.css";
 import { useNavigate } from "react-router-dom";
 import { useRh } from "../context/RhContext";
 import { useDocTypes } from "../context/DocTypesContext";
 import { useEps } from "../context/EpsContext";
+import { useClient } from "../context/ClientContext";
+import { Toaster } from "react-hot-toast";
 
 function RegisterClient() {
+  const [isButtonPressed, setIsButtonPressed] = useState(false);
+
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
+  const { Signup } = useClient();
   const { rhList, getRhList } = useRh();
   const { docTypesList, getDocTypesList } = useDocTypes();
   const { eps, getEpsList } = useEps();
 
   const navigate = useNavigate();
+  const changeBtn = () => {
+    setIsButtonPressed(!isButtonPressed);
+    setTimeout(() => {
+      setIsButtonPressed(false);
+    }, 4100);
+  };
 
-  const onSubmit = handleSubmit((data) => {    
-    console.log(data);
+  const onSubmit = handleSubmit((data) => {
+    data.id_document_type = parseInt(data.id_document_type);
+    data.id_eps = parseInt(data.id_eps);
+    data.id_rh = parseInt(data.id_rh);
+    if (data.health_diseases === "") {
+      data.health_diseases = null;
+    }
+    if (data.health_details === "") {
+      data.health_details = null;
+    }
+    changeBtn();
+    Signup(data);
   });
 
   useEffect(() => {
@@ -36,6 +56,7 @@ function RegisterClient() {
 
   return (
     <section className="registerclient">
+      <Toaster />
       <form onSubmit={onSubmit} className="registerclient__form">
         <h2 className="registerclient__title">Customer Registration</h2>
         <h1 className="registerclient__title2">Required Information</h1>
@@ -107,10 +128,10 @@ function RegisterClient() {
               )}
               <input
                 type="number"
-                {...register("document_number", { required: true })}
+                {...register("client_document_number", { required: true })}
                 placeholder="#"
               />
-              {errors.document_number?.type === "required" && (
+              {errors.client_document_number?.type === "required" && (
                 <p>ID number required</p>
               )}
             </div>
@@ -244,7 +265,9 @@ function RegisterClient() {
                 placeholder="min 4 numbers / max 6"
                 {...register("client_password", { required: true })}
               />
-              {errors.client_password?.type === "required" && <p>The field is required</p>}
+              {errors.client_password?.type === "required" && (
+                <p>The field is required</p>
+              )}
             </div>
 
             <div>
@@ -254,14 +277,18 @@ function RegisterClient() {
                 placeholder="confirm pin"
                 {...register("client_password2", { required: true })}
               />
-              {errors.client_password2?.type === "required" && <p>The field is required</p>}
+              {errors.client_password2?.type === "required" && (
+                <p>The field is required</p>
+              )}
             </div>
           </section>
         </section>
         <section className="registerclient__botones">
-          <button type="submit" className="btnregister">
-            Register
-          </button>
+          {!isButtonPressed && (
+            <button type="submit" className="btnregister">
+              Register
+            </button>
+          )}
           <button onClick={onNavigate} className="btncancel">
             Cancel
           </button>
