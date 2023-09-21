@@ -13,6 +13,6 @@ export const verifyClientToken = async () => {
     await axios.get('http://localhost:3000/api/v1/clients/verify')
 }
 
-export const logOutClient = async () => {
-    await axios.post('http://localhost:3000/api/v1/clients/logout')
-}
+// export const logOutClient = async () => {
+//     await axios.post('http://localhost:3000/api/v1/clients/logout')
+// }

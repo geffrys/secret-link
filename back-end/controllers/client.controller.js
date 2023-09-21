@@ -28,6 +28,7 @@ export const postClient = async (req, res) => {
         client_birth_date,
         client_phone_number
     } = req.body;
+    console.log(health_information);
 
     let password = bcrypt.hashSync(client_password, SALT_ROUNDS);
     let health_information_id;
@@ -151,11 +152,11 @@ export const getClient = async (req, res) => {
             id
         ]);
         if (client.length == 0) {
-            res.status(404).json({ mensaje: "client not found" });
+            res.json({ mensaje: "client not found" }).status(404);
         }
         const isMatch = bcrypt.compare(client_password, client[0].client_password);
         if (!isMatch) {
-            res.status(404).json({ mensaje: "wrong password" });
+            res.json({ mensaje: "wrong password" }).status(404);
         }
         client[0].client_password = undefined;
         const clienttoken = await CreateAccesToken({
@@ -164,8 +165,7 @@ export const getClient = async (req, res) => {
         res.cookie("clientToken", clienttoken)
         res.json({"client": client[0]});
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ mensaje: "cannot get client at this moment" });
+        res.json({ mensaje: "cannot get client at this moment" }).status(500);
     }
 }
 

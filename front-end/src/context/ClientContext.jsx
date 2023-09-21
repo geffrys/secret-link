@@ -12,6 +12,7 @@ export const ClientProvider = ({ children }) => {
 
   const [client, setClient] = useState(null);
   const [isClientValidated, setClientValidated] = useState(false);
+  const [errors , setErrors] = useState(null);
 
   const validateClient = async (document, password) => {
     try {
@@ -19,30 +20,31 @@ export const ClientProvider = ({ children }) => {
       setClient(response.data.client);
       setClientValidated(true);
     } catch (error) {
+      setErrors(error.response.data);
       setClientValidated(false);
     }
   }
 
-  useEffect(() => {
-    const checkClientLogin = async () => {
-      const cookies = Cookies.get();
-      if (!cookies.clientToken) {
-        setClientValidated(false);
-        setClient(null);
-        return;
-      }
-      try {
-        const res = await verifyClientToken();
-        if (!res.data) return setClientValidated(false);
-        setClientValidated(true);
-        setClient(res.data);
-      } catch (error) {
-        setClientValidated(false);
-        setClient(null);
-      }
-    }
-    checkClientLogin();
-  }, []);
+  // useEffect(() => {
+  //   const checkClientLogin = async () => {
+  //     const cookies = Cookies.get();
+  //     if (!cookies.clientToken) {
+  //       setClientValidated(false);
+  //       setClient(null);
+  //       return;
+  //     }
+  //     try {
+  //       const res = await verifyClientToken();
+  //       if (!res.data) return setClientValidated(false);
+  //       setClientValidated(true);
+  //       setClient(res.data);
+  //     } catch (error) {
+  //       setClientValidated(false);
+  //       setClient(null);
+  //     }
+  //   }
+  //   checkClientLogin();
+  // }, []);
 
   const logOut = async () => {
     try {
@@ -50,6 +52,7 @@ export const ClientProvider = ({ children }) => {
       setClientValidated(false);
       setClient(null);
     } catch (error) {
+      setErrors(error.response.data);
       setClientValidated(false);
     }
   }
@@ -58,7 +61,8 @@ export const ClientProvider = ({ children }) => {
     client,
     isClientValidated,
     validateClient,
-    logOut
+    logOut,
+    errors
   }
 
   return (
