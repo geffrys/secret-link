@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useRh } from "../context/RhContext";
 import { useDocTypes } from "../context/DocTypesContext";
 import { useEps } from "../context/EpsContext";
-import { postClient } from "../api/client.api";
+import { postClient } from "../api/client.api.js";
 
 function RegisterClient() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -21,14 +20,7 @@ function RegisterClient() {
 
   const navigate = useNavigate();
 
-  const onSubmit = handleSubmit((data) => {
-    const { pin1, pin2 } = data;
-    if (pin1 !== pin2) {
-      setValue("pin1", "", { shouldValidate: true });
-      setValue("pin2", "", { shouldValidate: true });
-      alert("Pins don't match");
-      return;
-    }
+  const onSubmit = handleSubmit((data) => {    
     console.log(data);
     postClient({
       "document_number": data.client_document_number,
@@ -42,10 +34,10 @@ function RegisterClient() {
       "client_password": data.pin1,
       "client_address": data.client_address,
       "health_information": {
-        "id_rh": data.name_rh,
-        "id_eps": data.name_eps,
+        "id_rh": Number(data.name_rh),
+        "id_eps": Number(data.name_eps),
         "health_card": "",
-        "health_diseases": data.diseases ? true : false,
+        "health_diseases": data.diseases ? 1 : 0,
         "health_details": data.additionalInfo
       },
       "client_birth_date": data.client_birthdate,
@@ -63,11 +55,11 @@ const onNavigate = () => {
   navigate("/client");
 };
 
-return (
-  <section className="registerclient">
-    <form onSubmit={onSubmit} className="registerclient__form">
-      <h2 className="registerclient__title">Costumer Registration</h2>
-      <h1 className="registerclient__title2">Required Information</h1>
+  return (
+    <section className="registerclient">
+      <form onSubmit={onSubmit} className="registerclient__form">
+        <h2 className="registerclient__title">Customer Registration</h2>
+        <h1 className="registerclient__title2">Required Information</h1>
 
       <section className="registerclient__requiered">
         <h3 className="information_title">Personal Information</h3>

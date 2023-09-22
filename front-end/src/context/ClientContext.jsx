@@ -20,7 +20,7 @@ export const ClientProvider = ({ children }) => {
       setClient(response.data.client);
       setClientValidated(true);
     } catch (error) {
-      setErrors(error.response.data);
+      setErrors(...[error.response.data]);
       setClientValidated(false);
     }
   }

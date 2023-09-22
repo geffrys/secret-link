@@ -15,33 +15,39 @@ import { FoodTypesProvider } from "./context/FoodTypesContext.jsx";
 import { RoomTypesProvider } from "./context/RoomTypesContext.jsx";
 import { HotelsProvider } from "./context/HotelsContext.jsx";
 import { ClientProvider } from "./context/ClientContext.jsx";
+import { HeadquarterProvider } from "./context/HeadquarterContext.jsx";
+import { AgentTypesProvider } from "./context/AgentTypesContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <PackagesProvider>
         <DestinationsProvider>
-          <HotelsProvider>
-            <ItineraryProvider>
-              <FoodTypesProvider>
-                <RoomTypesProvider>
-                  <TransportationProvider>
-                    <DocTypesProvider>
-                      <EpsProvider>
-                        <RhProvider>
-                          <BrowserRouter>
-                            <ClientProvider>
-                              <App />
-                            </ClientProvider>
-                          </BrowserRouter>
-                        </RhProvider>
-                      </EpsProvider>
-                    </DocTypesProvider>
-                  </TransportationProvider>
-                </RoomTypesProvider>
-              </FoodTypesProvider>
-            </ItineraryProvider>
-          </HotelsProvider>
+          <HeadquarterProvider>
+            <AgentTypesProvider>
+              <HotelsProvider>
+                <ItineraryProvider>
+                  <FoodTypesProvider>
+                    <RoomTypesProvider>
+                      <TransportationProvider>
+                        <DocTypesProvider>
+                          <EpsProvider>
+                            <RhProvider>
+                              <BrowserRouter>
+                                <ClientProvider>
+                                  <App />
+                                </ClientProvider>
+                              </BrowserRouter>
+                            </RhProvider>
+                          </EpsProvider>
+                        </DocTypesProvider>
+                      </TransportationProvider>
+                    </RoomTypesProvider>
+                  </FoodTypesProvider>
+                </ItineraryProvider>
+              </HotelsProvider>
+            </AgentTypesProvider>
+          </HeadquarterProvider>
         </DestinationsProvider>
       </PackagesProvider>
     </AuthProvider>

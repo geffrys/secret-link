@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import "../css/Login.css";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 function Login() {
   const {
@@ -13,7 +14,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const { signIn, isAuthenticated, errors: signinErrors } = useAuth();
+  const { signIn, isAuthenticated } = useAuth();
 
   const onSubmit = handleSubmit((data) => {
     signIn(data);
@@ -29,11 +30,7 @@ function Login() {
     <section className="login">
       <form onSubmit={onSubmit} className="login__form">
         <h1>Log In</h1>
-        {signinErrors.map((error, i) => (
-          <div className="error" key={i}>
-            {error}
-          </div>
-        ))}
+        <Toaster />
         <input
           type="text"
           {...register("user_name", { required: true })}

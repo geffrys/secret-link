@@ -15,6 +15,7 @@ import clientRoutes from "./client.routes.js";
 import epsRoutes from "./eps.routes.js";
 import rhRoutes from "./rh.routes.js";
 import docTypesRoutes from "./document_types.routes.js";
+import headquartersRoutes from './headquarters.routes.js'
 
 const router = Router();
 
@@ -34,5 +35,6 @@ router.use(clientRoutes);
 router.use(epsRoutes);
 router.use(rhRoutes);
 router.use(docTypesRoutes);
+router.use(headquartersRoutes);
 
 export default router;
