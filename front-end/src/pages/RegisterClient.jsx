@@ -1,48 +1,47 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../css/Registerclient.css";
 import { useNavigate } from "react-router-dom";
 import { useRh } from "../context/RhContext";
 import { useDocTypes } from "../context/DocTypesContext";
 import { useEps } from "../context/EpsContext";
-import { postClient } from "../api/client.api.js";
+import { useClient } from "../context/ClientContext";
+import { Toaster } from "react-hot-toast";
 
 function RegisterClient() {
+  const [isButtonPressed, setIsButtonPressed] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const { Signup } = useClient();
   const { rhList, getRhList } = useRh();
   const { docTypesList, getDocTypesList } = useDocTypes();
   const { eps, getEpsList } = useEps();
 
   const navigate = useNavigate();
+  const changeBtn = () => {
+    setIsButtonPressed(!isButtonPressed);
+    setTimeout(() => {
+      setIsButtonPressed(false);
+    }, 4100);
+  };
 
-  const onSubmit = handleSubmit((data) => {    
-    console.log(data);
-    postClient({
-      "document_number": data.client_document_number,
-      "id_document_type": data.id_document_type,
-      "client_name": data.client_name,
-      "client_middle_name": data.client_middleName,
-      "client_lastname": data.client_lastname,
-      "client_second_lastname": data.client_secondlastname,
-      "client_city": data.client_city,
-      "client_mail": data.client_mail,
-      "client_password": data.pin1,
-      "client_address": data.client_address,
-      "health_information": {
-        "id_rh": Number(data.name_rh),
-        "id_eps": Number(data.name_eps),
-        "health_card": "",
-        "health_diseases": data.diseases ? 1 : 0,
-        "health_details": data.additionalInfo
-      },
-      "client_birth_date": data.client_birthdate,
-      "client_phone_number": data.cliente_phone
-    });
+  const onSubmit = handleSubmit((data) => {
+    data.id_document_type = parseInt(data.id_document_type);
+    data.id_eps = parseInt(data.id_eps);
+    data.id_rh = parseInt(data.id_rh);
+    if (data.health_diseases === "") {
+      data.health_diseases = null;
+    }
+    if (data.health_details === "") {
+      data.health_details = null;
+    }
+    changeBtn();
+    Signup(data);
   });
 
 useEffect(() => {
@@ -57,6 +56,7 @@ const onNavigate = () => {
 
   return (
     <section className="registerclient">
+      <Toaster />
       <form onSubmit={onSubmit} className="registerclient__form">
         <h2 className="registerclient__title">Customer Registration</h2>
         <h1 className="registerclient__title2">Required Information</h1>
@@ -108,33 +108,33 @@ const onNavigate = () => {
             )}
           </div>
 
-          <div>
-            <label>ID</label>
-            <select {...register("id_document_type", { required: true })}>
-              <option value="">...</option>
-              {docTypesList
-                ?.filter((docType) => docType.status_document_type === 1)
-                .map((docType) => (
-                  <option
-                    key={docType.id_document_type}
-                    value={docType.id_document_type}
-                  >
-                    {docType.name_document_type}
-                  </option>
-                ))}
-            </select>
-            {errors.id_document_type?.type === "required" && (
-              <p>ID type required</p>
-            )}
-            <input
-              type="number"
-              {...register("client_document_number", { required: true })}
-              placeholder="#"
-            />
-            {errors.client_document_number?.type === "required" && (
-              <p>ID number required</p>
-            )}
-          </div>
+            <div>
+              <label>ID</label>
+              <select {...register("id_document_type", { required: true })}>
+                <option value="">...</option>
+                {docTypesList
+                  ?.filter((docType) => docType.status_document_type === 1)
+                  .map((docType) => (
+                    <option
+                      key={docType.id_document_type}
+                      value={docType.id_document_type}
+                    >
+                      {docType.name_document_type}
+                    </option>
+                  ))}
+              </select>
+              {errors.id_document_type?.type === "required" && (
+                <p>ID type required</p>
+              )}
+              <input
+                type="number"
+                {...register("client_document_number", { required: true })}
+                placeholder="#"
+              />
+              {errors.client_document_number?.type === "required" && (
+                <p>ID number required</p>
+              )}
+            </div>
 
           <div>
             <label>BIRTHDATE</label>
@@ -256,40 +256,46 @@ const onNavigate = () => {
           </div>
         </section>
 
-        <h3 className="information_title">Security</h3>
-        <section className="registerclient__security">
-          <div>
-            <label>PIN</label>
-            <input
-              type="password"
-              placeholder="min 4 numbers / max 6"
-              {...register("pin1", { required: true })}
-            />
-            {errors.pin1?.type === "required" && <p>The field is required</p>}
-          </div>
+          <h3 className="information_title">Security</h3>
+          <section className="registerclient__security">
+            <div>
+              <label>PIN</label>
+              <input
+                type="password"
+                placeholder="min 4 numbers / max 6"
+                {...register("client_password", { required: true })}
+              />
+              {errors.client_password?.type === "required" && (
+                <p>The field is required</p>
+              )}
+            </div>
 
-          <div>
-            <label>CONFIRM PIN</label>
-            <input
-              type="password"
-              placeholder="confirm pin"
-              {...register("pin2", { required: true })}
-            />
-            {errors.pin2?.type === "required" && <p>The field is required</p>}
-          </div>
+            <div>
+              <label>CONFIRM PIN</label>
+              <input
+                type="password"
+                placeholder="confirm pin"
+                {...register("client_password2", { required: true })}
+              />
+              {errors.client_password2?.type === "required" && (
+                <p>The field is required</p>
+              )}
+            </div>
+          </section>
         </section>
-      </section>
-      <section className="registerclient__botones">
-        <button type="submit" className="btnregister">
-          Register
-        </button>
-        <button onClick={onNavigate} className="btncancel">
-          Cancel
-        </button>
-      </section>
-    </form>
-  </section>
-);
+        <section className="registerclient__botones">
+          {!isButtonPressed && (
+            <button type="submit" className="btnregister">
+              Register
+            </button>
+          )}
+          <button onClick={onNavigate} className="btncancel">
+            Cancel
+          </button>
+        </section>
+      </form>
+    </section>
+  );
 }
 
 export default RegisterClient;

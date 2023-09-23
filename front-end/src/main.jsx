@@ -20,36 +20,36 @@ import { AgentTypesProvider } from "./context/AgentTypesContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+  <BrowserRouter>
     <AuthProvider>
       <PackagesProvider>
         <DestinationsProvider>
-          <HeadquarterProvider>
-            <AgentTypesProvider>
-              <HotelsProvider>
-                <ItineraryProvider>
-                  <FoodTypesProvider>
-                    <RoomTypesProvider>
-                      <TransportationProvider>
-                        <DocTypesProvider>
-                          <EpsProvider>
-                            <RhProvider>
-                              <BrowserRouter>
-                                <ClientProvider>
-                                  <App />
-                                </ClientProvider>
-                              </BrowserRouter>
-                            </RhProvider>
-                          </EpsProvider>
-                        </DocTypesProvider>
-                      </TransportationProvider>
-                    </RoomTypesProvider>
-                  </FoodTypesProvider>
-                </ItineraryProvider>
-              </HotelsProvider>
-            </AgentTypesProvider>
-          </HeadquarterProvider>
+          <HotelsProvider>
+            <ItineraryProvider>
+              <FoodTypesProvider>
+                <RoomTypesProvider>
+                  <TransportationProvider>
+                    <DocTypesProvider>
+                      <EpsProvider>
+                        <RhProvider>
+                          <ClientProvider>
+                            <HeadquarterProvider>
+                              <AgentTypesProvider>
+                                <App />
+                              </AgentTypesProvider>
+                            </HeadquarterProvider>
+                          </ClientProvider>
+                        </RhProvider>
+                      </EpsProvider>
+                    </DocTypesProvider>
+                  </TransportationProvider>
+                </RoomTypesProvider>
+              </FoodTypesProvider>
+            </ItineraryProvider>
+          </HotelsProvider>
         </DestinationsProvider>
       </PackagesProvider>
     </AuthProvider>
-  </React.StrictMode>
+  </BrowserRouter>
+</React.StrictMode>
 );

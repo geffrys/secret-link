@@ -9,27 +9,24 @@ import CreatePackages from "../pages/CreatePackages.jsx";
 import EnteredClient from "../pages/Entered.jsx";
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
-import RegisterAgent from '../pages/RegisterAgent.jsx'
+import RegisterAgent from "../pages/RegisterAgent.jsx";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
-  const { isClientValidated} = useContext(ClientContext);
+  const { isClientValidated } = useContext(ClientContext);
+  console.log(isClientValidated)
   return (
     <Routes>
-      <Route path="/" element={isAuthenticated ? <LoginClient /> : <Login />} />
+      <Route path="/" element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
       <Route
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
       />
 
-
       <Route
         path="/dashboardclient"
-        element={isAuthenticated ? (isClientValidated ? <EnteredClient /> : <LoginClient />) : <Login />}
+        element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
       />
-
-
-      <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />
 
       <Route
         path="/registerclient"

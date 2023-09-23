@@ -1,15 +1,14 @@
 import { useForm } from "react-hook-form";
 import CategoriesAdmin from "../components/CategoriesAdmin";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 import "../css/LoginClient.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 
 function LoginClient() {
-
-  const { validateClient, isClientValidated} = useContext(ClientContext);
+  const { isClientValidated, signIn } = useContext(ClientContext);
 
   const {
     register,
@@ -20,13 +19,15 @@ function LoginClient() {
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    validateClient(data.client_document_number, data.client_password);
-    
-    if (isClientValidated) {
-      navigate("/dashboardclient")
-    }
+    signIn(data);
   });
+
+  useEffect(()=>{
+    if(isClientValidated){
+      console.log("melo")
+      navigate("/dashboardclient");
+    }
+  })
 
   const onNavigate = () => {
     navigate("/registerclient");

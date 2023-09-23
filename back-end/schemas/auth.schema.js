@@ -43,3 +43,12 @@ export const loginSchema = z.object({
     required_error: "Password Required",
   }),
 });
+
+export const loginClientSchema = z.object({
+  client_document_number: z.string({
+    required_error: "Document number required",
+  }),
+  client_password: z.string({
+    required_error: "Password Required",
+  }),
+});  

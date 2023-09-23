@@ -1,71 +1,135 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
-import { verifyClient, logOutClient, verifyClientToken } from "../api/client.api.js";
+import { toast } from "react-hot-toast";
+
+import {
+  logOutClient,
+  verifyClientToken,
+  loginUserRequest,
+  postClient,
+} from "../api/client.api.js";
+import { useNavigate } from "react-router-dom";
 
 export const ClientContext = createContext(null);
 
-export const ClientProvider = ({ children }) => {
+export const useClient = () => {
+  const context = useContext(ClientContext);
+  if (!context) {
+    throw new Error("useClient must be used within a ClientProvider");
+  }
+  return context;
+};
 
+// eslint-disable-next-line react/prop-types
+export const ClientProvider = ({ children }) => {
   const [client, setClient] = useState(null);
   const [isClientValidated, setClientValidated] = useState(false);
-  const [errors , setErrors] = useState(null);
+  const navigate = useNavigate();
+  console.log(isClientValidated);
+  console.log(client);
 
-  const validateClient = async (document, password) => {
+  const signIn = async (info) => {
     try {
-      const response = await verifyClient(document, password);
-      setClient(response.data.client);
-      setClientValidated(true);
+      console.log(info);
+      toast.promise(loginUserRequest(info), {
+        loading: "Logging in...",
+        success: (res) => {
+          setClient(res.data);
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
+          setClientValidated(true);
+          return "Welcome back " + res.data.client_name;
+        },
+        error: (error) => {
+          if (Array.isArray(error.response.data)) {
+            error.response.data.forEach((errorMsg) => {
+              return errorMsg;
+            });
+          } else {
+            return error.response.data;
+          }
+          return error.response.data;
+        },
+      });
     } catch (error) {
-      setErrors(...[error.response.data]);
-      setClientValidated(false);
+      console.log(error);
     }
-  }
+  };
 
-  // useEffect(() => {
-  //   const checkClientLogin = async () => {
-  //     const cookies = Cookies.get();
-  //     if (!cookies.clientToken) {
-  //       setClientValidated(false);
-  //       setClient(null);
-  //       return;
-  //     }
-  //     try {
-  //       const res = await verifyClientToken();
-  //       if (!res.data) return setClientValidated(false);
-  //       setClientValidated(true);
-  //       setClient(res.data);
-  //     } catch (error) {
-  //       setClientValidated(false);
-  //       setClient(null);
-  //     }
-  //   }
-  //   checkClientLogin();
-  // }, []);
+  const Signup = async (client) => {
+    try {
+      await toast.promise(postClient(client), {
+        loading: "Registering client...",
+        success: () => {
+          setTimeout(() => {
+            navigate("/client");
+          }, 4000);
+          return "Client created succesfully";
+        },
+        error: (error) => {
+          if (Array.isArray(error.response.data)) {
+            error.response.data.forEach((errorMsg) => {
+              return errorMsg;
+            });
+          } else {
+            return error.response.data.message;
+          }
+          return error.response.data.message;
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    async function checkClientLogin() {
+      const cookies = Cookies.get();
+      if (!cookies.clientToken) {
+        setClientValidated(false);
+        setClient(null);
+        return;
+      }
+      try {
+        const res = await verifyClientToken(cookies.clientToken);
+        console.log("Hola " + res);
+        if (!res.data) {
+          console.log("No existe res.data");
+          return setClientValidated(false);
+        }
+        console.log("Pasé el if");
+        setClientValidated(true);
+        setClient(res.data);
+      } catch (error) {
+        setClientValidated(false);
+        setClient(null);
+      }
+    }
+    checkClientLogin();
+  }, []);
 
   const logOut = async () => {
     try {
-      const res = await logOutClient();
+      await logOutClient();
       setClientValidated(false);
       setClient(null);
     } catch (error) {
-      setErrors(error.response.data);
       setClientValidated(false);
     }
-  }
+  };
 
   const value = {
     client,
     isClientValidated,
-    validateClient,
+    signIn,
     logOut,
-    errors
-  }
+    Signup,
+  };
 
   return (
     <ClientContext.Provider value={value}>{children}</ClientContext.Provider>
-  )
-}
+  );
+};
