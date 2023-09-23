@@ -24,7 +24,6 @@ function LoginClient() {
 
   useEffect(()=>{
     if(isClientValidated){
-      console.log("melo")
       navigate("/dashboardclient");
     }
   })

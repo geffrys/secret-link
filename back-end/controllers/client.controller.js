@@ -268,14 +268,13 @@ export const LogIn = async (req, res) => {
     res.cookie("clientToken", clientToken);
     res.json(clientFound[0]);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.json({ message: error.message }).status(500);
   }
 };
 
 export const verifyToken = async (req, res) => {
   const { clientToken } = req.cookies;
   if (!clientToken) return res.status(401).json({ message: "No token provided" });
-
   jwt.verify(clientToken, TOKEN_SECRET_CLIENT, async (err, decoded) => {
     if (err) return res.status(401).json({ message: "Unauthorized" });
     const [userFound] = await pool.query(
@@ -283,15 +282,15 @@ export const verifyToken = async (req, res) => {
       [decoded.id_client]
     );
     if (!userFound) return res.status(401).json({ message: "Unauthorized" });
-
-    return res.json({
+    
+    res.json({
       id_client: userFound[0].id_client,
       client_name: userFound[0].client_name,
       client_middle_name: userFound[0].client_middle_name,
       client_lastname: userFound[0].client_lastname,
       client_second_lastname: userFound[0].client_second_lastname,
-      created_at: userFound[0].created_at,
-    });
+      created_at: userFound[0].created_at
+    }).status(200);
   });
 };
 

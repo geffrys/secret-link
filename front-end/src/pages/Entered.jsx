@@ -10,6 +10,10 @@ function EnteredClient() {
     const navigate = useNavigate();
     const { client, isClientValidated } = useContext(ClientContext);
 
+    const onClickNewReservation = () => {
+        navigate("/newreservation");
+    }
+
     useEffect(() => {
         if (!isClientValidated) {
           navigate("/client");
@@ -41,7 +45,7 @@ function EnteredClient() {
                             </h1>
                         </div>
                         <div className="section_actions">
-                            <button className="new_reservation_btn">
+                            <button className="new_reservation_btn" onClick={ onClickNewReservation}>
                                 New reservation
                             </button>
                             <div>

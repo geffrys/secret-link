@@ -11,7 +11,12 @@ export const loginUserRequest = async (user) =>
   await axios.post(`http://localhost:3000/api/v1/clients/loginclient`, user);
 
 export const verifyClientToken = async () => {
-  await axios.get("http://localhost:3000/api/v1/clients/verify");
+  try {
+    const response = await axios.get("http://localhost:3000/api/v1/clients/verify");
+    return response
+  } catch (error) {
+    throw error.response;
+  }
 };
 
 export const logOutClient = async () => {

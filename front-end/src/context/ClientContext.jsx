@@ -94,22 +94,26 @@ export const ClientProvider = ({ children }) => {
         return;
       }
       try {
-        const res = await verifyClientToken(cookies.clientToken);
-        console.log("Hola " + res);
+        let res;
+        res = await verifyClientToken()
         if (!res.data) {
           console.log("No existe res.data");
-          return setClientValidated(false);
+          setClientValidated(false);
+          return;
         }
         console.log("Pasé el if");
         setClientValidated(true);
         setClient(res.data);
+
       } catch (error) {
         setClientValidated(false);
         setClient(null);
       }
     }
-    checkClientLogin();
-  }, []);
+   checkClientLogin();
+  }, [isClientValidated]);
+
+
 
   const logOut = async () => {
     try {
