@@ -299,12 +299,10 @@ INSERT INTO activities ( id_itinerary, activity_name, activity_description, acti
 INSERT INTO activities (id_itinerary, activity_name, activity_description, activity_price, activity_status) VALUES (1, "Cartagena\'s Toured walk", "Toured walk around the city\'s walls", 20000, 1);
 
 
-<<<<<<< HEAD
 INSERT INTO travel_packs (id_food_type, id_room_type, id_transport, id_destination, id_itinerary, id_hotel, travelpack_price, travelpack_status, travelpack_description, travelpack_days) VALUES (1, 1, 1, 1, 1, 1, 1, '1400000', 1, "Cartagena\'s travel", 5);
 INSERT INTO agencies (name_agencie) VALUES ('Vuelo Secreto');
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA CEJA', '1234567890', 1, 1);
 INSERT INTO headquarters (address_headquarter, phone_headquarter, status_headquarter, id_agencie) VALUES ('CC VIVA LA ESTRELLA', '1234567890', 1, 1);
-=======
 INSERT INTO travel_packs VALUES (1,1,1,2,1,1,1,1400000,1,'Cartagena\'s travel',5),(2,NULL,NULL,NULL,2,NULL,NULL,80000,1,'Guided tour into Medellin\'s Comuna-13.',1),(3,NULL,NULL,NULL,3,NULL,NULL,45000,1,'Guided visit to Medellin\'s Plaza botero',1),(4,1,1,1,1,NULL,2,1150000,1,'Cartagena\'s travel 5 days on the Hotel Cartagena Plaza',5);
 
 INSERT INTO agent_types (name_agent_type) VALUES ('Administrator');
@@ -312,5 +310,4 @@ INSERT INTO agent_types (name_agent_type) VALUES ('Agent');
 
 INSERT INTO agents VALUES (1,'Samuel','3043346953',1,2,1,'1000413879','Samuel3879','$2b$10$MG.kuXOtwsgDxggdzoTafOiT/O8GdOmSs7uaszKN6mWAjXmUplZeC','superajke@gmail.com','2023-09-16 19:07:33','2023-09-16 19:07:33'),(2,'Geffrey','3043346952',1,1,1,'1000419999','Geffrey9999','$2b$10$gJNooS5LRo7Wd5aLOYIrSenZEivcZnODlzekpH7fKULbXn/BS9RgK','Geffrey@gmail.com','2023-09-16 19:11:12','2023-09-16 19:11:12');
 
->>>>>>> sam
 

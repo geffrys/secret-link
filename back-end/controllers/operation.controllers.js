@@ -137,3 +137,14 @@ const operationAudit = async (id, id_operation_status) => {
         throw new Error("cannot audit operation at this moment");
     }
 }
+
+const currentOperation = async (req, res) => {  
+    const { id_operation } = req.body;
+    try {
+        const [travelers] = await pool.query(`
+        select id_additional_people, CONC ` ,[id_operation]);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({mensaje: "cannot get operation at this moment"});
+    }
+}
