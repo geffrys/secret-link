@@ -1,14 +1,31 @@
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getOperations } from "../api/operations.api.js";
+import { OperationContext } from "../context/operationContext.jsx";
 
 import "../css/CurrentReservation.css";
 const CurrentReservation = () => {
 
 
-    const { isClientValidated, signIn } = useContext(ClientContext);
+    const { client} = useContext(ClientContext);
+    const { operation_id } = useContext(OperationContext);
+    
+    const navigate = useNavigate();
 
-   
+   useEffect(() => {
+        // need to get operation id from the past page, as href variable
+
+        const getCurrentReservation = async () =>{
+            let response = await getOperations(client.id, operation_id)
+            console.log(response);
+            if(!response.data){
+                throw new Error("Error getting operations");
+            }
+        }
+        getCurrentReservation();
+   });
 
 
     const reservation = "Santa Marta (Air or autobus) - 23/08/2023"
@@ -64,7 +81,7 @@ const CurrentReservation = () => {
     ]
 
     let totalAux = 0;
-    let total = summary.forEach(element => {
+    summary.forEach(element => {
         totalAux += element.total
     });
 
@@ -153,6 +170,9 @@ const CurrentReservation = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="Container_btn_back_currReservation">
+                <button className="btn_back_currReservation" onClick={() => navigate('/dashboardclient')}>Back</button>
             </div>
         </div>
     )

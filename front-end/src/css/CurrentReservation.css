@@ -22,6 +22,7 @@ th{
 
 .main_container{
     display: flex;
+    width: 100%;
     padding: 30px 30px;
 }
 
@@ -31,6 +32,8 @@ th{
     width: 80%;
     padding: 20px 50px;
     background-color: var(--background-color);
+    border: .5px solid ;
+    border-radius: 20px;
 }
 
 .content_reservation{
@@ -73,6 +76,25 @@ th{
 thead{
     background-color: var(--secondary-color);
     color: var(--background-color);
+}
+
+.Container_btn_back_currReservation{
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.btn_back_currReservation{
+    width: 80%;
+    border-radius: 20px;
+    font-size: large;
+    background-color: var(--secondary-color);
+    height: 50px
+}
+
+.btn_back_currReservation:hover{
+    cursor: pointer;
 }
 
 

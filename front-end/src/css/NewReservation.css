@@ -1,15 +1,16 @@
 /* Layouts */
-.main_content{
+.main_content_newReservation{
     display: flex;    
 }
 
 .content{
+    box-sizing: border-box;
     border: 1px solid black;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 75%;
+    width: 80%;
     padding: 20px 50px;
     margin: 20px;
     background-color: var(--background-color);

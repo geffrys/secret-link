@@ -5,7 +5,7 @@ import { registerOperation, updateOperation } from "../schemas/operation.schema.
 
 // import { authRequied } from "../middlewares/validateToken.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
-import { getOperation, postOperation, /* updateOperation*/getOperations } from "../controllers/operation.controllers.js";
+import { getOperation, postOperation, /* updateOperation*/getOperations ,currentOperation, operationInprogress} from "../controllers/operation.controllers.js";
 
 // TODO: remember to uncomment the authRequied middleware, and validateSchema middleware.
 
@@ -16,5 +16,9 @@ router.get("/operation/:id", /*authRequied,*/ getOperation);
 
 // REMINDER: this router is only for testing purposes
 router.get("/operation", /*authRequied,*/ getOperations);
+
+router.get('/operation/current',currentOperation)
+
+router.get('/operation/history/:id', operationInprogress )
 
 export default router;

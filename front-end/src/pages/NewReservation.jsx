@@ -4,8 +4,10 @@ import { Toaster } from "react-hot-toast";
 import "../css/NewReservation.css";
 
 const NewReservation = () => {
+    const navigate = useNavigate();
+
     return (
-        <div className="main_content">
+        <div className="main_content_newReservation">
             <div className="content">
                 <h1>Make a reservation</h1>
                 <div className="content_section">
@@ -40,6 +42,10 @@ const NewReservation = () => {
 
 
                 </div>
+                
+            </div>
+            <div className="Container_btn_back_currReservation">
+                <button className="btn_back_currReservation" onClick={() => navigate('/dashboardclient')}>Back</button>
             </div>
         </div>
     )

@@ -17,6 +17,7 @@ import { HotelsProvider } from "./context/HotelsContext.jsx";
 import { ClientProvider } from "./context/ClientContext.jsx";
 import { HeadquarterProvider } from "./context/HeadquarterContext.jsx";
 import { AgentTypesProvider } from "./context/AgentTypesContext.jsx";
+import { OperationProvider } from "./context/operationContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -35,7 +36,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                           <ClientProvider>
                             <HeadquarterProvider>
                               <AgentTypesProvider>
-                                <App />
+                                <OperationProvider>
+                                  <App />
+                                </ OperationProvider>
                               </AgentTypesProvider>
                             </HeadquarterProvider>
                           </ClientProvider>

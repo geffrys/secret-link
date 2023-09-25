@@ -12,26 +12,24 @@ import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 import RegisterAgent from "../pages/RegisterAgent.jsx";
 import CurrentReservation from "../pages/CurrentReservation.jsx";
+import { OperationContext } from "../context/operationContext.jsx";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
   const { isClientValidated } = useContext(ClientContext);
   return (
     <Routes>
-      <Route path="/" element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
+      <Route path="/" element={isAuthenticated ? (isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
       <Route
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
       />
-
-      <Route
-        path="/dashboardclient"
-        element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
-      />
-
-      <Route path='/newreservation' element={isAuthenticated ? ( isClientValidated ? (<NewReservation />) : (<LoginClient />)) : (<Login />)} />
-      
-      <Route path='/currentreservation' element={isAuthenticated ? ( isClientValidated ? (<CurrentReservation />) : (<LoginClient />)) : (<Login />)} />
+        <Route
+          path="/dashboardclient"
+          element={isAuthenticated ? (isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
+        />
+        <Route path='/newreservation' element={isAuthenticated ? (isClientValidated ? (<NewReservation />) : (<LoginClient />)) : (<Login />)} />
+        <Route path='/currentreservation' element={isAuthenticated ? (isClientValidated ? (<CurrentReservation />) : (<LoginClient />)) : (<Login />)} />
 
       <Route
         path="/registerclient"

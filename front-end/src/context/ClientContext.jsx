@@ -27,12 +27,9 @@ export const ClientProvider = ({ children }) => {
   const [client, setClient] = useState(null);
   const [isClientValidated, setClientValidated] = useState(false);
   const navigate = useNavigate();
-  console.log(isClientValidated);
-  console.log(client);
 
   const signIn = async (info) => {
     try {
-      console.log(info);
       toast.promise(loginUserRequest(info), {
         loading: "Logging in...",
         success: (res) => {
@@ -97,11 +94,9 @@ export const ClientProvider = ({ children }) => {
         let res;
         res = await verifyClientToken()
         if (!res.data) {
-          console.log("No existe res.data");
           setClientValidated(false);
           return;
         }
-        console.log("Pasé el if");
         setClientValidated(true);
         setClient(res.data);
 
@@ -117,9 +112,30 @@ export const ClientProvider = ({ children }) => {
 
   const logOut = async () => {
     try {
-      await logOutClient();
-      setClientValidated(false);
-      setClient(null);
+
+      toast.promise(logOutClient(), {
+        loading: "ending client sesion...",
+        success: () => {
+          setClientValidated(false);
+          setClient(null);
+          setTimeout(() => {
+            navigate("/client");
+          }, 4000);
+          return "client sesion closed";
+        },
+        error: (error) => {
+          if (Array.isArray(error.response.data)) {
+            error.response.data.forEach((errorMsg) => {
+              return errorMsg;
+            });
+          } else {
+            return error.response.data;
+          }
+          return error.response.data;
+        }
+      });
+
+      
     } catch (error) {
       setClientValidated(false);
     }
