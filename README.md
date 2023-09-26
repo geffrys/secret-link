@@ -52,6 +52,16 @@ SALT_ROUNDS=
 ```bash
 npm run start 
 ```
+# project tools
+- ## backend tools
+  - **bcrypt**: bcrypt is a hash function designed to store passwords securely
+  - **cookie-parser**: is a middleware for Express that simplifies cookie management in Node.js web applications, allowing you to analyze and set cookies efficiently.
+  - **cors**: Provide a secure mechanism to allow websites and web applications to access cross-origin resources in a controlled and authorized manner. 
+  - **dotenv**: It makes it easy to manage and load environment variables from configuration files, improving application security and portability by separating configuration from source code.
+  - **express**: simplifies the development of web applications and APIs in Node.js by providing a wide range of tools and utilities for managing routes, middleware, routing, error management, and more.
+  - **jsonwebtoken**: enables the generation and verification of JWT tokens, which are widely used for authentication and authorization in applications and web services. These tokens are secure, flexible, and portable, and are used to securely transmit information between parts of an application.
+  - **mysql2**: Provide an interface to connect, interact, and manage MySQL and MariaDB databases from Node.js applications.
+	
 # credits
 
 - Samuel Ignacio Arango Ramírez
