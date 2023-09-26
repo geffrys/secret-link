@@ -52,3 +52,36 @@ SALT_ROUNDS=
 ```bash
 npm run start 
 ```
+# credits
+
+- Samuel Ignacio Arango Ramírez
+  - fulfilled the role of back end developer, also helped in the development of the frontend, taking into account
+		his experience with react.
+  - email:
+			. samuel_arango82211@elpoli.edu.co
+  - github account:
+     - https://github.com/Superajke
+
+- Sergio Andrés Bula Moreno
+   - fulfilled the role of frontend developer, also helped with the readme with the main features, with
+		the examples of the project, with the details about the construction, as well as the justification of the project.
+   - email:
+		   sergio_bula82211@elpoli.edu.co
+   - github account:
+      - https://github.com/sandres07
+
+- Geffry Alejandro Ospina Atehortua
+  - fulfilled the role of backend developer, created the repository where the project is saved, executed the merge,
+     		also help in the readme with the summary, table of contents, and how to install and run the project.
+  - email:
+			. geffry_ospina84171@elpoli.edu.co
+  - github account:
+    - https://github.com/geffrys
+    
+- Santiago Taborda Ruiz
+  - fulfilled the role of frontend developer, also helped with the readme with the useful tools, with the
+	Credits to collaborators, with examples of the project and justification.
+  - email:
+		. santiago_taborda82211@elpoli.edu.co
+  - github account:
+    - https://github.com/santxrx
