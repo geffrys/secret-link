@@ -41,6 +41,7 @@ input{
     display: flex;
     justify-content: space-between;
     padding: 20px 0px;
+    display: none;
 }
 
 .new_reservation_btn{

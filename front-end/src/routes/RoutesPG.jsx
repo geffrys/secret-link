@@ -13,6 +13,7 @@ import { ClientContext } from "../context/ClientContext.jsx";
 import RegisterAgent from "../pages/RegisterAgent.jsx";
 import CurrentReservation from "../pages/CurrentReservation.jsx";
 import { OperationContext } from "../context/operationContext.jsx";
+import TakingPlan from "../pages/TakingPlan.jsx";
 
 function RoutesPG() {
   const { isAuthenticated } = useAuth();
@@ -30,7 +31,8 @@ function RoutesPG() {
         />
         <Route path='/newreservation' element={isAuthenticated ? (isClientValidated ? (<NewReservation />) : (<LoginClient />)) : (<Login />)} />
         <Route path='/currentreservation' element={isAuthenticated ? (isClientValidated ? (<CurrentReservation />) : (<LoginClient />)) : (<Login />)} />
-
+        <Route path='/reservation/:id' element={isAuthenticated ? (isClientValidated ? (<TakingPlan />) : (<LoginClient />)) : (<Login />)} />
+        
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}

@@ -3,7 +3,10 @@ import { pool } from "../db.js";
 export const getPackages = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM travel_packs order by id_travel_pack asc"
+      `SELECT * FROM travel_packs t 
+        inner join destinations d
+        on t.id_destination = d.id_destination
+      order by id_travel_pack asc`
     );
     res.json(result);
   } catch (error) {

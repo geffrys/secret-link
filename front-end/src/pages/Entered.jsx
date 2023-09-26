@@ -21,7 +21,6 @@ function EnteredClient() {
     }
 
     const operationHistory = async () => {
-        console.log(client.id_client);
         try {
             const res = await getOperationHistory(client.id_client);
             console.log(res.data);
@@ -147,10 +146,11 @@ function EnteredClient() {
                                 current reservations
                             </h1>
                         </div>
-                        <div className="section_actions">
+                        <br />
                             <button className="new_reservation_btn" onClick={onClickNewReservation}>
                                 New reservation
                             </button>
+                        <div className="section_actions">
                             <div>
                                 <input type="text" placeholder="search" />
                             </div>
@@ -158,6 +158,7 @@ function EnteredClient() {
                     </div>
 
                     <div>
+                        <br />
                         <div className="section_content">
                             <table>
 
@@ -231,6 +232,7 @@ function EnteredClient() {
 
 
                     <div className="section_content">
+                        <br />
                         <table>
                             <thead>
                                 <tr>
