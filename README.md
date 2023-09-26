@@ -5,6 +5,7 @@
     2. [Key Benefits](#key-benefits)
 2. [Install](#install-instructions)
     1. [Back-end](#back-end-install-instructions)
+3. [Main Features](#main-features)
 
 # summary
 
@@ -56,3 +57,5 @@ npm run start
 It is a fundamental relationship as it allows you to manage relationships with your clients effectively, manage sales and reservations and improve efficiency in all tourism-related operations.
 - **Offer of tourist services:** offers a wide range of tourist services that include flight booking, accommodation, ground and air transportation, tourist packages. Its objective is to facilitate the planning and organization of trips for its clients.
 - **Reservation Management:** This reservation system allows you to make reservations for flights, hotels and other services on behalf of customers. They are also responsible for confirming reservations and managing any necessary changes or cancellations.
+- **Regulatory compliance:** Government regulations and laws related to the tourism industry, such as consumer protection, operating license, and personal data management, are complied with.
+- **Contact and Customer Management:** Allows the creation and storage of customer profiles, including contact information, travel preferences, reservation history, and notes from previous interactions.
