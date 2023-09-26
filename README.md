@@ -7,8 +7,9 @@
 2. [Install](#install-instructions)
     1. [Back-end](#back-end-install-instructions)
 3. [Main Features](#main-features)
+4. [Construction Details](#construction-details)
 
-# summary
+# Summary
 
 The **Secret Link** project involves the development of a comprehensive platform for travel agencies, aimed at enhancing and simplifying the experience for both commercial agents and customer interactions. The platform offers several key functionalities that enhance agency efficiency and service quality.
 
@@ -60,3 +61,10 @@ It is a fundamental relationship as it allows you to manage relationships with y
 - **Reservation Management:** This reservation system allows you to make reservations for flights, hotels and other services on behalf of customers. They are also responsible for confirming reservations and managing any necessary changes or cancellations.
 - **Regulatory compliance:** Government regulations and laws related to the tourism industry, such as consumer protection, operating license, and personal data management, are complied with.
 - **Contact and Customer Management:** Allows the creation and storage of customer profiles, including contact information, travel preferences, reservation history, and notes from previous interactions.
+
+# Construction Details
+This CRM is a strategic project that can provide significant benefits in terms of customer service and operational efficiency. Customization and adaptation to the specific needs of the agency are key to its success. Below we detail some of the main considerations we took into account when building the CRM:
+- **Definition Requirements:** functional requirements were determined, such as contact management, reservation history and task automation.
+- **Customer Data Collection:** we established a strategy for the continuous collection of customer data, including travel preferences, reservation history and contact data.
+- **Security and data protection:** security measures have been implemented to protect confidential customer information and comply with applicable data protection regulations.
+- **Tests and adjustments:** testing of the CRM was performed to ensure it is working as intended and to make adjustments as necessary.
