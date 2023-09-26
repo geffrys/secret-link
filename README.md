@@ -61,6 +61,16 @@ npm run start
   - **express**: simplifies the development of web applications and APIs in Node.js by providing a wide range of tools and utilities for managing routes, middleware, routing, error management, and more.
   - **jsonwebtoken**: enables the generation and verification of JWT tokens, which are widely used for authentication and authorization in applications and web services. These tokens are secure, flexible, and portable, and are used to securely transmit information between parts of an application.
   - **mysql2**: Provide an interface to connect, interact, and manage MySQL and MariaDB databases from Node.js applications.
+- ## frontend tools
+  - **axios**: is a JavaScript library that simplifies making HTTP requests and managing responses from an application.
+  - **js-cookie**: is a JavaScript library that simplifies cookie management in client-side web applications. Its main function is to allow developers to easily create, read, update and delete cookies.
+  - **localforage**: is a library that makes it easy to persistently store data in the web browser. Its main function is to provide a simple and uniform interface for interacting with storage in the browser.
+  - **match-sorter**: is a library that simplifies searching and sorting data in web applications. Its main function is to provide flexible search and ranking of results based on relevance.
+  - **react**:
+  - **react-dom**:
+  - **react-hook-form**:
+  - **react-router-dom**:
+  - **sort-by**:
 	
 # credits
 
