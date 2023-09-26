@@ -52,3 +52,7 @@ SALT_ROUNDS=
 ```bash
 npm run start 
 ```
+# Main Features
+It is a fundamental relationship as it allows you to manage relationships with your clients effectively, manage sales and reservations and improve efficiency in all tourism-related operations.
+- **Offer of tourist services:** offers a wide range of tourist services that include flight booking, accommodation, ground and air transportation, tourist packages. Its objective is to facilitate the planning and organization of trips for its clients.
+- **Reservation Management:** This reservation system allows you to make reservations for flights, hotels and other services on behalf of customers. They are also responsible for confirming reservations and managing any necessary changes or cancellations.
