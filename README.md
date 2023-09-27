@@ -66,11 +66,13 @@ npm run start
   - **js-cookie**: is a JavaScript library that simplifies cookie management in client-side web applications. Its main function is to allow developers to easily create, read, update and delete cookies.
   - **localforage**: is a library that makes it easy to persistently store data in the web browser. Its main function is to provide a simple and uniform interface for interacting with storage in the browser.
   - **match-sorter**: is a library that simplifies searching and sorting data in web applications. Its main function is to provide flexible search and ranking of results based on relevance.
-  - **react**:
-  - **react-dom**:
-  - **react-hook-form**:
-  - **react-router-dom**:
-  - **sort-by**:
+  - **react**: Open source JavaScript library used to develop user interfaces (UI). It was launched by Facebook developers in 2013 and has become one of the most popular tools for creating web pages. Although it is not a complete framework, React is very useful for creating web applications with reusable components.
+  - **react-dom**: is a React package that provides DOM-specific methods. These methods can be used at the highest level of your application as an escape from the React model if needed. Some of the main features of ReactDOM are:
+    - Rendering: ReactDOM provides the render() method that is used to render React components to the DOM.
+    - Creating Portals: ReactDOM also provides the createPortal() method that allows you to render components to a DOM node that exists outside of the component's DOM hierarchy.
+    - Synchronous update: The flushSync() method forces React to synchronously execute all updates within the provided callback.
+  - **react-hook-form**: is a React library that allows you to create uncontrolled forms, maintaining the HTML standard. By using React Hook Form, you can reduce the number of re-renders and create a better user experience
+  - **react-router-dom**: is a React library that provides components and utilities to create single page applications (SPA) with routing, it allows you to define routes and links in your application, making it easy to navigate between different components or pages without having to reload the entire page.
 	
 # credits
 
