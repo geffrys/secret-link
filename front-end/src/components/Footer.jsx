@@ -5,7 +5,7 @@ import "../css/Footer.css";
 function Footer() {
   const [online, setOnline] = useState(true);
   const { isAuthenticated } = useAuth();
-
+  const actualYear = new Date().getFullYear();
   useEffect(() => {
     const handleOnlineStatus = () => {
       if (navigator.onLine) {
@@ -39,7 +39,7 @@ function Footer() {
           </>
         )}
       </section>
-      <p>© 2023 Vuelo Secreto / All rights reserved</p>
+      <p>© {actualYear} Vuelo Secreto / All rights reserved</p>
     </section>
   );
 }

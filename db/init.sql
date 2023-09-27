@@ -130,7 +130,7 @@ CREATE TABLE hotels(
 CREATE TABLE room_types(
     id_room_type INT PRIMARY KEY AUTO_INCREMENT,
     room_name VARCHAR(30) NOT NULL,
-    room_description VARCHAR(50) NOT NULL,
+    room_description VARCHAR(300) NOT NULL,
     room_capability INT NOT NULL,
     room_status TINYINT NOT NULL,
     id_hotel INT NOT NULL,
@@ -158,6 +158,7 @@ CREATE TABLE transports(
     transport_name VARCHAR(50) NOT NULL,
     transport_description VARCHAR(200) NOT NULL,
     transport_price INT NOT NULL
+    transport_status TINYINT NOT NULL,
 );
 
 CREATE TABLE food_types(
@@ -230,6 +231,8 @@ CREATE TABLE operation_status_audit(
 
 INSERT INTO agent_types (name_agent_type) VALUES ('Administrador');
 INSERT INTO agent_types (name_agent_type) VALUES ('Agente');
+INSERT INTO agent_types (name_agent_type) VALUES ('SuperAdmin');
+
 
 INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Cedula de ciudadania', 1);
 INSERT INTO document_types (name_document_type, status_document_type) VALUES ('Cedula de extranjeria', 1);

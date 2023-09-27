@@ -10,11 +10,17 @@ import EnteredClient from "../pages/Entered.jsx";
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 import RegisterAgent from "../pages/RegisterAgent.jsx";
+import DataPage from '../pages/DataPage.jsx'
+import CreateFoodType from '../components/DataComponents/Create/CreateFoodType.jsx'
+import CreateRoomType from '../components/DataComponents/Create/CreateRoomType.jsx'
+import CreateTransport from '../components/DataComponents/Create/CreateTransport.jsx'
+import CreateDestination from '../components/DataComponents/Create/CreateDestination.jsx'
+import CreateHotel from '../components/DataComponents/Create/CreateHotel.jsx'
+
 
 function RoutesPG() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { isClientValidated } = useContext(ClientContext);
-  console.log(isClientValidated)
   return (
     <Routes>
       <Route path="/" element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
@@ -34,7 +40,7 @@ function RoutesPG() {
       />
       <Route
         path="/registeragent"
-        element={isAuthenticated ? <RegisterAgent /> : <Login />}
+        element={isAuthenticated && user?.id_agent_type != 2 ? <RegisterAgent /> : <Login />}
       />
       <Route
         path="/packages"
@@ -42,11 +48,39 @@ function RoutesPG() {
       />
       <Route
         path="/create-packages"
-        element={isAuthenticated ? <CreatePackages /> : <Login />}
+        element={isAuthenticated && user?.id_agent_type != 2 ? <CreatePackages /> : <Login />}
       />
       <Route
         path="/create-packages/:id_transport"
-        element={isAuthenticated ? <CreatePackages /> : <Login />}
+        element={isAuthenticated && user?.id_agent_type != 2 ? <CreatePackages /> : <Login />}
+      />
+      <Route
+        path="/datapage"
+        element={isAuthenticated && user?.id_agent_type === 3 ? <DataPage /> : <Login />}
+      />
+
+      <Route
+        path="/foodtypes"
+        element={isAuthenticated && user?.id_agent_type === 3 ? <CreateFoodType /> : <Login />}
+      />
+      <Route
+        path="/roomtypes"
+        element={isAuthenticated && user?.id_agent_type === 3 ? <CreateRoomType /> : <Login />}
+      />
+
+      <Route
+        path="/transportation"
+        element={isAuthenticated && user?.id_agent_type === 3 ? <CreateTransport /> : <Login />}
+      />
+      
+      <Route
+        path="/destination"
+        element={isAuthenticated && user?.id_agent_type === 3 ? <CreateDestination /> : <Login />}
+      />
+
+      <Route
+        path="/hotels"
+        element={isAuthenticated && user?.id_agent_type === 3 ? <CreateHotel /> : <Login />}
       />
       <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />
     </Routes>

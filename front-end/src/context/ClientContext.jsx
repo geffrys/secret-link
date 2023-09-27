@@ -26,8 +26,6 @@ export const ClientProvider = ({ children }) => {
   const [client, setClient] = useState(null);
   const [isClientValidated, setClientValidated] = useState(false);
   const navigate = useNavigate();
-  console.log(isClientValidated);
-  console.log(client);
 
   const signIn = async (info) => {
     try {

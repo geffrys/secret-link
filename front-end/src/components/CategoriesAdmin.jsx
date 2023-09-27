@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import SeePlansBttn from "./SeePlansBttn";
 import RegisterAgentsBttn from "./RegisterAgentsBttn";
+import DataBttn from "./DataBttn";
 import { useAuth } from "../context/AuthContext.jsx";
 
 function CategoriesAdmin() {
@@ -19,6 +20,15 @@ function CategoriesAdmin() {
         <div className="categories__cat">
           <h1 className="categories__titulo">Categories agent</h1>
           <SeePlansBttn />
+        </div>
+      );
+    } else if (user.id_agent_type === 3) {
+      return (
+        <div className="categories__cat">
+          <h1 className="categories__titulo">Categories Super Admin</h1>
+          <SeePlansBttn />
+          <RegisterAgentsBttn />
+          <DataBttn />
         </div>
       );
     }

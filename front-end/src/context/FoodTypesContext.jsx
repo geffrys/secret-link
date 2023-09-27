@@ -6,6 +6,7 @@ import {
   updateFoodType,
   deleteFoodType,
 } from "../api/foodTypes.api";
+import toast from "react-hot-toast";
 
 const FoodTypesContext = createContext();
 
@@ -30,11 +31,32 @@ export const FoodTypesProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const postFoodTypeData = async (data) => {
+    try {
+      await postFoodType(data);
+      toast.success("Food Type Created successfully")
+    } catch (error) {
+      toast.success(error.response.data.message)
+      console.log(error);
+    }
+  }
+  const updateFoodTypeData = async (id, data) => {
+    try {
+      await updateFoodType(id, data);
+      toast.success("FoodType status updated successfully")
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <FoodTypesContext.Provider
       value={{
         foodTypes,
         getFoodTypesList,
+        postFoodTypeData,
+        updateFoodTypeData,
       }}
     >
       {children}

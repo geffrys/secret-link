@@ -6,6 +6,7 @@ import {
   updateHotel,
   deleteHotel,
 } from "../api/hotels.api";
+import toast from "react-hot-toast";
 
 export const HotelsContext = createContext();
 
@@ -29,11 +30,32 @@ export const HotelsProvider = ({ children }) => {
     }
   };
 
+  const postHotelById = async (id, data) => {
+    try {
+      await postHotel(id, data);
+      toast.success("Hotel created successfully");
+    } catch (error) {
+      toast.error(error.response.data.error);
+      console.log(error);
+    }
+  };
+
+  const updateHotelById = async (id, data) => {
+    try {
+      await updateHotel(id, data);
+      toast.success("Hotel updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <HotelsContext.Provider
       value={{
         hotels,
         getHotelsList,
+        postHotelById,
+        updateHotelById,
       }}
     >
       {children}

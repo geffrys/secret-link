@@ -1,4 +1,4 @@
-import { useContext, useState, createContext } from "react";
+import { useContext, useState, createContext, useEffect } from "react";
 import {
   getTransportations,
   getTransportation,
@@ -6,6 +6,7 @@ import {
   updateTransportation,
   deleteTransportation,
 } from "../api/transportation.api";
+import toast from "react-hot-toast";
 
 const TransportationContext = createContext();
 
@@ -30,11 +31,39 @@ export const TransportationProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const postTransportationData = async (data) => {
+    try {
+      await postTransportation(data);
+      toast.success("Transport created successfully")
+      getTransportationsList();
+    } catch (error) {
+      toast.error(error.response.data.error);
+      console.log(error);
+    }
+  };
+
+  const updateTransportationData = async (id, data) => {
+    try {
+      await updateTransportation(id, data);
+      toast.success("Transport status updated successfully")
+      getTransportationsList();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTransportationsList();
+  }, []);
+
   return (
     <TransportationContext.Provider
       value={{
         transportation,
         getTransportationsList,
+        postTransportationData,
+        updateTransportationData,
       }}
     >
       {children}

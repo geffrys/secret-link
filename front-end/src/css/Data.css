@@ -1,0 +1,119 @@
+.registerdata {
+  background-image: url("../img/WallpaperVUELO.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2rem 35rem 2rem 2rem;
+}
+
+.registerdata__form {
+  padding: 2rem 4rem;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.registerclient__response {
+  padding: 1rem 4rem 1rem 4rem;
+  color: white;
+  font-size: 2.5rem;
+  background-color: #25e29a;
+  border: 2px solid var(--primary-color);
+  border-radius: 1rem;
+  width: fit-content;
+}
+
+.registerdata__requiered {
+  background-color: var(--background-color-secondary);
+  border: 2px solid black;
+  border-top: 0px;
+  padding: 0rem 2rem 2rem 2rem;
+}
+
+.registerdata_title {
+  margin-top: 2rem;
+  background-color: var(--secondary-color);
+  font-size: 2.5rem;
+  font-weight: 400;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border: 2px solid black;
+  border-bottom: 1px;
+}
+
+.registerdata__title1 {
+  font-size: 5rem;
+  align-self: flex-start;
+}
+
+.registerdata__title2 {
+  font-size: 4rem;
+  font-weight: 400;
+  padding: 1rem 1rem 0rem 1rem;
+  color: white;
+  background-color: var(--primary-color);
+  border: 2px solid black;
+}
+
+.registerdata__personal {
+  display: flex;
+  background-color: white;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-weight: 400;
+  padding: 2rem;
+  border: 2px solid black;
+}
+
+.registerdata__form input {
+  font-size: 2rem;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.registerdata__form select {
+  border: 1px solid black;
+  font-size: 2rem;
+  padding: 0.5rem;
+  margin-right: 0.2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.registerdata__textarea {
+  display: flex;
+}
+
+.registerdata__form textarea {
+  font-size: 2rem;
+  border: 2px solid black;
+  padding: 0.5rem;
+  height: 10rem;
+  width: 100%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.registerdata__form label {
+  margin-right: 1rem;
+  font-size: 2.5rem;
+}
+
+.registerdata__botones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registerdata form p {
+  margin: 0.75rem;
+  padding: 0.5rem;
+  color: red;
+  font-size: 1.75rem;
+  width: fit-content;
+  background-color: rgb(255, 203, 203);
+  border: 1px solid red;
+}
+
+.rowsdatacheck{
+  cursor: pointer;
+  user-select: none;
+}

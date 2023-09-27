@@ -32,10 +32,10 @@ export const getTransport = async (req, res) => {
 
 export const newTransport = async (req, res) => {
   try {
-    const { transport_name, transport_description, transport_price } = req.body;
+    const { transport_name, transport_description, transport_price, transport_status } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO transports (transport_name, transport_description, transport_price) VALUES (?,?,?)",
-      [transport_name, transport_description, transport_price]
+      "INSERT INTO transports (transport_name, transport_description, transport_price, transport_status) VALUES (?,?,?,?)",
+      [transport_name, transport_description, transport_price, transport_status]
     );
     res.json({ message: "Transport Added Successfully" });
   } catch (error) {
@@ -45,10 +45,16 @@ export const newTransport = async (req, res) => {
 
 export const updateTransport = async (req, res) => {
   try {
-    const { transport_description, transport_price } = req.body;
+    const { transport_description, transport_price, transport_status } =
+      req.body;
     const [result] = await pool.query(
-      "UPDATE transports SET transport_description =?, transport_price =? WHERE id_transport =?",
-      [transport_description, transport_price, req.params.id_transport]
+      "UPDATE transports SET transport_description =?, transport_price =?, transport_status=? WHERE id_transport =?",
+      [
+        transport_description,
+        transport_price,
+        transport_status,
+        req.params.id_transport,
+      ]
     );
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "Transport does not exist" });

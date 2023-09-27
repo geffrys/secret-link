@@ -43,13 +43,6 @@ function DetailedPackage() {
   };
 
   const onSubmit = handleSubmit((data) => {
-    // const { pin1, pin2 } = data;
-    // if (pin1 !== pin2) {
-    //   setValue("pin1", "", { shouldValidate: true });
-    //   setValue("pin2", "", { shouldValidate: true });
-    //   alert("Pins don't match");
-    //   return;
-    // }
     data.id_destination = parseInt(data.id_destination);
     data.id_food_type = parseInt(data.id_food_type);
     data.id_hotel = parseInt(data.id_hotel);
