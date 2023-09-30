@@ -80,23 +80,7 @@ export const postOperation = async (req, res) => {
 }
 
 
-const statusTransition = (status) => {
-    switch (status) {
-        case 1:
-            // status when client is registered.
-            "registered";
-        case 2:
-            // status when is selecting travel pack. 
-            "in progress";
-        case 3:
-            // status when is paying.
-            "paid";
-        case 4:
-            // status when the operation is finished.
-            "finished"
 
-    }
-}
 
 // TODO: pending to redefine
 

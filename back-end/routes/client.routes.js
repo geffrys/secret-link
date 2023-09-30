@@ -9,7 +9,7 @@ import { loginClientSchema } from "../schemas/auth.schema.js";
 
 router.get('/clients', /*authRequired,*/ getClients)
 router.post('/clients',/*authRequired,*/ postClient)
-router.post('/clients/addpeople', /*authRequired,*/validateSchema(registerAdditionalPeople) ,postAdditionalPeople)
+router.post('/clients/:id/addpeople', /*authRequired,*/validateSchema(registerAdditionalPeople) ,postAdditionalPeople)
 router.get('/clients/:id/people', /*authRequired,*/ getClientAdditionalPeople)
 router.post('/clients/:id/verify', getClient)
 router.post('/clients/loginclient', validateSchema(loginClientSchema), LogIn);

@@ -72,7 +72,7 @@ export const postClient = async (req, res) => {
 
 export const postAdditionalPeople = async (req, res) => {
   const { id_client } = req.params.id;
-  const { id_document_type, document_number, health_information } = req.body;
+  const { id_document_type, document_number, name, health_information } = req.body;
 
   // first of all, we need to create health information for the additional people in package.
 
@@ -101,8 +101,8 @@ export const postAdditionalPeople = async (req, res) => {
 
   try {
     const [result] = await pool.query(
-      "insert into additional_people (id_client, id_document_type, document_number, id_health_information) values (?,?,?,?)",
-      [id_client, id_document_type, document_number, health_information_id]
+      "insert into additional_people (id_client, id_document_type, document_number, name_additional_people , id_health_information) values (?,?,?,?,?)",
+      [id_client, id_document_type, document_number, name, health_information_id]
     );
     res.status(200).json(result);
     console.log(result);

@@ -99,6 +99,7 @@ CREATE TABLE additional_people(
     id_client INT NOT NULL,
     id_document_type INT NOT NULL,
     document_number_additional_people VARCHAR(20) NOT NULL,
+    name_additional_people VARCHAR(30) NOT NULL,
     id_health_information INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME,

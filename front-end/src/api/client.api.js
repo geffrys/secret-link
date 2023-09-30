@@ -22,3 +22,10 @@ export const verifyClientToken = async () => {
 export const logOutClient = async () => {
   await axios.post("http://localhost:3000/api/v1/clients/logout");
 };
+
+export const postAdditionalPeople = async (id, additionalPeople) => {
+  await axios.post(
+    `http://localhost:3000/api/v1/clients/${id}/addpeople`,
+    additionalPeople
+  );
+}

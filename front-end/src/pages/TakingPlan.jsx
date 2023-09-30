@@ -1,14 +1,17 @@
 
 import { useParams } from 'react-router-dom'
+import Popup from '../components/PopUpAddPeople.jsx'
+import AddTravelerForm from '../components/AddTravelerForm.jsx'
 
 const TakingPlan = () => {
     const { id } = useParams();
-    console.log(id);
 
     return (
 
         <>
-        
+            <Popup isOpen={true}>
+                <AddTravelerForm />
+            </Popup>
         
         </>
     )

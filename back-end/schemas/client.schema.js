@@ -31,6 +31,7 @@ export const registerAdditionalPeople = z.object({
     id_client: z.number().min(1),
     id_document_type: z.number().min(1),
     document_number: z.string().min(1).max(20),
+    name: z.string().min(1).max(30),
     health_information: z.object({
         id_rh: z.number({ required_error:" rh required"}).nullable(),
         id_eps: z.number({ required_error: "eps required"}).nullable(),
