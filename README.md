@@ -8,6 +8,7 @@
     1. [Back-end](#back-end-install-instructions)
 3. [Main Features](#main-features)
 4. [Construction Details](#construction-details)
+5. [¿Why the project?](#why-the-project)
 
 # Summary
 
@@ -68,3 +69,6 @@ This CRM is a strategic project that can provide significant benefits in terms o
 - **Customer Data Collection:** we established a strategy for the continuous collection of customer data, including travel preferences, reservation history and contact data.
 - **Security and data protection:** security measures have been implemented to protect confidential customer information and comply with applicable data protection regulations.
 - **Tests and adjustments:** testing of the CRM was performed to ensure it is working as intended and to make adjustments as necessary.
+
+# ¿Why the project?
+This project is used to maintain a detailed record of interaction and communication with clients to offer a personalized service, automate administrative tasks and improve efficiency in the management of reservations and tourist services, offer a more customer-oriented service by knowing their preferences and needs, in addition, to use analysis and reporting to make strategic decisions that drive business growth.
