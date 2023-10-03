@@ -22,7 +22,7 @@ export const registerClient = z.object({
         id_rh: z.number({ required_error:" rh required"}).nullable(),
         id_eps: z.number({ required_error: "eps required"}).nullable(),
         health_card: z.string({ required_error:"health card required"}).max(100).nullable(),
-        health_diseases: z.number({ required_error: "health details required"}).min(0).max(1),
+        health_diseases: z.string({ required_error: "health details required"}).nullable(),
         health_details: z.string({ required_error: "health details required"}).max(200).nullable()
     }, { required_error: "health information required"})
 });

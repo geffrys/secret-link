@@ -34,12 +34,6 @@ function RegisterClient() {
     data.id_document_type = parseInt(data.id_document_type);
     data.id_eps = parseInt(data.id_eps);
     data.id_rh = parseInt(data.id_rh);
-    if (data.health_diseases === "") {
-      data.health_diseases = null;
-    }
-    if (data.health_details === "") {
-      data.health_details = null;
-    }
     changeBtn();
     Signup(data);
   });
