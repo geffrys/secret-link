@@ -16,6 +16,7 @@ import CreateRoomType from '../components/DataComponents/Create/CreateRoomType.j
 import CreateTransport from '../components/DataComponents/Create/CreateTransport.jsx'
 import CreateDestination from '../components/DataComponents/Create/CreateDestination.jsx'
 import CreateHotel from '../components/DataComponents/Create/CreateHotel.jsx'
+import MetricsPage from '../pages/MetricsPage.jsx'
 
 
 function RoutesPG() {
@@ -81,6 +82,11 @@ function RoutesPG() {
       <Route
         path="/hotels"
         element={isAuthenticated && user?.id_agent_type === 3 ? <CreateHotel /> : <Login />}
+      />
+
+      <Route 
+        path="/metrics" 
+        element={isAuthenticated && user?.id_agent_type === 3 ? <MetricsPage /> : <Login />}
       />
       <Route path="*" element={isAuthenticated ? <NotFound /> : <Login />} />
     </Routes>

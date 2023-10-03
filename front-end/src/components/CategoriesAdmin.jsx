@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
 import SeePlansBttn from "./SeePlansBttn";
 import RegisterAgentsBttn from "./RegisterAgentsBttn";
 import DataBttn from "./DataBttn";
+import MetricsBttn from "./MetricsBttn";
 import { useAuth } from "../context/AuthContext.jsx";
 
 function CategoriesAdmin() {
@@ -29,6 +29,7 @@ function CategoriesAdmin() {
           <SeePlansBttn />
           <RegisterAgentsBttn />
           <DataBttn />
+          <MetricsBttn />
         </div>
       );
     }

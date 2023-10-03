@@ -1,0 +1,54 @@
+@import "react-datepicker/dist/react-datepicker.css";
+
+.metrics {
+  margin: 2rem 35rem 2rem 2rem;
+  padding: 2rem 4rem;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.metrics_chart {
+  border: 2px solid black;
+  background-color: whitesmoke;
+}
+
+.metrics__title {
+  font-size: 4rem;
+  padding-top: 1rem;
+}
+
+.metric__date {
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.metric__date_picker {
+    background-color: var(--background-color-secondary);
+  width: 20rem;
+  height: 4rem;
+  border-radius: 1rem;
+  border: 1px solid black;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.react-datepicker__month-container {
+    background-color: white;
+    color: #969eac;
+    font-size: 2rem;
+    width: fit-content;
+  }
+  
+  .react-datepicker__month {
+    padding: 1rem 0;
+  }
+  
+  .react-datepicker__month-text {
+    font-size: 2rem;
+    padding: 1rem 3.5rem 1rem 2rem;
+  }
