@@ -11,3 +11,11 @@ export const getOperationHistory = async (id_client) => {
         console.log(error);
     }
 }
+
+export const postOperation = async (operation) => {
+    try {
+        return await axios.post("http://localhost:3000/api/v1/operation", operation);
+    } catch (error) {
+        console.log(error);
+    }
+}

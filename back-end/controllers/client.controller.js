@@ -71,21 +71,20 @@ export const postClient = async (req, res) => {
 // TODO: pending to test
 
 export const postAdditionalPeople = async (req, res) => {
-  const { id_client } = req.params.id;
-  const { id_document_type, document_number, name, health_information } = req.body;
-
+  const { id_document_type, document_number, name, health_information, id_client } = req.body;
+  console.log(req.body);
   // first of all, we need to create health information for the additional people in package.
 
   let health_information_id;
 
   try {
     const [health] = await pool.query(
-      "insert into health_information (id_rh, id_eps, health_card) values (?,?,?)",
+      "insert into health_information (id_rh, id_eps, health_card, health_diseases, health_details) values (?,?,?,?,?)",
       [
         health_information.id_rh,
         health_information.id_eps,
         health_information.health_card,
-        health_information.health_diseases,
+        health_information.health_diseases?1:0,
         health_information.health_details,
       ]
     );
@@ -98,11 +97,11 @@ export const postAdditionalPeople = async (req, res) => {
   }
 
   // then, we can register the additional people one by one
-
+  console.log(health_information_id);
   try {
     const [result] = await pool.query(
-      "insert into additional_people (id_client, id_document_type, document_number, name_additional_people , id_health_information) values (?,?,?,?,?)",
-      [id_client, id_document_type, document_number, name, health_information_id]
+      "insert into additional_people (id_client, id_document_type, document_number_additional_people, name_additional_people , id_health_information, created_at) values (?,?,?,?,?,?)",
+      [id_client, id_document_type, document_number, name, health_information_id, new Date()]
     );
     res.status(200).json(result);
     console.log(result);

@@ -6,6 +6,7 @@ export const getPackages = async (req, res) => {
       `SELECT * FROM travel_packs t 
         inner join destinations d
         on t.id_destination = d.id_destination
+        where travelpack_status = 1
       order by id_travel_pack asc`
     );
     res.json(result);
@@ -17,7 +18,15 @@ export const getPackages = async (req, res) => {
 export const getPackage = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM travel_packs WHERE id_travel_pack = ?",
+      `SELECT * FROM travel_packs 
+      left join room_types on travel_packs.id_room_type = room_types.id_room_type
+      left join food_types on travel_packs.id_food_type = food_types.id_food_type
+      left join transports on travel_packs.id_transport = transports.id_transport
+      left join destinations on travel_packs.id_destination = destinations.id_destination
+      left join itineraries on travel_packs.id_itinerary = itineraries.id_itinerary
+      left join hotels on travel_packs.id_hotel = hotels.id_hotel
+      WHERE id_travel_pack = ?
+      and travelpack_status = 1`,
       [req.params.id_travel_pack]
     );
     if (result.affectedRows === 0) {

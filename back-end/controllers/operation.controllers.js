@@ -30,39 +30,50 @@ export const postOperation = async (req, res) => {
     const {
         id_agent,
         id_client,
-        id_travel_pack,
-        id_operation_status
+        id_travel_pack
     } = req.body;
 
     let operation_price = 0;
     let operation_travelers_count = 0;
+    let operation_status = "In progress";
+    let id_operation_status = 0;
+
+    try {
+        const [result] = await pool.query("select id_operation_status from operation_status where operation_status_name like ?", [operation_status]);
+        id_operation_status = result[0].id_operation_status;
+    } catch (error) {
+        console.log("cannot get operation status at this moment");
+    }
+
+
 
     try {
         // definition: the price of the operation is the price of the travel pack plus the price of the transport
         const [price_travel_pack] = await pool.query("select travelpack_price from travel_packs where id_travel_pack = ?", [id_travel_pack]);
-        operation_price = price_travel_pack[0].travelpack_price;
+        operation_price = (price_travel_pack[0].travelpack_price? price_travel_pack[0].travelpack_price : 0);
         const [transport_price] = await pool.query("select transport_price from travel_pack inner join transports on id_transport = transports.id_transport where id_travel_pack = ?", [id_travel_pack]);
-        operation_price += transport_price[0].transport_price;
+        const [food_price] = await pool.query("select food_price from travel_pack inner join food_types on id_food_type = food_types.id_food_type where id_travel_pack = ?", [id_travel_pack]);
+        operation_price += (food_price[0].food_price? food_price[0].food_price : 0);
+        operation_price += (transport_price[0].transport_price? transport_price[0].transport_price : 0);
         // second definition: the number of travelers is the number of people in the operation plus
-        const [count_travelers] = await pool.query("select count(*) as count from additional_people where id_client = ?", [id_client]);
+        const [count_travelers] = await pool.query("select count(*) as count from additional_people where id_client = 4 and created_at >= curdate()", [id_client]);
         // the client is the plus one
         operation_travelers_count = count_travelers[0].count + 1;
         operation_price *= operation_travelers_count;
     } catch (error) {
         res.status(500).json({ mensaje: "cannot get operatioin details at this moment" });
     }
-    const created_at = new Date();
 
     let result
     try {
-        result = await pool.query("insert into operations (id_agent, id_client, id_travel_pack, id_operation_status) values (?,?,?,?)", [
+        result = await pool.query("insert into operations (id_agent, id_client, id_travel_pack, id_operation_status, operation_price, operation_travelers_count) values (?,?,?,?,?,?)", [
             id_agent,
             id_client,
             id_travel_pack,
             id_operation_status,
             operation_price,
             operation_travelers_count,
-            created_at
+            new Date()
         ]);
     } catch (error) {
         res.status(500).json({ mensaje: "cannot register operation at this moment" });
@@ -89,7 +100,7 @@ const updateOperation = async (req, res) => {
     const { id_operation_status } = req.body;
 
     try {
-        await operationAudit(id, id_operation_status);
+
     } catch (error) {
         console.log("cannot audit operation at this moment");
     }
@@ -107,20 +118,7 @@ const updateOperation = async (req, res) => {
 
 // TODO: pending to test
 
-const operationAudit = async (id, id_operation_status) => {
-    const created_at = new Date();
 
-    try {
-        const [result] = await pool.query("insert into operation_audit (id_operation, id_operation_status, created_at) values (?,?,?)", [
-            id,
-            id_operation_status,
-            created_at
-        ]);
-        return true;
-    } catch (error) {
-        res.status(500).json({ mensaje: "cannot audit operation at this moment" });
-    }
-}
 
 export const currentOperation = async (req, res) => {
     const { id_operation, id_client } = req.body;
@@ -195,8 +193,6 @@ export const operationInprogress = async (req, res) => {
         on o.id_operation_status = os.id_operation_status
     inner join clients c
         on o.id_client = c.id_client
-    left join additional_people ap
-        on c.id_client = ap.id_client
     where o.id_client = ?;
         `, [id]);
         res.json(result);

@@ -28,7 +28,7 @@ export const registerClient = z.object({
 });
 
 export const registerAdditionalPeople = z.object({
-    id_client: z.number().min(1),
+    id_client: z.number({ required_error: "client id required"}).min(1),
     id_document_type: z.number().min(1),
     document_number: z.string().min(1).max(20),
     name: z.string().min(1).max(30),

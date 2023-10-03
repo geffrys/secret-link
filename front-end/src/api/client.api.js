@@ -23,9 +23,16 @@ export const logOutClient = async () => {
   await axios.post("http://localhost:3000/api/v1/clients/logout");
 };
 
-export const postAdditionalPeople = async (id, additionalPeople) => {
+export const postAdditionalPeople = async (additionalPeople) => {
   await axios.post(
-    `http://localhost:3000/api/v1/clients/${id}/addpeople`,
+    `http://localhost:3000/api/v1/clients/addpeople`,
     additionalPeople
   );
+}
+
+export const getClientAdditionalPeople = async (id) => {
+  const response = await axios.get(
+    `http://localhost:3000/api/v1//clients/${id}/people`
+  );
+  return response;
 }

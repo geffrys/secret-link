@@ -4,6 +4,7 @@ import '../css/Popup.css'; // Importa el archivo CSS para el estilo
 
 function Popup({ isOpen, onClose, children}) {
   if (!isOpen) return null;
+  
 
   return (
     <div className="popup">
