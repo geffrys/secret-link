@@ -10,6 +10,10 @@
 
 The **Secret Link** project involves the development of a comprehensive platform for travel agencies, aimed at enhancing and simplifying the experience for both commercial agents and customer interactions. The platform offers several key functionalities that enhance agency efficiency and service quality.
 
+# ¿how?
+
+The process begins with collecting customer data, which may include contact information, travel preferences, purchase history, and demographic details. This information is stored in the CRM database, then the CRM organizes and stores customer profiles in a structured way so that travel agents can easily access and update them, in addition the CRM records all interactions and communications with customers, this includes emails, phone calls. , text messages and meetings. Agents can access this information to follow up on conversations and provide more personalized service.
+
 ## Key Functionalities
 
 1. **Commercial Agent Login:** The platform features a secure authentication system that allows commercial agents to access their individual accounts. This ensures controlled access to information and tools required for their tasks.
