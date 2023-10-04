@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
-import { getDocTypes } from "../api/doctypes.api";
-import { getRh } from "../api/rh.api";
-import { getEps } from "../api/eps.api";
-import "../css/AddTravelerForm.css";
-import { ClientContext } from "../context/clientContext";
-import { postAdditionalPeople } from "../api/client.api"
+// import { useContext, useState } from "react";
+// import { getDocTypes } from "../api/doctypes.api";
+// import { getRh } from "../api/rh.api";
+// import { getEps } from "../api/eps.api";
+// import "../css/AddTravelerForm.css";
+// import { ClientContext } from "../context/clientContext";
+// import { postAdditionalPeople } from "../api/client.api"
 
 const AddTravelerForm = ({ setOpen }) => {
 

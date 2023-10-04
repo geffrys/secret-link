@@ -12,7 +12,7 @@ import '../css/TakingPlan.css'
 import { postOperation } from '../api/operations.api.js'
 import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
-import { PayForm } from '../components/PayForm.jsx'
+// import { PayForm } from  '../components/PayForm.jsx'
 
 
 const TakingPlan = () => {
@@ -235,11 +235,11 @@ const TakingPlan = () => {
                 } />
             </Popup>
 
-            <Popup isOpen={OpenPay} onClose={() => {
+            {/* <Popup isOpen={OpenPay} onClose={() => {
                 setOpenPay(!OpenPay)
             }}>
                 <PayForm setOpen={() => { }} />
-            </Popup>
+            </Popup> */}
 
         </>
     )
