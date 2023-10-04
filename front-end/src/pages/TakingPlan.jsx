@@ -4,7 +4,7 @@ import Popup from '../components/PopUpAddPeople.jsx'
 import AddTravelerForm from '../components/AddTravelerForm.jsx'
 import { useState, useEffect } from 'react'
 import { getPackage } from '../api/packages.api'
-import { ClientContext } from "../context/clientContext";
+import { ClientContext } from "../context/ClientContext.jsx";
 import { useContext } from "react";
 import { AuthContext } from '../context/AuthContext.jsx'
 import { getClientAdditionalPeople } from '../api/client.api'

@@ -64,7 +64,7 @@ export const postClient = async (req, res) => {
 
     res.json({ message: "Client created succesfully" });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.json({ message: error.message }).status(500);
   }
 };
 
@@ -103,12 +103,12 @@ export const postAdditionalPeople = async (req, res) => {
       "insert into additional_people (id_client, id_document_type, document_number_additional_people, name_additional_people , id_health_information, created_at) values (?,?,?,?,?,?)",
       [id_client, id_document_type, document_number, name, health_information_id, new Date()]
     );
-    res.status(200).json(result);
+    res.json(result).status(200);
     console.log(result);
   } catch (error) {
     res
-      .status(500)
-      .json({ mensaje: "cannot register additional people at this moment" });
+      .json({ mensaje: "cannot register additional people at this moment" })
+      .status(500);
   }
 };
 
@@ -121,16 +121,16 @@ export const getClientAdditionalPeople = async (req, res) => {
       "select * from additional_people where id_client = ?",
       [id]
     );
+    console.log(result);
     if (result.length === 0) {
       res
-        .status(404)
-        .json({ mensaje: "there are no additional people for this client" });
+        .json({ mensaje: "there are no additional people for this client" }).status(404);
     }
-    res.status(200).json(result);
+    res.json(result).status(200);
   } catch (error) {
-    res.status(500).json({
+    res.json({
       mensaje: "cannot get additional people for this client at this moment",
-    });
+    }).status(500);
   }
 };
 
@@ -143,7 +143,7 @@ export const getClients = async (req, res) => {
     }
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ mensaje: "cannot get clients at this moment" });
+    res.json({ mensaje: "cannot get clients at this moment" }).status(500);
   }
 };
 
@@ -156,11 +156,11 @@ export const getClient = async (req, res) => {
       [id]
     );
     if (client.length == 0) {
-      res.status(404).json({ mensaje: "client not found" });
+      res.json({ mensaje: "client not found" }).status(404);
     }
     const isMatch = bcrypt.compare(client_password, client[0].client_password);
     if (!isMatch) {
-      res.status(404).json({ mensaje: "wrong password" });
+      res.json({ mensaje: "wrong password" }).status(404);
     }
     client[0].client_password = undefined;
     const clienttoken = await CreateAccesToken({
@@ -170,7 +170,7 @@ export const getClient = async (req, res) => {
     res.json({ client: client[0] });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ mensaje: "cannot get client at this moment" });
+    res.json({ mensaje: "cannot get client at this moment" }).status(500);
   }
 };
 

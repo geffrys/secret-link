@@ -130,7 +130,7 @@ function EnteredClient() {
                 <div className="entered_user_title_container">
                     <h1 className="entered_user_title">
                         <b>
-                            {`${client.client_name} ${client.client_middle_name} ${client.client_lastname}`}
+                            {`${client.client_name} ${client.client_middle_name?client.client_middle_name:""} ${client.client_lastname}`}
                         </b>
                     </h1>
                 </div>
