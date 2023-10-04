@@ -36,7 +36,7 @@ function DetailedPackage() {
     getFoodTypesList();
     getRoomTypesList();
     getHotelsList();
-  }, []);
+  });
 
   const onNavigate = () => {
     navigate("/packages");

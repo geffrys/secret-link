@@ -1,0 +1,100 @@
+*{
+    box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    border: .5px solid ;
+    table-layout: auto;
+}
+
+td{
+    border: none;
+}
+th{
+    border: none;
+}
+
+
+.main_container{
+    display: flex;
+    width: 100%;
+    padding: 30px 30px;
+}
+
+.main_content{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 20px 50px;
+    background-color: var(--background-color);
+    border: .5px solid ;
+    border-radius: 20px;
+}
+
+.content_reservation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content_reservation > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.options,
+.included, .travelers, .summary{
+    width: fit-content;
+    margin: 30px;
+    border: .5px solid ;
+}
+.summary{
+    width: 100%;
+    z-index: 9;
+}
+
+.options> div:last-child,
+.included> div:last-child, .travelers> div:last-child,
+.summary > div:last-child{
+    padding: 20px;
+}
+
+
+.options> div:first-child,
+.included> div:first-child, .travelers> div:first-child,
+.summary > div:first-child{
+    border-bottom: .5px solid ;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+}
+
+thead{
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+}
+
+.Container_btn_back_currReservation{
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.btn_back_currReservation{
+    width: 80%;
+    border-radius: 20px;
+    font-size: large;
+    background-color: var(--secondary-color);
+    height: 50px
+}
+
+.btn_back_currReservation:hover{
+    cursor: pointer;
+}
+
+

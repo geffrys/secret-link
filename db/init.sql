@@ -82,6 +82,19 @@ UNLOCK TABLES;
 --
 -- Table structure for table `agencies`
 --
+CREATE TABLE additional_people(
+    id_additional_people INT PRIMARY KEY AUTO_INCREMENT,
+    id_client INT NOT NULL,
+    id_document_type INT NOT NULL,
+    document_number_additional_people VARCHAR(20) NOT NULL,
+    name_additional_people VARCHAR(30) NOT NULL,
+    id_health_information INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME,
+    FOREIGN KEY (id_client) REFERENCES clients(id_client),
+    FOREIGN KEY (id_document_type) REFERENCES document_types(id_document_type),
+    FOREIGN KEY (id_health_information) REFERENCES health_information(id_health_information)
+);
 
 DROP TABLE IF EXISTS `agencies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -185,6 +198,24 @@ CREATE TABLE `auditory_sesion` (
   CONSTRAINT `auditory_sesion_ibfk_1` FOREIGN KEY (`id_agent`) REFERENCES `agents` (`id_agent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+CREATE TABLE operations(
+    id_operation INT PRIMARY KEY AUTO_INCREMENT,
+    id_agent INT NOT NULL,
+    id_client INT NOT NULL,
+    id_travel_pack INT ,
+    id_operation_status INT NOT NULL,
+    operation_start_date DATETIME NOT NULL,
+    operation_price INT NOT NULL,
+    operation_travelers_count INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME,
+    operation_start_date DATETIME,
+    FOREIGN KEY (id_agent) REFERENCES agents(id_agent),
+    FOREIGN KEY (id_client) REFERENCES clients(id_client),
+    FOREIGN KEY (id_travel_pack) REFERENCES travel_packs(id_travel_pack),
+    FOREIGN KEY (id_operation_status) REFERENCES operation_status(id_operation_status)
+);
 
 --
 -- Dumping data for table `auditory_sesion`

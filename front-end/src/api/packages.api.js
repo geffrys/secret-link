@@ -1,7 +1,12 @@
 import axios from "axios";
 
-export const getPackages = async () =>
-  await axios.get("http://localhost:3000/api/v1/packages");
+export const getPackages = async () => {
+  try {
+    return await axios.get("http://localhost:3000/api/v1/packages");
+  } catch (error) {
+    return error
+  }
+}
 
 export const getPackage = async (id) =>
   await axios.get(`http://localhost:3000/api/v1/packages/${id}`);

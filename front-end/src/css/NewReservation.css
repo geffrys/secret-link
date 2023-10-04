@@ -1,0 +1,67 @@
+/* Layouts */
+.main_content_newReservation{
+    display: flex;    
+}
+
+.content{
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    padding: 20px 50px;
+    margin: 20px;
+    background-color: var(--background-color);
+}
+.content_section{
+    border: 0.5px solid black;
+}
+
+/* Components */
+.content_actions{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 0px 10px;
+    display: none;
+}
+
+.content_Title{
+    background-color: var(--primary-color);
+    border-bottom: .5px solid black;
+    padding: 20px 10px;
+    margin-bottom: 15px;
+}
+
+.content > h1{
+    font-size: 3.5rem;
+    margin-top: 15px;
+}
+
+.content_actions_date{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* table  */
+.content_table{
+    box-sizing: border-box;
+    margin: 20px 0px;
+    padding: 0px 10px;
+
+}
+
+.content_table > table{
+    width: 100%;
+    border-collapse: collapse;
+    border: .5px solid black;
+}
+.content_table > table > thead{
+    background-color: var(--secondary-color);
+}
+/* remove central borders from table */
+
+

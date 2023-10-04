@@ -7,6 +7,7 @@ import LoginClient from "../pages/LoginClient.jsx";
 import TravelPackages from "../pages/TravelPackages.jsx";
 import CreatePackages from "../pages/CreatePackages.jsx";
 import EnteredClient from "../pages/Entered.jsx";
+import NewReservation from "../pages/NewReservation.jsx";
 import { useContext } from "react";
 import { ClientContext } from "../context/ClientContext.jsx";
 import RegisterAgent from "../pages/RegisterAgent.jsx";
@@ -18,23 +19,28 @@ import CreateDestination from '../components/DataComponents/Create/CreateDestina
 import CreateHotel from '../components/DataComponents/Create/CreateHotel.jsx'
 import MetricsPage from '../pages/MetricsPage.jsx'
 
+import CurrentReservation from "../pages/CurrentReservation.jsx";
+import { OperationContext } from "../context/operationContext.jsx";
+import TakingPlan from "../pages/TakingPlan.jsx";
 
 function RoutesPG() {
   const { isAuthenticated, user } = useAuth();
   const { isClientValidated } = useContext(ClientContext);
   return (
     <Routes>
-      <Route path="/" element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
+      <Route path="/" element={isAuthenticated ? (isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)} />
       <Route
         path="/client"
         element={isAuthenticated ? <LoginClient /> : <Login />}
       />
-
-      <Route
-        path="/dashboardclient"
-        element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
-      />
-
+        <Route
+          path="/dashboardclient"
+          element={isAuthenticated ? (isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
+        />
+        <Route path='/newreservation' element={isAuthenticated ? (isClientValidated ? (<NewReservation />) : (<LoginClient />)) : (<Login />)} />
+        <Route path='/currentreservation' element={isAuthenticated ? (isClientValidated ? (<CurrentReservation />) : (<LoginClient />)) : (<Login />)} />
+        <Route path='/reservation/:id' element={isAuthenticated ? (isClientValidated ? (<TakingPlan />) : (<LoginClient />)) : (<Login />)} />
+        
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}

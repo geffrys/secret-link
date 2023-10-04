@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState, useContext, useEffect } from "react";
 import {
   createUserRequest,
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      const res = await logOutRequest();
+      await logOutRequest();
       setIsAuthenticated(false);
     } catch (error) {
       toast.error(error.response.data.message);

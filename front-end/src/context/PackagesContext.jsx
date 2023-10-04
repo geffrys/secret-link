@@ -18,6 +18,7 @@ export const usePackages = () => {
   return context;
 };
 
+// eslint-disable-next-line react/prop-types
 export const PackagesProvider = ({ children }) => {
   const [packages, setPackages] = useState(null);
   const [errors, setErrors] = useState([]);

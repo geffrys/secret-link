@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 function OnlineStatus() {
-  const ToastRes = () => {
+  const ToastRes = async () => {
     toast.success("Connection Reestablished", {
       position: "bottom-center",
       duration: 4000,

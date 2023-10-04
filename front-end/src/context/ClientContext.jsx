@@ -22,6 +22,7 @@ export const useClient = () => {
   return context;
 };
 
+// eslint-disable-next-line react/prop-types
 export const ClientProvider = ({ children }) => {
   const [client, setClient] = useState(null);
   const [isClientValidated, setClientValidated] = useState(false);
@@ -33,6 +34,9 @@ export const ClientProvider = ({ children }) => {
         loading: "Logging in...",
         success: (res) => {
           setClient(res.data);
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
           setClientValidated(true);
           return "Welcome back " + res.data.client_name;
         },
@@ -54,9 +58,9 @@ export const ClientProvider = ({ children }) => {
 
   const Signup = async (client) => {
     try {
-      toast.promise(postClient(client), {
+      await toast.promise(postClient(client), {
         loading: "Registering client...",
-        success: (res) => {
+        success: () => {
           setTimeout(() => {
             navigate("/client");
           }, 4000);
@@ -87,28 +91,51 @@ export const ClientProvider = ({ children }) => {
         return;
       }
       try {
-        const res = await verifyClientToken(cookies.clientToken);
-        console.log("Hola " + res);
+        let res;
+        res = await verifyClientToken()
         if (!res.data) {
-          console.log("No existe res.data");
-          return setClientValidated(false);
+          setClientValidated(false);
+          return;
         }
-        console.log("Pasé el if");
         setClientValidated(true);
         setClient(res.data);
+
       } catch (error) {
         setClientValidated(false);
         setClient(null);
       }
     }
-    checkClientLogin();
-  }, []);
+   checkClientLogin();
+  }, [isClientValidated]);
+
+
 
   const logOut = async () => {
     try {
-      const res = await logOutClient();
-      setClientValidated(false);
-      setClient(null);
+
+      toast.promise(logOutClient(), {
+        loading: "ending client sesion...",
+        success: () => {
+          setClientValidated(false);
+          setClient(null);
+          setTimeout(() => {
+            navigate("/client");
+          }, 4000);
+          return "client sesion closed";
+        },
+        error: (error) => {
+          if (Array.isArray(error.response.data)) {
+            error.response.data.forEach((errorMsg) => {
+              return errorMsg;
+            });
+          } else {
+            return error.response.data;
+          }
+          return error.response.data;
+        }
+      });
+
+      
     } catch (error) {
       setClientValidated(false);
     }
