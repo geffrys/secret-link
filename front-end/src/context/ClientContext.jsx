@@ -35,9 +35,6 @@ export const ClientProvider = ({ children }) => {
         loading: "Logging in...",
         success: (res) => {
           setClient(res.data);
-          setTimeout(() => {
-            navigate("/");
-          }, 4000);
           setClientValidated(true);
           return "Welcome back " + res.data.client_name;
         },
@@ -120,14 +117,11 @@ export const ClientProvider = ({ children }) => {
   const logOut = async () => {
     try {
       toast.promise(logOutClient(), {
-        loading: "ending client sesion...",
+        loading: "Ending client session...",
         success: () => {
           setClientValidated(false);
           setClient(null);
-          setTimeout(() => {
-            navigate("/client");
-          }, 4000);
-          return "client sesion closed";
+          return "Client Session finished";
         },
         error: (error) => {
           if (Array.isArray(error.response.data)) {

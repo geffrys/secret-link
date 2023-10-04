@@ -59,19 +59,19 @@ export const postOperation = async (req, res) => {
         // definition: the price of the operation is the price of the travel pack plus the price of the transport
         const [price_travel_pack] = await pool.query("select travelpack_price from travel_packs where id_travel_pack = ?", [id_travel_pack]);
         operation_price = (price_travel_pack[0].travelpack_price? price_travel_pack[0].travelpack_price : 0);
-        console.log(operation_price)
+
         const [transport_price] = await pool.query("select tr.transport_price from travel_packs t inner join transports tr on t.id_transport = tr.id_transport where t.id_travel_pack = ?", [id_travel_pack]);
         operation_price += (transport_price[0].transport_price? transport_price[0].transport_price : 0);
-        console.log(operation_price)
+
         const [food_price] = await pool.query("select food_price from travel_packs t inner join food_types f on t.id_food_type = f.id_food_type where t.id_travel_pack = ?", [id_travel_pack]);
         operation_price += (food_price[0].food_price? food_price[0].food_price : 0);
-        console.log(operation_price)
+
         // second definition: the number of travelers is the number of people in the operation plus
         const [count_travelers] = await pool.query("select count(*) as count from additional_people where id_client = ? and created_at >= curdate()", [id_client]);
         // the client is the plus one
         operation_travelers_count = count_travelers[0].count + 1;
         operation_price *= operation_travelers_count;
-        console.log(operation_price);
+
     } catch (error) {
         res.json({ mensaje: "cannot get operatioin details at this moment" }).status(500);
     }

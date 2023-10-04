@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useOperation } from "../context/OperationContext.jsx";
+import { useOperation } from "../context/operationContext.jsx"
 import {
   CartesianGrid,
   Legend,
@@ -111,7 +111,7 @@ function TravelsChart() {
           className="btncancel"
           onClick={() => setDateRange({ start: lastYear, end: today })}
         >
-          reset
+          Reset
         </button>
       </section>
     </>

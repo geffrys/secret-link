@@ -386,7 +386,7 @@ function CreatePackages() {
               Update Package
             </button>
           )}
-          {params.id_transport && !active && user.id_agent_type === 1 &&(
+          {params.id_transport && !active && user.id_agent_type != 2 &&(
             <button
               type="button"
               className="btnregister"

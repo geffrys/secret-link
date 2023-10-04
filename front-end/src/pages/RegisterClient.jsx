@@ -233,15 +233,17 @@ function RegisterClient() {
 
             <div>
               <label>DISEASES</label>
-              <input
-                type="text"
+              <select
                 placeholder="leave empty if none"
                 {...register("health_diseases", { required: false })}
-              />
+              >
+                <option value="0">None</option>
+                <option value="1">Yes</option>
+              </select>
             </div>
 
             <div className="aditional">
-              <label>ADDITIONAL INFO</label>
+              <label>DISEASES INFO</label>
               <textarea
                 type="text"
                 placeholder="leave empty if none additional information provided"

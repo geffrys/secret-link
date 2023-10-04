@@ -76,48 +76,6 @@ function EnteredClient() {
     operationHistory();
   }, [client.id]);
 
-  // activeReservations = [
-  //     {
-  //         id: 1,
-  //         status: "active",
-  //         initial_date: "23/08/2023",
-  //         payment: "paid",
-  //         reservation_number: 123,
-  //         people: 2,
-  //         headquarter: "viva",
-  //         totalcost: 400 * 2
-  //     },
-  //     {
-  //         id: 2,
-  //         status: "active",
-  //         initial_date: "23/09/2023",
-  //         payment: "pending",
-  //         reservation_number: 321,
-  //         people: 4,
-  //         headquarter: "viva",
-  //         totalcost: 800 * 4
-  //     }
-  // ]
-  // pastReservations = [{
-  //     id: 3,
-  //     status: "past",
-  //     initial_date: "23/06/2023",
-  //     payment: "paid",
-  //     reservation_number: 122,
-  //     people: 2,
-  //     headquarter: "laureles",
-  //     totalcost: 400 * 2
-  // }, {
-  //     id: 4,
-  //     status: "past",
-  //     initial_date: "23/07/2023",
-  //     payment: "paid",
-  //     reservation_number: 122,
-  //     people: 2,
-  //     headquarter: "laureles",
-  //     totalcost: 400 * 2
-  // }]
-
   useEffect(() => {
     if (!isClientValidated) {
       navigate("/client");
@@ -170,7 +128,6 @@ function EnteredClient() {
                     <th># people</th>
                     <th>Headquarter</th>
                     <th>Total cost</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
 
@@ -185,19 +142,6 @@ function EnteredClient() {
                         <td>{reservation.people}</td>
                         <td>{reservation.headquarter}</td>
                         <td>{reservation.totalcost}</td>
-                        <td>
-                          <span
-                            onClick={() => {
-                              setOperation(reservation.id);
-                              navigate("/currentreservation", {
-                                state: { reservation: reservation.id },
-                              });
-                            }}
-                            className="action_details"
-                          >
-                            ✔️
-                          </span>
-                        </td>
                       </tr>
                     );
                   })}
