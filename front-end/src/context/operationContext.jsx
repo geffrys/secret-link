@@ -1,4 +1,5 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
+import { getOperationAlone } from "../api/operations.api";
 
 export const OperationContext = createContext(null);
 
@@ -12,10 +13,24 @@ export const useOperation = () => {
 
 export const OperationProvider = ({ children }) => {
   const [operationId, setOperationId] = useState(null);
+  const [operation, setOperations] = useState(null);
 
   const setOperation = (id) => {
     setOperationId(id);
   };
+
+  const getOperationList = async () => {
+    try {
+      const res = await getOperationAlone();
+      setOperations(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getOperationList();
+  },[]);
 
   const getOperation = () => {
     return operationId;
@@ -23,7 +38,13 @@ export const OperationProvider = ({ children }) => {
 
   return (
     <OperationContext.Provider
-      value={{ operationId, setOperation, getOperation }}
+      value={{
+        operation,
+        operationId,
+        setOperation,
+        getOperation,
+        getOperationList,
+      }}
     >
       {children}
     </OperationContext.Provider>

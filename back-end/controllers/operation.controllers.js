@@ -5,7 +5,6 @@ export const getOperation = async (req, res) => {
     const { id } = req.params;
     try {
         const [result] = await pool.query("select * from operations where id_operation = ?", [id]);
-        console.log(result);
         res.json(result[0]);
     } catch (error) {
         console.log(error);
@@ -13,10 +12,18 @@ export const getOperation = async (req, res) => {
     }
 }
 
+export const getOperationAlone = async (req, res) => {
+    try {
+        const [result] = await pool.query("select * from operations");
+        res.json(result);
+    } catch (error) {
+        res.json({ mensaje: "cannot get operation at this moment" });
+    }
+}
+
 export const getOperations = async (req, res) => {
     try {
         const [result] = await pool.query("select * from operations inner join travel_packs on operations.id_travel_pack = travel_packs.id_travel_pack inner join operation_status on operations.id_operation_status = operation_status.id_operation_status inner join clients on operations.id_client = clients.id_client inner join agents on operations.id_agent = agents.id_agent");
-        console.log(result);
         res.json(result);
     } catch (error) {
         console.log(error);

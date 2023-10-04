@@ -17,7 +17,7 @@ import { HotelsProvider } from "./context/HotelsContext.jsx";
 import { ClientProvider } from "./context/ClientContext.jsx";
 import { HeadquarterProvider } from "./context/HeadquarterContext.jsx";
 import { AgentTypesProvider } from "./context/AgentTypesContext.jsx";
-import { OperationProvider } from "./context/operationContext.jsx";
+import { OperationProvider } from "./context/OperationContext.jsx"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

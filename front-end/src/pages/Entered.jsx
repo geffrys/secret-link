@@ -21,7 +21,6 @@ function EnteredClient() {
   const operationHistory = async () => {
     try {
       const res = await getOperationHistory(client.id_client);
-      console.log(res.data);
       if (!res.data) {
         console.log("error");
         throw new Error("there's no data");

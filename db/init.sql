@@ -60,6 +60,7 @@ CREATE TABLE `additional_people` (
   `id_health_information` int NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
+  `name_additional_people` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_additional_people`),
   KEY `id_client` (`id_client`),
   KEY `id_document_type` (`id_document_type`),
@@ -67,7 +68,7 @@ CREATE TABLE `additional_people` (
   CONSTRAINT `additional_people_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `clients` (`id_client`),
   CONSTRAINT `additional_people_ibfk_2` FOREIGN KEY (`id_document_type`) REFERENCES `document_types` (`id_document_type`),
   CONSTRAINT `additional_people_ibfk_3` FOREIGN KEY (`id_health_information`) REFERENCES `health_information` (`id_health_information`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +225,7 @@ CREATE TABLE `clients` (
   KEY `id_health_information` (`id_health_information`),
   CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`id_document_type`) REFERENCES `document_types` (`id_document_type`),
   CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`id_health_information`) REFERENCES `health_information` (`id_health_information`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +234,6 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,1,'1000413820','Sebastian','','Ramírez','Maldonado','Envigado','sebasram21@gmail.com','$2b$10$XVbffyqgVAKZB8M8qYrggOWYeU4/jr2ftmY0Utv6xUD4.mS0000si','Antillas 3 casa 11',1,'2000-05-21 00:00:00','3014404211','2023-09-21 00:18:11',NULL),(2,1,'1000413879','Samuel','Ignacio','Arango','Ramírez','Bello','superajke@gmail.com','$2b$10$Jl3RLrQ7xGNZeagEsiOGqOUTYEdjdtkRkNcVgP/1ZKFEm8fVdiRo6','calle 31 #57-22',7,'2003-06-20 00:00:00','3043346953','2023-09-27 02:42:59',NULL);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,7 +286,7 @@ CREATE TABLE `document_types` (
 
 LOCK TABLES `document_types` WRITE;
 /*!40000 ALTER TABLE `document_types` DISABLE KEYS */;
-INSERT INTO `document_types` VALUES (1,'Cedula de ciudadania',1),(2,'Cedula de extranjeria',1),(3,'Pasaporte',1),(4,'Tarjeta de identidad',1),(5,'Registro civil',1),(6,'NIT',1),(7,'RUT',1);
+INSERT INTO `document_types` VALUES (1,'Citizenship card',1),(2,'Immigration card',1),(3,'Passport',1),(4,'Identity card',1),(5,' Civil Registry',1),(6,'NIT',1),(7,'RUT',1);
 /*!40000 ALTER TABLE `document_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,17 +381,17 @@ DROP TABLE IF EXISTS `health_information`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `health_information` (
   `id_health_information` int NOT NULL AUTO_INCREMENT,
-  `id_rh` int NOT NULL,
+  `id_rh` int DEFAULT NULL,
   `id_eps` int DEFAULT NULL,
   `health_card` varchar(20) DEFAULT NULL,
-  `health_diseases` varchar(200) DEFAULT NULL,
-  `health_details` varchar(200) DEFAULT NULL,
+  `health_diseases` tinyint NOT NULL,
+  `health_details` varchar(200) NOT NULL,
   PRIMARY KEY (`id_health_information`),
+  KEY `id_rh` (`id_rh`),
   KEY `id_eps` (`id_eps`),
-  KEY `health_information_ibfk_1` (`id_rh`),
   CONSTRAINT `health_information_ibfk_1` FOREIGN KEY (`id_rh`) REFERENCES `rh_types` (`id_rh`),
   CONSTRAINT `health_information_ibfk_2` FOREIGN KEY (`id_eps`) REFERENCES `eps` (`id_eps`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -479,7 +479,7 @@ CREATE TABLE `operation_status` (
 
 LOCK TABLES `operation_status` WRITE;
 /*!40000 ALTER TABLE `operation_status` DISABLE KEYS */;
-INSERT INTO `operation_status` VALUES (1,'En proceso',1),(2,'Cancelada',1),(3,'Finalizada',1);
+INSERT INTO `operation_status` VALUES (1,'In progress',1),(2,'Cancelled',1),(3,'Finished',1);
 /*!40000 ALTER TABLE `operation_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,9 +526,10 @@ CREATE TABLE `operations` (
   `id_travel_pack` int DEFAULT NULL,
   `id_operation_status` int NOT NULL,
   `operation_price` int NOT NULL,
-  `operation_travalers_count` int NOT NULL,
+  `operation_travelers_count` int NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
+  `operation_start_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id_operation`),
   KEY `id_agent` (`id_agent`),
   KEY `id_client` (`id_client`),
@@ -538,7 +539,7 @@ CREATE TABLE `operations` (
   CONSTRAINT `operations_ibfk_2` FOREIGN KEY (`id_client`) REFERENCES `clients` (`id_client`),
   CONSTRAINT `operations_ibfk_3` FOREIGN KEY (`id_travel_pack`) REFERENCES `travel_packs` (`id_travel_pack`),
   CONSTRAINT `operations_ibfk_4` FOREIGN KEY (`id_operation_status`) REFERENCES `operation_status` (`id_operation_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
