@@ -30,7 +30,7 @@ export const OperationProvider = ({ children }) => {
 
   useEffect(() => {
     getOperationList();
-  },[]);
+  });
 
   const getOperation = () => {
     return operationId;

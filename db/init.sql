@@ -155,7 +155,7 @@ CREATE TABLE `agents` (
   CONSTRAINT `agents_ibfk_1` FOREIGN KEY (`id_document_type`) REFERENCES `document_types` (`id_document_type`),
   CONSTRAINT `agents_ibfk_2` FOREIGN KEY (`id_agent_type`) REFERENCES `agent_types` (`id_agent_type`),
   CONSTRAINT `agents_ibfk_3` FOREIGN KEY (`id_headquarter`) REFERENCES `headquarters` (`id_headquarter`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +164,7 @@ CREATE TABLE `agents` (
 
 LOCK TABLES `agents` WRITE;
 /*!40000 ALTER TABLE `agents` DISABLE KEYS */;
-INSERT INTO `agents` VALUES (1,'Samuel','3043346953',1,2,1,'1000413879','Samuel3879','$2b$10$MG.kuXOtwsgDxggdzoTafOiT/O8GdOmSs7uaszKN6mWAjXmUplZeC','superajke@gmail.com','2023-09-16 19:07:33','2023-09-16 19:07:33'),(2,'Geffrey','3043346952',1,1,1,'1000419999','Geffrey9999','$2b$10$gJNooS5LRo7Wd5aLOYIrSenZEivcZnODlzekpH7fKULbXn/BS9RgK','Geffrey@gmail.com','2023-09-16 19:11:12','2023-09-16 19:11:12'),(3,'Juan','3043346952',1,2,1,'12313123','Juan3123','$2b$10$gqAfJjjCRCw3yOfWUF3YgutfxJVYfefBe6q3Ihb70s6aVs4Qz5B6y','juan@gmail.com','2023-09-21 00:13:41','2023-09-21 00:13:42'),(4,'David','3043346432',1,3,1,'123321','David3321','$2b$10$3USaKKZVsaLjv69RfDtVtuGTgcRoKCXlnysEjVtfdp9FguBqzt.aq','david@gmail.com','2023-09-26 16:51:48','2023-09-26 16:51:49');
+INSERT INTO `agents` VALUES (1,'Samuel','3043346953',1,2,1,'1000413879','Samuel3879','$2b$10$MG.kuXOtwsgDxggdzoTafOiT/O8GdOmSs7uaszKN6mWAjXmUplZeC','superajke@gmail.com','2023-09-16 19:07:33','2023-09-16 19:07:33'),(2,'Geffrey','3043346952',1,1,1,'1000419999','Geffrey9999','$2b$10$gJNooS5LRo7Wd5aLOYIrSenZEivcZnODlzekpH7fKULbXn/BS9RgK','Geffrey@gmail.com','2023-09-16 19:11:12','2023-09-16 19:11:12'),(3,'David','3043346432',1,3,1,'123321','David3321','$2b$10$3USaKKZVsaLjv69RfDtVtuGTgcRoKCXlnysEjVtfdp9FguBqzt.aq','david@gmail.com','2023-09-26 16:51:48','2023-09-26 16:51:49');
 /*!40000 ALTER TABLE `agents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +225,7 @@ CREATE TABLE `clients` (
   KEY `id_health_information` (`id_health_information`),
   CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`id_document_type`) REFERENCES `document_types` (`id_document_type`),
   CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`id_health_information`) REFERENCES `health_information` (`id_health_information`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
