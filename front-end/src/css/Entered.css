@@ -41,6 +41,7 @@ input{
     display: flex;
     justify-content: space-between;
     padding: 20px 0px;
+    display: none;
 }
 
 .new_reservation_btn{
@@ -91,4 +92,27 @@ input{
 
 input{
     font-size: 1.6rem;
+}
+
+.endSesionEntered{
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border: 1px solid;
+    font-size: large;
+    border-radius: 20px;
+    font: bold;
+}
+
+td{
+    background-color: var(--background-color);
+    padding: 10px 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.action_details{
+    cursor: pointer;
+}
+.action_details:hover{
+    zoom: 1.1;
 }

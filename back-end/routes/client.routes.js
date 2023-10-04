@@ -12,7 +12,7 @@ router.post('/clients',/*authRequired,*/ postClient)
 router.post('/clients/addpeople', /*authRequired,*/validateSchema(registerAdditionalPeople) ,postAdditionalPeople)
 router.get('/clients/:id/people', /*authRequired,*/ getClientAdditionalPeople)
 router.post('/clients/:id/verify', getClient)
-router.post('/loginclient', validateSchema(loginClientSchema), LogIn);
+router.post('/clients/loginclient', validateSchema(loginClientSchema), LogIn);
 router.put('/clients/:id', /*authRequired,*/ validateSchema(registerClient), postClient)
 router.get('/clients/verify', verifyToken)
 router.post('/clients/logout', logOut)

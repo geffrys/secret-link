@@ -17,7 +17,9 @@ import CreateTransport from '../components/DataComponents/Create/CreateTransport
 import CreateDestination from '../components/DataComponents/Create/CreateDestination.jsx'
 import CreateHotel from '../components/DataComponents/Create/CreateHotel.jsx'
 import MetricsPage from '../pages/MetricsPage.jsx'
-
+import CurrentReservation from "../pages/CurrentReservation.jsx";
+import TakingPlan from "../pages/TakingPlan.jsx";
+import NewReservation from "../pages/NewReservation.jsx";
 
 function RoutesPG() {
   const { isAuthenticated, user } = useAuth();
@@ -34,7 +36,12 @@ function RoutesPG() {
         path="/dashboardclient"
         element={isAuthenticated ? ( isClientValidated ? (<EnteredClient />) : (<LoginClient />)) : (<Login />)}
       />
+      <Route path='/newreservation' element={isAuthenticated ? (isClientValidated ? (<NewReservation />) : (<LoginClient />)) : (<Login />)} />
 
+      <Route path='/currentreservation' element={isAuthenticated ? (isClientValidated ? (<CurrentReservation />) : (<LoginClient />)) : (<Login />)} />
+
+      <Route path='/reservation/:id' element={isAuthenticated ? (isClientValidated ? (<TakingPlan />) : (<LoginClient />)) : (<Login />)} />
+      
       <Route
         path="/registerclient"
         element={isAuthenticated ? <RegisterClient /> : <Login />}

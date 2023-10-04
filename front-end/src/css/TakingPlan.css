@@ -1,0 +1,56 @@
+.takingplan_container{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: var(--background-color);
+    margin: 30px;
+    border-radius: 20px;
+    border: .5px solid ;
+    width: 80%;
+}
+
+.takingplan_container_content{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.action{
+    display: flex;
+    flex-direction: column;
+}
+
+.action_button_container{
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+}
+.action_button{
+    padding: 15px;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    color:black;
+    font-size: large;
+}
+
+.action_button:hover{
+    background-color: white;
+}
+
+
+button:hover{
+    cursor: pointer;
+}
+
+.addtraveler_button{
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    color:black;
+}
+
+.addtraveler_button:hover{
+    background-color: white;
+}
+
+
