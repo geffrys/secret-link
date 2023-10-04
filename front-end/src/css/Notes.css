@@ -1,14 +1,39 @@
-.notes{
+.notes-container {
+    position: absolute;
+    display: inline-block;
+    bottom: 45.5%;
+    right: 1%;
+    width: 160px;
+    height: 85px
+  }
+  
+  .notes-button {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: black;
+    padding: 10px 20px;
+    cursor: pointer;
     position: fixed;
     bottom: 6%;
     right: 1%;
     width: 160px;
-    height: 268px;
-    background-color: rgb(224, 223, 223);
-}
-
-.escribir {
-    position: fixed;
-    width: 150px;
-    height: 250px;
-}
+    height: 30px;
+  }
+  
+  .notes-content {
+    position: absolute;
+    top: 120%; /* Posición arriba */
+    bottom: 1%;
+    right: 90%;
+    width: 95px;
+    height: 230px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  
