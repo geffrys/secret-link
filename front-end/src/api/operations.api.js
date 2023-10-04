@@ -17,5 +17,6 @@ export const postOperation = async (operation) => {
         return await axios.post("http://localhost:3000/api/v1/operation", operation);
     } catch (error) {
         console.log(error);
+        throw new Error("cannot post operation at this moment");
     }
 }

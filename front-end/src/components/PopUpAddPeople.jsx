@@ -10,7 +10,7 @@ function Popup({ isOpen, onClose, children}) {
     <div className="popup">
       <div className="popup-inner">
         {children}
-        <button className="close-button" onClick={onClose}>Cerrar</button>
+        <button className="close-button" onClick={onClose}>❌</button>
         
       </div>
     </div>
